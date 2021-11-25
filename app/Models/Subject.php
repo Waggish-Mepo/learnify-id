@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Subject extends Model
 {
     use HasFactory;
-
-    const ADMIN = 'ADMIN';
-    const STUDENT = 'STUDENT';
-    const TEACHER = 'TEACHER';
 
     public $incrementing = false;
 
     protected $fillable = [
         'id',
-        'user_id',
-        'subjects',
+        'name',
+        'school_id',
         'created_at',
         'update_at',
     ];
