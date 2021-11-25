@@ -111,6 +111,10 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="addUser">
+                        <div class="d-flex justify-content-between my-3">
+                            <div></div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
+                        </div>
                         <div class="body mt-2">
                             <div class="row clearfix">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -152,6 +156,7 @@
         </div>
     </div>
     @include('layouts.admin._modal_edit_account')
+    @include('layouts.admin._modal_import_account')
 </div>
 @endsection
 
