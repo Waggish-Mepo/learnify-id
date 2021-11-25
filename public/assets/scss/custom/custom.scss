@@ -1,0 +1,73 @@
+$margins: 
+    'mt-6' 'top' 4rem,
+    'mt-7' 'top' 5.5rem,
+    'mt-8' 'top' 7rem,
+    'mt-9' 'top' 7.5rem,
+    'mt-10' 'top' 9rem,
+    'mr-6' 'right' 4rem,
+    'mr-7' 'right' 5.5rem,
+    'mr-8' 'right' 7rem,
+    'mr-9' 'right' 7.5rem,
+    'mr-10' 'right' 9rem,
+    'mb-6' 'bottom' 4rem,
+    'mb-7' 'bottom' 5.5rem,
+    'mb-8' 'bottom' 7rem,
+    'mb-9' 'bottom' 7.5rem,
+    'mb-10' 'bottom' 9rem,
+    'ml-6' 'left' 4rem,
+    'ml-7' 'left' 5.5rem,
+    'ml-8' 'left' 7rem,
+    'ml-9' 'left' 7.5rem,
+    'ml-10' 'left' 9rem;
+
+$paddings: 
+    'mt-6' 'top' 4rem,
+    'mt-7' 'top' 5.5rem,
+    'mt-8' 'top' 7rem,
+    'mt-9' 'top' 7.5rem,
+    'mt-10' 'top' 9rem,
+    'mr-6' 'right' 4rem,
+    'mr-7' 'right' 5.5rem,
+    'mr-8' 'right' 7rem,
+    'mr-9' 'right' 7.5rem,
+    'mr-10' 'right' 9rem,
+    'mb-6' 'bottom' 4rem,
+    'mb-7' 'bottom' 5.5rem,
+    'mb-8' 'bottom' 7rem,
+    'mb-9' 'bottom' 7.5rem,
+    'mb-10' 'bottom' 9rem,
+    'ml-6' 'left' 4rem,
+    'ml-7' 'left' 5.5rem,
+    'ml-8' 'left' 7rem,
+    'ml-9' 'left' 7.5rem,
+    'ml-10' 'left' 9rem;
+
+@each $name, $property, $margin in $margins {
+    .#{$name} {
+        margin-#{$property}: $margin !important;
+    }
+}
+
+@each $name, $property, $padding in $paddings {
+    .#{$name} {
+        margin-#{$property}: $padding !important;
+    }
+}
+
+@for $key from 0 through 10 {
+    .border-radius-#{$key} {
+        border-radius: #{$key}px;
+    }
+}
+
+@for $key from 0 through 10 {
+    .border-#{$key} {
+        border: #{$key}px;
+    }
+}
+
+@for $key from 0 through 20 {
+    .font-#{$key} {
+        font-size: #{$key}px;
+    }
+}
