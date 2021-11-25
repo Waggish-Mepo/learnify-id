@@ -8,8 +8,8 @@
             <h1>Akun Siswa</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', 1) }}">Smart School</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', 1) }}">Kelola Akun</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', ['role' => "STUDENT"]) }}">Smart School</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', ['role' => "STUDENT"]) }}">Kelola Akun</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Siswa</li>
                 </ol>
             </nav>
@@ -19,8 +19,8 @@
             <h1>Akun Guru</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', 2) }}">Smart School</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', 2) }}">Kelola Akun</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', ['role' => "TEACHER"]) }}">Smart School</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', ['role' => "TEACHER"]) }}">Kelola Akun</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Guru</li>
                 </ol>
             </nav>
@@ -30,12 +30,12 @@
             <h1>Akun Admin</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', 3) }}">Smart School</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', 3) }}">Kelola Akun</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', ['role' => "ADMIN"]) }}">Smart School</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.account', ['role' => "ADMIN"]) }}">Kelola Akun</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Admin</li>
                 </ol>
             </nav>
-            <h1 class="text-primary font-weight-bold my-4" style="font-size: 1.8rem;">Akun Admin</h1>
+            <h1 class="my-4 text-primary" style="font-size: 1.8rem;">Akun Admin</h1>
         @endif
     </div>
     <div class="row clearfix">

@@ -9,7 +9,7 @@
             </div>
         <div class="modal-body">
             <div class="form-group">
-                <input type="file" class="form-control-file" id="import-account">
+                <input class="form-control" type="file" id="import-account">
             </div>
         </div>
         <div class="modal-footer">
