@@ -4,7 +4,7 @@
 <div class="block-header">
     <div class="clearfix mb-3">
         {{-- if nya semnentara, nanti diganti. pokoknya ngambil role --}}
-        @if (request()->route('role_id') == 1)
+        @if (request()->route('role') === "STUDENT")
             <h1>Akun Siswa</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -15,7 +15,7 @@
             </nav>
             <h1 class="text-primary font-weight-bold my-4" style="font-size: 1.8rem;">Akun Siswa</h1>
         @endif
-        @if (request()->route('role_id') == 2)
+        @if (request()->route('role') === "TEACHER")
             <h1>Akun Guru</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -26,7 +26,7 @@
             </nav>
             <h1 class="text-primary font-weight-bold my-4" style="font-size: 1.8rem;">Akun Guru</h1>
         @endif
-        @if (request()->route('role_id') == 3)
+        @if (request()->route('role') === "ADMIN")
             <h1>Akun Admin</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            {{-- di atur di controller, return data users yang role_id nya sesuai route --}}
+                            {{-- di atur di controller, return data users yang role nya sesuai route --}}
                             <table class="table table-hover table-custom spacing8">
                                 <thead>
                                     <tr>
@@ -102,7 +102,7 @@
                                         <td>sussie</td>
                                         <td>active</td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-default" title="Edit" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
                                             <button type="button" class="btn btn-sm btn-primary reset-alert" title="Delete" data-type="confirm"><i class="fa fa-lock text-white" onclick="showConfirmMessage()"></i></button>
                                         </td>
                                     </tr>
