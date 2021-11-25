@@ -43,7 +43,7 @@
             <div class="card">
                 <ul class="nav nav-tabs">
                     <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Users">Akun</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addUser">Tambah Akun</a></li>        
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addUser">Tambah Akun</a></li>
                 </ul>
                 <div class="tab-content mt-0">
                     <div class="tab-pane show active" id="Users">
@@ -85,14 +85,14 @@
                                         <td>marsha</td>
                                         <td>active</td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-default" title="Edit" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-sm btn-default" data-toggle="modal" title="Edit" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
                                             <button type="button" class="btn btn-sm btn-primary reset-alert" title="Delete" data-type="confirm"><i class="fa fa-lock text-white" onclick="showConfirmMessage()"></i></button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="width45">2</td>
                                         <td>
-                                            <img src="{{asset('assets/images/xs/avatar5.jpg')}}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
+                                            <img src="{{asset('assets/images/xs/avatar5.jpg')}}"  data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
                                         </td>
                                         <td>
                                             <h6 class="mb-0">Susie Willis</h6>
@@ -107,7 +107,7 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>                
+                            </table>
                         </div>
                     </div>
                     <div class="tab-pane" id="addUser">
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                     </div>
-                </div>            
+                </div>
             </div>
         </div>
     </div>
@@ -158,6 +158,10 @@
 @section('script')
 <script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script>
+
+    $(document).ready(() => {
+        console.log('test')
+    })
 function showConfirmMessage() {
     swal({
         title: "Kamu yakin ingin reset password akun ini?",
