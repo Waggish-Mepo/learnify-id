@@ -1,0 +1,182 @@
+﻿.card {
+    @include transition(all .4s ease-in-out);
+    @include inline-block;
+    background: transparent;
+    border-color: transparent;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+
+    @include max-screen($break-small - 1px) {
+        margin-bottom: 10px;
+    }    
+    .header {
+        @include box-shadow(none);
+        @extend .m-b-0;
+        color: $gray-800;
+        padding-bottom: 15px;
+        position: relative;        
+        @include max-screen($break-small - 1px) {
+            margin-top: 15px;
+        }
+        &.bline{
+            border-bottom: 1px solid $border-color;
+        }
+        .header-dropdown {
+            @extend .margin-0;
+            @extend .padding-0;
+            position: absolute;
+            top: -8px;
+            right: 0px;
+            list-style: none;            
+
+            li{
+                @include inline-block;
+                
+                a{
+                    @include transition(all .5s);
+                    @include display-block;
+                    padding: 5px 10px;
+                    color: $gray-600;
+                    font-size: $font-size;
+
+                    &.dropdown-toggle{
+                        &:after{
+                            font-size: $font-size + 4px;
+                            border: none;
+                            content: '\f141';
+                            font-family: $font-icon;
+                            vertical-align: unset;
+                            width: 11px;
+                        }
+                    }
+                }
+
+                .dropdown-menu {
+                    border-radius: $border-radius-large;
+                    overflow: hidden;
+                    right: 0;
+                    left: auto !important;
+                    transform: none !important;
+                    top: 100% !important;
+                    padding: 10px;
+                    box-shadow: 0px 2px 20px 0px rgba($dark,0.2);
+                    border: 0;
+
+                    li {
+                        display: block !important;
+    
+                        a {
+                            color: $gray-700;
+                            font-weight: $font-weight-400;
+                            padding: 10px;                            
+                            white-space: nowrap;                            
+
+                            &:hover{
+                                color: $info;
+                            }                            
+                        }
+                    }
+                }    
+            }
+        }
+        h2 {
+            @extend .margin-0;
+            font-size: $font-size + 1px;
+            position: relative;
+
+            small {
+                @include display-block;
+                @extend .m-t-5;
+                font-size: $font-size - 1px;
+                color: $gray-500;
+                line-height: 15px;
+                text-transform: none;
+
+                a {
+                    font-weight: $font-weight-700;
+                    color: $gray-600;
+                }
+            }
+        }
+    }
+    .body,
+    .card-body {
+        @include border-radius(3px);
+        font-weight: $font-weight-400;        
+        color: $font-color;
+        background: $card-color;
+        padding: 22px;
+        border-top: 1px solid rgba($white, 0.09);
+
+        @include max-screen($break-small - 1px) {
+            padding: 15px;
+        }
+        &.b-cyan{
+            border-color: $cyan;
+        }
+        &.b-red{
+            border-color: $red;
+        }
+        &.b-blue{
+            border-color: $blue;
+        }
+        &.b-green{
+            border-color: $green;
+        }
+        &.b-pink{
+            border-color: $pink;
+        }
+        &.b-indigo{
+            border-color: $indigo;
+        }
+        &.b-orange{
+            border-color: $orange;
+        }
+    }
+    .card-footer{
+        border-color: rgba($white, 0.03);
+        background-color: rgba($white, 0.05)
+    }
+    &.bg-clear{
+        background: transparent;
+    }    
+    &.fullscreen {
+        background: $border-color;
+        height: 100%;
+        left: 0;
+        margin: 0;
+        position: fixed;
+        overflow-y: auto;
+        top: 0;
+        width: 100%;
+        z-index: 1040;
+        border-radius: 0 !important;        
+        padding: 15px;
+        
+        .icon-size-fullscreen{
+            &::before{
+                content: "\e058";
+            }
+        }
+    }
+    &.insight-title{
+        padding: 22px;
+        background: $card-color;
+
+        .header {
+            @extend .m-b-15;
+            .toggle_switch{
+                position: absolute;
+                right: 0;
+                top: -2px;
+            }
+        }
+
+        .body{
+            border: 0;
+            padding: 0;
+            background: transparent;
+        }
+    }
+}

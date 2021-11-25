@@ -1,0 +1,161 @@
+﻿$red-darklight: #6f7b7d;
+$red-light: #e8e8e8;
+$red-primary: $red !default;
+
+.theme-red{
+
+    ::selection{
+        color: $white; 
+        background: $red-primary;
+    }
+    .sidebar-nav .metismenu{
+        >li{
+            &.active>a{               
+                color: $red-primary;
+                i{
+                    background: $red-primary;
+                    color: $white;
+                }
+            }
+            ul{
+                .active{
+                    a{
+                        color: $red-primary;
+                        
+                    }
+                }
+            }
+        }
+        
+        a:hover,
+        a:focus{
+            color: $red-primary;
+            i{
+                background: $red-primary;
+                color: $white;
+            }
+
+            &:after{
+                color: $red-primary;
+            }            
+        }
+        ul a:hover{
+            &::before{
+                background: $red-primary;
+            }
+        }
+        
+    }
+    .card .header{
+        h2{
+            color: $red-primary;
+            font-weight: $font-weight-400;
+        }
+    }
+    .form-control{
+        &:focus {
+            color: $red-primary;
+        }
+    }
+    .fancy-checkbox{
+        input[type="checkbox"] {    
+            &:checked + span:before {
+                color: $red-primary;
+                border-color: $red-primary;
+            }
+        }
+    }    
+    .chat-widget{
+        li {
+            &.right {
+                
+                .chat-info {
+                    background: $red-primary;
+                    color: $white;
+    
+                    &:before{
+                        border-left: 10px solid $red-primary;
+                    }
+                }
+            }
+        }
+    }
+    .wizard{
+        >.steps{
+            .current a{
+                background: $red-primary;
+            }
+            .done a{
+                background: $red-darklight;
+            }
+        }        
+    }
+    .pagination{
+        >li{
+            >a{
+                color: $red-primary;
+                &:hover{
+                    background: $red-primary;
+                    border-color: $red-primary; 
+                    color: $white;
+                }
+            }
+            >span{
+                color: $red-primary;
+            }
+        }
+    }
+    .page-item.active .page-link{
+        background-color: $red-primary;
+        border-color: $red-primary;
+    }
+    .switch {
+        input:checked + .slider {
+            background-color: $red-primary;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px $red-primary;
+        }
+    }
+    .top-navbar #navbar-search .form-control{
+        &:focus,
+        &:active{
+            background: $red-primary;
+            color: $white;
+        }
+    }
+    .top-navbar{          
+          .progress-bar {
+            background: $red-primary;
+        }
+    }
+    .jvectormap-zoomin,
+    .jvectormap-zoomout{
+        background: $red-primary;
+    }
+    .nav.nav-tabs3{
+        border-color: $red-primary !important;
+        >li>a.active,
+        >li>a:hover{
+            color: $red-primary;
+            border-color: $red-primary !important;
+            &::after{
+                background: $red-primary;
+            }
+        }
+    }
+    .nav.nav-tabs2{        
+        >li>a.active,
+        >li>a:hover{
+            background: $red-primary;
+        }
+    }
+    &.h-menu{
+        .metismenu{
+            .collapse{
+                border-top: 1px solid  $red-primary;
+            }
+        }
+    }
+}

@@ -1,0 +1,161 @@
+﻿$green-darklight: #6f7b7d;
+$green-light: #e8e8e8;
+$green-primary: $green !default;
+
+.theme-green{
+
+    ::selection{
+        color: $white; 
+        background: $green-primary;
+    }
+    .sidebar-nav .metismenu{
+        >li{
+            &.active>a{               
+                color: $green-primary;
+                i{
+                    background: $green-primary;
+                    color: $white;
+                }
+            }
+            ul{
+                .active{
+                    a{
+                        color: $green-primary;
+                        
+                    }
+                }
+            }
+        }
+        
+        a:hover,
+        a:focus{
+            color: $green-primary;
+            i{
+                background: $green-primary;
+                color: $white;
+            }
+
+            &:after{
+                color: $green-primary;
+            }            
+        }
+        ul a:hover{
+            &::before{
+                background: $green-primary;
+            }
+        }
+        
+    }
+    .card .header{
+        h2{
+            color: $green-primary;
+            font-weight: $font-weight-400;
+        }
+    }
+    .form-control{
+        &:focus {
+            color: $green-primary;
+        }
+    }
+    .fancy-checkbox{
+        input[type="checkbox"] {    
+            &:checked + span:before {
+                color: $green-primary;
+                border-color: $green-primary;
+            }
+        }
+    }    
+    .chat-widget{
+        li {
+            &.right {
+                
+                .chat-info {
+                    background: $green-primary;
+                    color: $white;
+    
+                    &:before{
+                        border-left: 10px solid $green-primary;
+                    }
+                }
+            }
+        }
+    }
+    .wizard{
+        >.steps{
+            .current a{
+                background: $green-primary;
+            }
+            .done a{
+                background: $green-darklight;
+            }
+        }        
+    }
+    .pagination{
+        >li{
+            >a{
+                color: $green-primary;
+                &:hover{
+                    background: $green-primary;
+                    border-color: $green-primary; 
+                    color: $white;
+                }
+            }
+            >span{
+                color: $green-primary;
+            }
+        }
+    }
+    .page-item.active .page-link{
+        background-color: $green-primary;
+        border-color: $green-primary;
+    }
+    .switch {
+        input:checked + .slider {
+            background-color: $green-primary;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px $green-primary;
+        }
+    }
+    .top-navbar #navbar-search .form-control{
+        &:focus,
+        &:active{
+            background: $green-primary;
+            color: $white;
+        }
+    }
+    .top-navbar{          
+          .progress-bar {
+            background: $green-primary;
+        }
+    }
+    .jvectormap-zoomin,
+    .jvectormap-zoomout{
+        background: $green-primary;
+    }
+    .nav.nav-tabs3{
+        border-color: $green-primary !important;
+        >li>a.active,
+        >li>a:hover{
+            color: $green-primary;
+            border-color: $green-primary !important;
+            &::after{
+                background: $green-primary;
+            }
+        }
+    }
+    .nav.nav-tabs2{        
+        >li>a.active,
+        >li>a:hover{
+            background: $green-primary;
+        }
+    }
+    &.h-menu{
+        .metismenu{
+            .collapse{
+                border-top: 1px solid  $green-primary;
+            }
+        }
+    }
+}

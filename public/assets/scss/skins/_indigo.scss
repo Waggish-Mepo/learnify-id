@@ -1,0 +1,161 @@
+﻿$indigo-darklight: #6f7b7d;
+$indigo-light: #e8e8e8;
+$indigo-primary: $indigo !default;
+
+.theme-indigo{
+
+    ::selection{
+        color: $white; 
+        background: $indigo-primary;
+    }
+    .sidebar-nav .metismenu{
+        >li{
+            &.active>a{               
+                color: $indigo-primary;
+                i{
+                    background: $indigo-primary;
+                    color: $white;
+                }
+            }
+            ul{
+                .active{
+                    a{
+                        color: $indigo-primary;
+                        
+                    }
+                }
+            }
+        }
+        
+        a:hover,
+        a:focus{
+            color: $indigo-primary;
+            i{
+                background: $indigo-primary;
+                color: $white;
+            }
+
+            &:after{
+                color: $indigo-primary;
+            }            
+        }
+        ul a:hover{
+            &::before{
+                background: $indigo-primary;
+            }
+        }
+        
+    }
+    .card .header{
+        h2{
+            color: $indigo-primary;
+            font-weight: $font-weight-400;
+        }
+    }
+    .form-control{
+        &:focus {
+            color: $indigo-primary;
+        }
+    }
+    .fancy-checkbox{
+        input[type="checkbox"] {    
+            &:checked + span:before {
+                color: $indigo-primary;
+                border-color: $indigo-primary;
+            }
+        }
+    }    
+    .chat-widget{
+        li {
+            &.right {
+                
+                .chat-info {
+                    background: $indigo-primary;
+                    color: $white;
+    
+                    &:before{
+                        border-left: 10px solid $indigo-primary;
+                    }
+                }
+            }
+        }
+    }
+    .wizard{
+        >.steps{
+            .current a{
+                background: $indigo-primary;
+            }
+            .done a{
+                background: $indigo-darklight;
+            }
+        }        
+    }
+    .pagination{
+        >li{
+            >a{
+                color: $indigo-primary;
+                &:hover{
+                    background: $indigo-primary;
+                    border-color: $indigo-primary; 
+                    color: $white;
+                }
+            }
+            >span{
+                color: $indigo-primary;
+            }
+        }
+    }
+    .page-item.active .page-link{
+        background-color: $indigo-primary;
+        border-color: $indigo-primary;
+    }
+    .switch {
+        input:checked + .slider {
+            background-color: $indigo-primary;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px $indigo-primary;
+        }
+    }
+    .top-navbar #navbar-search .form-control{
+        &:focus,
+        &:active{
+            background: $indigo-primary;
+            color: $white;
+        }
+    }
+    .top-navbar{          
+          .progress-bar {
+            background: $indigo-primary;
+        }
+    }
+    .jvectormap-zoomin,
+    .jvectormap-zoomout{
+        background: $indigo-primary;
+    }
+    .nav.nav-tabs3{
+        border-color: $indigo-primary !important;
+        >li>a.active,
+        >li>a:hover{
+            color: $indigo-primary;
+            border-color: $indigo-primary !important;
+            &::after{
+                background: $indigo-primary;
+            }
+        }
+    }
+    .nav.nav-tabs2{        
+        >li>a.active,
+        >li>a:hover{
+            background: $indigo-primary;
+        }
+    }
+    &.h-menu{
+        .metismenu{
+            .collapse{
+                border-top: 1px solid  $indigo-primary;
+            }
+        }
+    }
+}

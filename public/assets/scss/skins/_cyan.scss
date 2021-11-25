@@ -1,0 +1,161 @@
+﻿$cyan-darklight: #6f7b7d;
+$cyan-light: #e8e8e8;
+$cyan-primary: $cyan !default;
+
+.theme-cyan{
+
+    ::selection{
+        color: $white; 
+        background: $cyan-primary;
+    }
+    .sidebar-nav .metismenu{
+        >li{
+            &.active>a{               
+                color: $cyan-primary;
+                i{
+                    background: $cyan-primary;
+                    color: $white;
+                }
+            }
+            ul{
+                .active{
+                    a{
+                        color: $cyan-primary;
+                        
+                    }
+                }
+            }
+        }
+        
+        a:hover,
+        a:focus{
+            color: $cyan-primary;
+            i{
+                background: $cyan-primary;
+                color: $white;
+            }
+
+            &:after{
+                color: $cyan-primary;
+            }            
+        }
+        ul a:hover{
+            &::before{
+                background: $cyan-primary;
+            }
+        }
+        
+    }
+    .card .header{
+        h2{
+            color: $cyan-primary;
+            font-weight: $font-weight-400;
+        }
+    }
+    .form-control{
+        &:focus {
+            color: $cyan-primary;
+        }
+    }
+    .fancy-checkbox{
+        input[type="checkbox"] {    
+            &:checked + span:before {
+                color: $cyan-primary;
+                border-color: $cyan-primary;
+            }
+        }
+    }    
+    .chat-widget{
+        li {
+            &.right {
+                
+                .chat-info {
+                    background: $cyan-primary;
+                    color: $white;
+    
+                    &:before{
+                        border-left: 10px solid $cyan-primary;
+                    }
+                }
+            }
+        }
+    }
+    .wizard{
+        >.steps{
+            .current a{
+                background: $cyan-primary;
+            }
+            .done a{
+                background: $cyan-darklight;
+            }
+        }        
+    }
+    .pagination{
+        >li{
+            >a{
+                color: $cyan-primary;
+                &:hover{
+                    background: $cyan-primary;
+                    border-color: $cyan-primary; 
+                    color: $white;
+                }
+            }
+            >span{
+                color: $cyan-primary;
+            }
+        }
+    }
+    .page-item.active .page-link{
+        background-color: $cyan-primary;
+        border-color: $cyan-primary;
+    }
+    .switch {
+        input:checked + .slider {
+            background-color: $cyan-primary;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px $cyan-primary;
+        }
+    }
+    .top-navbar #navbar-search .form-control{
+        &:focus,
+        &:active{
+            background: $cyan-primary;
+            color: $white;
+        }
+    }
+    .top-navbar{
+          .progress-bar {
+            background: $cyan-primary;
+        }
+    }
+    .jvectormap-zoomin,
+    .jvectormap-zoomout{
+        background: $cyan-primary;
+    }
+    .nav.nav-tabs3{
+        border-color: $cyan-primary !important;
+        >li>a.active,
+        >li>a:hover{
+            color: $cyan-primary;
+            border-color: $cyan-primary !important;
+            &::after{
+                background: $cyan-primary;
+            }
+        }        
+    }
+    .nav.nav-tabs2{        
+        >li>a.active,
+        >li>a:hover{
+            background: $cyan-primary;            
+        }
+    }
+    &.h-menu{
+        .metismenu{
+            .collapse{
+                border-top: 1px solid  $cyan-primary;
+            }
+        }
+    }
+}

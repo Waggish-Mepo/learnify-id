@@ -1,0 +1,235 @@
+*[dir="rtl"]{
+    .metismenu{
+        .arrow {
+            float: left;
+        }
+        .plus-times {
+            float: left;
+        }
+        .plus-minus {
+            float: left;
+        }
+    }
+}
+
+.metismenu{
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;    
+
+    > li {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 0%;
+        flex: 1 1 0%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        position: relative;
+        
+        &:last-child{
+            margin-bottom: 20px;
+        }
+
+        .active a {
+            font-weight: $font-weight-700;
+        }
+
+        i {
+            @include border-radius(3px);
+            @extend .inlineblock;
+            @extend .m-r-10;
+            position: relative;
+            top: 1px;
+            width: 28px;
+            line-height: 28px;
+            //background: rgba($white, 0.05);            
+            text-align: center;
+        }
+    }
+
+    li.header{
+        font-size: $font-size - 2px;
+        margin: 20px 5px 5px;
+        color: rgba($white, 0.4);
+        padding: 0;
+    }
+
+    a {
+        @include transition(all .3s ease-out);
+        @include display-block;
+        font-size: $font-size + 1px;
+        color: $gray-300;
+        border-radius: $border-radius-small;
+        position: relative;			
+        padding: 7px 0;
+        outline-width: 0;            
+    }
+
+    ul a {            
+        color: $gray-400;
+        font-size: $font-size;
+        padding: 6px 15px 6px 38px;
+        position: relative;			
+
+        &::before{
+            @include transition(all .4s ease-out);
+            @include border-radius(5px);
+            background: $gray-600;
+            content: '';
+            position: absolute;
+            left: 5px;
+            height: 1px;
+            width: 15px;
+            top: 17px;				
+        }
+        
+        &:hover{
+            &:before{
+                width: 190px;
+                @include max-screen($break-small - 1px){
+                    width: calc(100% - 15px);
+                }
+            }
+        }
+    }
+    
+    ul ul a {
+        padding: 10px 15px 10px 70px;
+    }
+
+    ul.collapse a {
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+    }		
+	
+    .arrow {
+        float: right;
+        line-height: 1.42857;
+    }
+
+    .collapse {
+        display: none;
+
+        &.in{
+            display: block;
+        }
+    }
+    .collapsing {
+        position: relative;
+        height: 0;
+        overflow: hidden;
+        transition-timing-function: ease;
+        transition-duration: .35s;
+        transition-property: height, visibility;
+    }
+    .has-arrow {
+        position: relative;
+
+        &:after {
+            @include transition(all .3s ease-out);
+            color: rgba($white, 0.2);
+            position: absolute;
+            content: '+';
+            right: 0; 
+            line-height: 28px;           
+        }
+    }    
+}
+.metismenu .active > .has-arrow::after,
+.metismenu .has-arrow[aria-expanded="true"]::after {
+    content: '-';
+}
+
+.h-menu{
+    #main-content{
+        margin-top: 100px;
+        width: 100%;
+    }
+    .top-navbar{
+        width: calc(100% - 40px) !important;
+        margin: 0 20px !important;
+    }
+    .sidebar{
+        top: 63px;
+        border-top:1px solid $body-color; 
+        background: $border-color;
+
+        .slimScrollDiv{
+            height: auto !important;
+            overflow: visible !important;
+            .sidebar-scroll{
+                height: auto !important;
+                overflow: visible !important;
+            }
+            .slimScrollRail,
+            .slimScrollBar{
+                display: none !important;
+                opacity: 0 !important;
+            }
+        }
+    }
+    .user-account{
+        display: none;
+    }
+    #left-sidebar{
+        width: calc(100% - 40px);
+        height: auto;
+        height: auto;   
+        margin: 0 20px;
+        z-index: 7;
+        .navbar-brand{
+            float: left;
+            margin: 0;
+            border: 0;
+            padding: 5px 15px 0;
+        }
+    }
+    .metismenu{
+        flex-direction: row;
+        li.header{
+            display: none;
+        }
+        .collapse.in{
+            display: none;
+        }
+        >li{
+            flex: unset;
+            >a{
+                span{
+                    display: none;
+                }
+            }
+            &:last-child{
+                margin-bottom: 0 !important;
+            }
+            &:hover{
+                ul.collapse{
+                    display: block;
+                }
+            }
+        }
+        .collapse{
+            position: absolute;
+            background: $border-color;;
+            width: 240px;
+            top: 42px;
+            padding: 15px !important;
+        }
+        .has-arrow{
+            &::after{
+                display: none;
+            }
+        }
+    }    
+}

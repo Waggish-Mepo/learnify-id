@@ -1,0 +1,309 @@
+/* Authentication forms */
+.auth-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+
+    .auth_div{
+        width: 360px;
+        z-index: 999;
+
+        @include max-screen($break-small - 1px) {
+            width: 320px;
+        }
+        .card{        
+            overflow: hidden;        
+        }
+    }
+    .auth_brand{
+        @extend .m-b-30;
+        .navbar-brand{
+            color: $white;
+        }
+    }
+	.form-auth-small {
+		.btn{
+            @extend .m-t-20;
+		}
+
+		.element-left {
+			float: left;
+		}
+
+		.element-right {
+			float: right;
+		}
+
+		.bottom {
+            @extend .m-t-20;
+			@extend .align-center;
+		}
+    }    
+    .lead {
+        @extend .m-t-5;
+        @extend .m-b-0;
+        font-size: $font-size + 6px;
+        color: $font-color;
+    }
+	.helper-text {
+        color: $color-muted;
+        @include display-block;
+	}
+	.btn-signin-social {
+        @include display-block;
+        @extend .m-b-5;
+        background-color: $white;
+        border-color: $gray-200;
+        font-weight: $font-weight-400;
+		padding: 10px 22px;
+		width: 100%;		
+
+		&:hover,
+		&:focus {
+			background-color: $gray-200;
+		}
+		i {
+            font-size: $font-size + 2px;
+			margin: 5px;
+		}
+    }
+    .page-400,
+    .forgot-pass{
+        &::before{
+            z-index: 1;
+        }
+        .header,
+        .body{
+            z-index: 9;
+            position: relative;
+        }
+    }    
+    .page-400{
+        position: relative;        
+        &::before{
+            content: '404';
+            font-size: 100px;
+            top: 20px;
+            position: absolute;
+            left: 80px;
+            opacity: 0.07;
+        }
+    }
+    .forgot-pass{
+        position: relative;
+        &::before{
+            content: '\e08e';
+            font-family: 'Simple-Line-Icons';
+            font-size: 290px;
+            top: -80px;
+            position: absolute;
+            left: 38px;
+            opacity: 0.03;
+        }
+    }
+
+	@include max-screen($break-medium) {        
+        margin: 0 auto;
+	}
+}
+.auth-main2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+    .auth_div{
+        width: 930px;
+        z-index: 999;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .card{ 
+            overflow: hidden;
+            background: $white;
+            border: 0;
+            .body{
+                border: none;
+                background: transparent;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 70px 20px;
+                @include max-screen($break-small - 1px) {
+                    padding: 20px;
+                }
+            }
+            @include max-screen($break-small) {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+        .pattern{
+            position: absolute;
+            bottom: 0;
+            top: auto;
+        }
+    }
+    .login-img{
+        @include max-screen($break-small) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+	.form-auth-small {
+        padding: 30px;
+        width: 350px;
+        @include max-screen($break-small) {
+            width: 100%;
+            text-align: center;
+        }
+		.btn{
+            @extend .m-t-20;
+        }
+        .form-control{
+            border-color: $gray-200;
+        }
+    }    
+    .lead {
+        @extend .m-t-5;
+        @extend .m-b-0;
+        font-size: $font-size + 6px;
+        color: $font-color;
+    }
+	.helper-text {
+        color: $color-muted;
+        @include display-block;
+	}
+
+	@include max-screen($break-medium) {        
+        margin: 0 auto;
+	}
+}
+
+.coming-soon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    .m-0auto{
+        margin: 0 auto;
+    }
+    
+    .auth_div{
+        width: 800px;
+        z-index: 999;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        text-align: center;
+        .card{ 
+            overflow: hidden;
+
+            .body{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 50px;
+
+                @include max-screen($break-small - 1px) {
+                    padding: 20px;
+                }
+            }
+            @include max-screen($break-small) {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+        .pattern{
+            position: absolute;
+            bottom: 0;
+            top: auto;
+        }
+    }
+
+	@include max-screen($break-medium) {
+        margin: 0 auto;
+    }    
+
+    .wsize2{
+        margin: 70px 0;
+
+        @include max-screen($break-small - 1px) {
+            margin: 10px 0;
+        }
+    }
+
+    .how-countdown{
+        background-color: $dark;
+        border-radius: $border-radius-large;
+        padding: 20px 10px;
+        text-align: center;
+        min-width: 80px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+
+        .l1-txt1 {            
+            font-size: $font-size + 10px;
+            line-height: 1;
+            color: $white;
+            display: block;
+        }                
+    }
+    .s1-txt1 {            
+        font-size: $font-size;
+        line-height: 1;
+    }
+    .s1-txt4{
+        display: block;
+    }
+}
+
+
+.pattern{
+    height: 4px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+
+    span{
+        display: block;
+        width: 100%;
+    }
+    .red{
+        background: #fc3c5f;
+    }
+    .indigo{
+        background: #993cfc;
+    }
+    .blue{
+        background: #3ca9fc;
+    }
+    .green{
+        background: #3cfc5f;
+    }
+    .orange{
+        background: #fcdf3c;
+    }
+}
+
+/* ---- reset ---- */
+.particles_js{
+
+    #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background-image: url("");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        z-index: -1;
+    }
+}

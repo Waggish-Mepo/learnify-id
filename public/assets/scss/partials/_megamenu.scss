@@ -1,0 +1,225 @@
+.megamenu{
+    @include transition(all .5s ease-in-out);
+    background: rgba($body-color, 0.95);
+    height: 100vh;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    width: 100%;    
+    z-index: -1;
+    padding: 40px 20px;
+
+    @include max-screen($break-medium) {
+        overflow-y: auto;
+        height: auto;
+    }
+    .mega-card{
+        margin-top: 15px;
+    }
+    .megamenu_toggle{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .title{
+        @extend .m-b-20;
+    }
+    &.open{
+        opacity: 1;
+        z-index: 9999;        
+    }
+    &.particles_js{
+        #particles-js{
+            position: absolute;
+            top: 0;
+        }
+    }
+    .q_links{
+        @extend .padding-0;
+        @extend .m-b-25;
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+
+        li{            
+            background: $card-color;            
+            width: 100%;
+            margin: 5px;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: block;
+
+            &:first-child{
+                @extend .m-l-0;
+            }
+            &:last-child{
+                @extend .m-r-0;
+            }
+            
+            a{
+                @include border-radius(3px);
+                color: $font-color;
+                border: 1px solid $border-color;
+                padding: 30px 0;
+                display: block;
+                
+                &:hover{
+                    @include transition(all .5s ease-in-out);
+                    background: $white;
+                }
+            }
+
+            i{
+                font-size: $font-size + 7px;
+            }
+            span{
+                @extend .m-t-10;
+                display: block;
+            }            
+        }
+    }
+}
+.themesetting{
+    @include transition(all .3s ease-in-out);
+    background: $body-color;
+    border-left: 2px solid $white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    z-index: 999;
+
+    &.open{
+        right: 0;
+    }
+    .theme_btn{
+        @include inline-block;
+        border-radius: $border-radius-small 0 0 $border-radius-small; 
+        background: $white;
+        width: 35px;
+        line-height: 35px;
+        position: absolute;
+        bottom: 100px;
+        left: -35px;        
+        text-align: center;
+        border: 0;
+    }
+}
+ul.choose-skin{
+    @extend .m-b-0;    
+	li{
+        display: inline-block;
+        @extend .m-b-5;
+        &:last-child{
+            @extend .m-b-0;
+        }
+		
+		div{
+            @include transition(all .3s ease-in-out);
+            @include border-radius(3px);
+            @include inline-block;
+            height: 30px;
+            width: 30px;
+            overflow: hidden;
+            position: relative;
+
+            &.green{
+                background: $green;
+			}
+            &.orange{
+                background: $orange;
+            }
+			&.cyan{
+                background: $cyan;
+			}			
+			&.blush{
+                background: $blush;
+            }
+            &.indigo{
+                background: $indigo;
+            }
+            &.red{
+                background: $red;
+            }
+        }
+
+        &.active{
+            div{
+                &::after{
+                    font-size: $font-size;                    
+                    font-family: $font-icon;
+                    font-size: $font-size;
+                    content: '\f087';
+                    position: absolute;
+                    color: $white;
+                    top: 5px;
+                    left: 9px;                    
+                }
+            }
+        }
+	}
+}
+.guick_link{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li{        
+        position: relative;
+        padding-left: 25px;
+        line-height: 30px;
+        
+        &::before{
+            @include transition(all .4s ease-in-out);
+            font-size: $font-size;
+            font-family: $font-icon;
+            content: "\f105";
+            position: absolute;
+            left: 0;
+            color: $gray-600;
+        }
+        &:hover{
+            &::before{
+                left: 10px;
+            }
+        }
+        a{
+            @include transition(all .4s ease-in-out);
+            color: $gray-300;
+        }
+    }
+}
+
+.search_div{
+    @include transition(all .3s ease-in-out);
+    background: $body-color;
+    border-left: 2px solid $white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    right: -600px;
+    width: 600px;
+    height: 100vh;
+    z-index: 999;
+
+    @include max-screen($break-1024) {
+        width: 500px;
+    }
+    @include max-screen($break-medium) {
+        width: 450px;
+    }
+    @include max-screen($break-small - 1px) {
+        width: 360px;
+    }
+
+    &.open{
+        right: 0;
+    }
+    
+}

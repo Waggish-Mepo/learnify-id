@@ -1,0 +1,110 @@
+.table {
+    color: $gray-500;    
+	.thead-primary{
+	    th{
+		  color: $cyan;
+		  border-color: $cyan;
+	    }
+	}
+	.thead-success{
+	    th{
+		  color: $green;
+		  border-color: $green;
+	    }
+	}
+	.thead-danger{
+	    th{
+		  color: $red;
+		  border-color: $red;
+	    }
+	}
+	.thead-info{
+	    th{
+		  color: $info;
+		  border-color: $info;
+	    }
+	}
+	.thead-purple{
+	    th{
+		  color: $purple;
+		  border-color: $purple;
+	    }
+	}
+	thead{
+		th{
+			font-weight: $font-weight-400;
+			border-width: 1px;
+		}
+	}      
+	tr{
+		td, th {
+			vertical-align: middle;
+			white-space: nowrap;
+			border-color: $border-color;
+		}
+    }
+    &.table-hover tbody tr:hover{
+        color: $gray-500;
+    }
+	
+	&.table-custom{
+		border-collapse: separate !important;        
+
+		&.spacing5{
+			border-spacing: 0 5px !important;
+		}
+		&.spacing8{
+			border-spacing: 0 8px !important;
+		}
+	
+		thead{
+			th{
+				background: $card-color;
+				border-top:0;
+				border-bottom: 0; 
+			}
+		}
+		tfoot{
+			th{
+				border-bottom:0; 
+			}
+		}
+		td, th{
+			&:last-child{
+				border-radius: 0 $border-radius-small $border-radius-small 0; 
+			}
+			&:first-child{
+				border-radius: $border-radius-small 0 0 $border-radius-small; 
+			}
+		}
+		tbody tr{
+			background: $card-color;
+			border-radius: $border-radius-small;
+	
+			&:hover{
+				background-color: rgba($white, 0.05);
+			}
+		}
+	}
+	&.table-custom2{
+		border-collapse: separate !important;
+		border-spacing: 1px 1px !important;
+		tr{
+			td, th{
+				border: none;
+				font-size: $font-size;
+			}
+		}
+		thead, tbody{
+			background: $card-color;
+		}
+	}
+	&.table-striped{
+		tbody tr:nth-of-type(odd){
+			background: rgba($white, 0.02);
+		}
+		td{
+			border: none;
+		}
+	}
+}

@@ -1,0 +1,435 @@
+﻿$light-body-color: 			#f3f3f3;
+$light-font-color: 			#4a4c4e;
+$light-link-color: 			#6290d0;
+$light-border-color: 		#2f3338;
+$light-line-color: 			#e1e8ed;
+$light-card-color: 			#282b2f;
+$l-card-color: 			    #fafafa;
+$lbody-color:               #f5f5f5;
+
+
+
+
+.light_version{
+    background: $light-bg;
+    color: $dark;
+
+    .fancy-radio input[type="radio"]+span i,
+    .fancy-checkbox input[type="checkbox"]+span:before{
+        border-color: $light-line-color;
+    }
+    .list-group-item{
+        background-color: $white;
+        border-color: $light-line-color;
+        &.active{
+            background-color: $info;
+        }
+    }
+    .btn{
+        &.btn-default{
+            background: $white;
+            border-color: $light-line-color;
+            color: $light-font-color; 
+        }
+        &.btn-outline-secondary{
+            border-color: $light-line-color;
+        }
+    }
+    .form-control,
+    .input-group-prepend .input-group-text,
+    .input-group-append .input-group-text{
+        border-color: $light-line-color; 
+    }
+    .nav{
+        &.nav-tabs{
+            border-color: $light-line-color; 
+            .nav-link{
+                color: $light-font-color;
+                &.active,
+                &:hover,
+                &:focus{
+                    border-color: $light-line-color; 
+                    background: $light-line-color; 
+                }
+            }            
+        }
+        &.nav-tabs3{
+            border-color: $light-line-color;
+            &.table-nav{
+                background-color: $white;
+            }
+        }
+    }
+    .progress{
+        background-color: rgba($dark, 0.1);
+    }
+    .switch{
+        .slider{
+            background-color: rgba($dark, 0.15);
+        }
+    }
+    .modal-dialog{
+        .modal-content{
+            background: $white;
+            .modal-header,
+            .modal-footer{
+                border-color: $light-line-color; 
+            }
+        }
+    }
+    .wizard{
+        .steps{
+            .disabled a{
+                background: rgba($dark, 0.2)
+            }
+        }
+        .content{
+            border-color: $light-line-color;
+            background-color:  $white;
+            .body{
+                input{
+                    border-color: $light-line-color;
+                }
+            }
+        }
+    }
+    .dropify-wrapper{
+        background-color: $white;
+        border-color: $light-line-color; 
+        .dropify-preview{
+            background-color: $white;
+        }
+        &:hover{
+            background-image: linear-gradient(-45deg, $light-line-color 20%, transparent 25%, transparent 50%, $light-line-color 45%, $light-line-color 70%, transparent 75%, transparent);
+        }
+    } 
+    
+    .accordion{
+        >div{
+            background: transparent;
+            
+        }
+        .card-header{
+            background: $white;
+            .btn{
+                color: $gray-800;
+            }
+        }
+    }
+
+    .border-right,
+    .border-top,
+    .border-left,
+    .border-bottom,    
+    .accordion2 {
+        border-color: $light-line-color !important; 
+        .accordion-item{
+            border-color: $light-line-color; 
+        }
+    }
+    .pagination{
+        .page-link{
+            border-color: $light-line-color !important;             
+        }
+        .disabled.page-item .page-link{
+            background-color: $light-line-color;
+        }
+    }
+    .top-navbar{
+        background: $white;
+        border-color: $light-line-color; 
+        margin: 0;
+        width: calc(100% - 240px);
+        
+        #navbar-search .form-control{
+            background: $white;
+        }
+        .navbar-btn button{
+            color: $light-font-color;
+        }
+        @include max-screen($break-large) {
+            width: 100%;
+        }
+    }
+    .navbar-nav{
+        .icon-menu{
+            color: $light-font-color;
+        }
+        .dropdown-menu{
+            border: none;
+        }
+    }
+    .themesetting {
+        background: $white;
+        border-color: $light-card-color;
+        .theme_btn {
+            background: $light-card-color;
+            color: $white;
+        }
+    }
+    .rightbar{
+        background: $white;
+    }
+    #left-sidebar{
+        background: $white;
+        .navbar-brand{
+            border-color: $light-line-color;
+            span{
+                color: $dark;
+            }
+        }
+    }
+    .user-account{
+        color: $dark;
+    }
+    .card{
+        .header.bline{
+            border-color: $light-line-color;
+        }
+        .body,
+        .card-body{
+            background: $white;
+            border: 1px solid #e1e8ed;
+            color: $dark;
+        }
+        .card-footer{
+            background: $light-line-color;
+        }
+        &.bg-success{
+            .body{
+                background: $green;
+            }
+        }
+    }    
+    .block-header h2,
+    .block-header h1{
+        color: $light-font-color;
+    }
+    .table.table-custom{
+        thead th{
+            background: $white;
+        }
+        tbody{
+            tr{
+                background: $white;
+            }
+        }
+    }
+    .table{
+        tr{
+            td, th{
+                border-color: transparent;
+                background: $white;
+            }
+        }
+        &.table-striped tbody tr:nth-of-type(2n+1) {
+            background: $light-line-color;
+        }
+        &.table-custom2{
+            thead, tbody{
+                background: $l-card-color;
+            }
+        }
+    }    
+    .mail-inbox .mail-right{
+        .mail-list ul li{
+            background: rgba($dark, 0.05);
+        }
+        .mail-detail-full .detail-header{
+            border-color: $light-line-color; 
+        }
+    }
+    .custom-select,
+    .custom-file .custom-file-label{
+        border-color: $light-line-color;
+    }
+    .custom-file-label::after{
+        border-color: $light-line-color;
+        background-color: $light-line-color;
+    }
+    .multiselect_div > .btn-group .btn{
+        border-color: $light-line-color;
+        span{
+            color: $light-font-color;
+        }
+    }
+    .noUi-target{
+        border-color: $light-line-color;
+        .noUi-background {
+            background: $light-line-color;
+        }
+    }
+    .megamenu{
+        .title{
+            color: $white;
+        }
+        .setting-list li{
+            color: $gray-300;
+        }
+        .form-control{
+            border-color: $light-font-color;
+        }
+    }
+    .metismenu{
+        li.header{
+            color: $gray-500;
+        }
+        a{
+            color: $gray-900;
+        }
+        ul{
+            a{
+                color: $gray-700;
+                &:before{
+                    background: $gray-200;
+                }
+            }
+        }
+        .has-arrow:after{
+            color: $gray-400;
+        }
+    }
+    .search_div{
+        background: $light-bg;
+    }
+    &.mini_sidebar{
+        &.mini_hover{
+            #left-sidebar{
+                background: $white;
+            }
+            .overlay{
+                display: block;
+            }
+        }
+    }
+    &.h-menu{
+        .metismenu ul a{
+            color: $gray-200 !important;
+        }
+    }
+
+    // Chart
+    .c3-chart-arcs{
+        path {
+            stroke: $white;
+        }
+    }
+    .ct-grid{
+        stroke: rgba($dark, 0.1);
+    }
+    
+    #m_area_chart2,
+    #e_area_chart,
+    #m_bar_chart,
+    #bar_stacked,
+    #m_area_chart{
+        path{
+            stroke: rgba($dark, 0.2);
+        }
+    }
+    .flot-tick-label.tickLabel{
+        color: $dark;
+    }
+
+    // Widget 
+    .card-chart-bg{
+        background: $white;
+    }
+    .right_chat .media{
+        .name{
+            color: $light-font-color;
+        }
+        .status{
+            border-color: $white; 
+        }
+    }
+    .chat-widget{
+        li.left .chat-info{
+            background: rgba($dark, 0.05);
+            &::before{
+                border-right: 10px solid rgba($dark, 0.05);
+            }
+        }
+    }
+    .chatapp_body{
+        border-color: $light-line-color;
+        .chat-history{
+            border-color: $light-line-color;
+        }
+    }
+    .fc-unthemed{
+        th,
+        td{
+            border-color: $light-line-color; 
+        }
+        th{
+            background: $light-line-color;
+            color: $light-font-color;
+            span{
+                font-weight: $font-weight-400;
+            }
+        }
+    }
+    .fc{
+        .fc-view{
+            &.fc-agenda > table tbody tr td:first-child.fc-widget-content,            
+            &.fc-basic-view .fc-body .fc-row .fc-bg,
+            &.fc-agenda .fc-body .fc-row .fc-bg{
+                border-color: $light-line-color; 
+            }
+            &.fc-basic-view{
+                > table tbody tr td:first-child.fc-widget-content,            
+                > table tbody tr td.fc-widget-content,
+                > table > thead tr th.fc-widget-header{
+                    border-color: $light-line-color;
+                }
+            }
+        }
+        .fc-view-container{
+            .fc-other-month{
+                background: rgba($dark, 0.02);
+            }
+            .fc-view.fc-basic-view > table > thead tr td.fc-widget-header{
+                border-color: $light-line-color;
+            }
+        }
+    }
+    .icons-list{
+        div{
+            border-color: $light-line-color !important; 
+        }
+    }
+    .icon-container{
+        &:hover{
+            .icon-name{
+                color: $dark;
+            }
+        }
+    }
+    .timeline{
+        .timeline-marker::after{
+        background: $light-line-color;
+        }
+        .period .timeline-marker::before{
+            border-color: $light-line-color; 
+        }
+    }
+    .taskboard{
+        .dd-handle,
+        .dd-content{
+            border-color: $light-line-color;
+        }
+    }
+    #calendar .fc-widget-content{
+        border-color: $light-line-color; 
+    }
+    .sidebar{
+        border:1px solid $light-line-color;
+        .slimScrollBar{
+            background: rgba($dark, 0.1) !important;
+        }
+    }
+    .team-info li img{
+        border-color: $white; 
+    }
+}

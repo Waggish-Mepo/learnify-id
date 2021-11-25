@@ -1,0 +1,161 @@
+﻿$blush-darklight: #6f7b7d;
+$blush-light: #e8e8e8;
+$blush-primary: $blush !default;
+
+.theme-blush{
+
+    ::selection{
+        color: $white; 
+        background: $blush-primary;
+    }
+    .sidebar-nav .metismenu{
+        >li{
+            &.active>a{               
+                color: $blush-primary;
+                i{
+                    background: $blush-primary;
+                    color: $white;
+                }
+            }
+            ul{
+                .active{
+                    a{
+                        color: $blush-primary;
+                        
+                    }
+                }
+            }
+        }
+        
+        a:hover,
+        a:focus{
+            color: $blush-primary;
+            i{
+                background: $blush-primary;
+                color: $white;
+            }
+
+            &:after{
+                color: $blush-primary;
+            }            
+        }
+        ul a:hover{
+            &::before{
+                background: $blush-primary;
+            }
+        }
+        
+    }
+    .card .header{
+        h2{
+            color: $blush-primary;
+            font-weight: $font-weight-400;
+        }
+    }
+    .form-control{
+        &:focus {
+            color: $blush-primary;
+        }
+    }
+    .fancy-checkbox{
+        input[type="checkbox"] {    
+            &:checked + span:before {
+                color: $blush-primary;
+                border-color: $blush-primary;
+            }
+        }
+    }    
+    .chat-widget{
+        li {
+            &.right {
+                
+                .chat-info {
+                    background: $blush-primary;
+                    color: $white;
+    
+                    &:before{
+                        border-left: 10px solid $blush-primary;
+                    }
+                }
+            }
+        }
+    }
+    .wizard{
+        >.steps{
+            .current a{
+                background: $blush-primary;
+            }
+            .done a{
+                background: $blush-darklight;
+            }
+        }        
+    }
+    .pagination{
+        >li{
+            >a{
+                color: $blush-primary;
+                &:hover{
+                    background: $blush-primary;
+                    border-color: $blush-primary; 
+                    color: $white;
+                }
+            }
+            >span{
+                color: $blush-primary;
+            }
+        }
+    }
+    .page-item.active .page-link{
+        background-color: $blush-primary;
+        border-color: $blush-primary;
+    }
+    .switch {
+        input:checked + .slider {
+            background-color: $blush-primary;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px $blush-primary;
+        }
+    }
+    .top-navbar #navbar-search .form-control{
+        &:focus,
+        &:active{
+            background: $blush-primary;
+            color: $white;
+        }
+    }
+    .top-navbar{
+          .progress-bar {
+            background: $blush-primary;
+        }
+    }
+    .jvectormap-zoomin,
+    .jvectormap-zoomout{
+        background: $blush-primary;
+    }
+    .nav.nav-tabs3{
+        border-color: $blush-primary !important;
+        >li>a.active,
+        >li>a:hover{
+            color: $blush-primary;
+            border-color: $blush-primary !important;
+            &::after{
+                background: $blush-primary;
+            }
+        }
+    }
+    .nav.nav-tabs2{
+        >li>a.active,
+        >li>a:hover{
+            background: $blush-primary;            
+        }
+    }
+    &.h-menu{
+        .metismenu{
+            .collapse{
+                border-top: 1px solid  $blush-primary;
+            }
+        }
+    }
+}

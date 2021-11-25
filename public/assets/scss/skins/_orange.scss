@@ -1,0 +1,161 @@
+﻿$orange-darklight: #6f7b7d;
+$orange-light: #e8e8e8;
+$orange-primary: $orange !default;
+
+.theme-orange{
+
+    ::selection{
+        color: $white; 
+        background: $orange-primary;
+    }
+    .sidebar-nav .metismenu{
+        >li{
+            &.active>a{               
+                color: $orange-primary;
+                i{
+                    background: $orange-primary;
+                    color: $white;
+                }
+            }
+            ul{
+                .active{
+                    a{
+                        color: $orange-primary;
+                        
+                    }
+                }
+            }
+        }
+        
+        a:hover,
+        a:focus{
+            color: $orange-primary;
+            i{
+                background: $orange-primary;
+                color: $white;
+            }
+
+            &:after{
+                color: $orange-primary;
+            }            
+        }
+        ul a:hover{
+            &::before{
+                background: $orange-primary;
+            }
+        }
+        
+    }
+    .card .header{
+        h2{
+            color: $orange-primary;
+            font-weight: $font-weight-400;
+        }
+    }
+    .form-control{
+        &:focus {
+            color: $orange-primary;
+        }
+    }
+    .fancy-checkbox{
+        input[type="checkbox"] {    
+            &:checked + span:before {
+                color: $orange-primary;
+                border-color: $orange-primary;
+            }
+        }
+    }    
+    .chat-widget{
+        li {
+            &.right {
+                
+                .chat-info {
+                    background: $orange-primary;
+                    color: $white;
+    
+                    &:before{
+                        border-left: 10px solid $orange-primary;
+                    }
+                }
+            }
+        }
+    }
+    .wizard{
+        >.steps{
+            .current a{
+                background: $orange-primary;
+            }
+            .done a{
+                background: $orange-darklight;
+            }
+        }        
+    }
+    .pagination{
+        >li{
+            >a{
+                color: $orange-primary;
+                &:hover{
+                    background: $orange-primary;
+                    border-color: $orange-primary; 
+                    color: $white;
+                }
+            }
+            >span{
+                color: $orange-primary;
+            }
+        }
+    }
+    .page-item.active .page-link{
+        background-color: $orange-primary;
+        border-color: $orange-primary;
+    }
+    .switch {
+        input:checked + .slider {
+            background-color: $orange-primary;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px $orange-primary;
+        }
+    }
+    .top-navbar #navbar-search .form-control{
+        &:focus,
+        &:active{
+            background: $orange-primary;
+            color: $white;
+        }
+    }
+    .top-navbar{          
+          .progress-bar {
+            background: $orange-primary;
+        }
+    }
+    .jvectormap-zoomin,
+    .jvectormap-zoomout{
+        background: $orange-primary;
+    }
+    .nav.nav-tabs3{
+        border-color: $orange-primary !important;
+        >li>a.active,
+        >li>a:hover{
+            color: $orange-primary;
+            border-color: $orange-primary !important;
+            &::after{
+                background: $orange-primary;
+            }
+        }
+    }
+    .nav.nav-tabs2{        
+        >li>a.active,
+        >li>a:hover{
+            background: $orange-primary;
+        }
+    }
+    &.h-menu{
+        .metismenu{
+            .collapse{
+                border-top: 1px solid  $orange-primary;
+            }
+        }
+    }
+}
