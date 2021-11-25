@@ -46,14 +46,20 @@
 
 </div>
 
+
 <script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
 <script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script>
-
 <script src="{{asset('assets/bundles/c3.bundle.js')}}"></script>
-
-{{-- script per page --}}
-@yield('script')
+{{-- <script src="{{asset('assets/js/index.js')}}"></script>
+<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery/jquery.js')}}"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
+<script src="{{asset('assets/vendor/jquery-sparkline/js/jquery.sparkline.min.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{asset('assets/vendor/metisMenu/metisMenu.js')}}"></script> --}}
 
 <script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
+@yield('script')
+
 </body>
 </html>
