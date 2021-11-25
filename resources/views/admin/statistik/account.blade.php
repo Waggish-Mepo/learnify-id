@@ -85,8 +85,8 @@
                                         <td>marsha</td>
                                         <td>active</td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-default" data-toggle="modal" title="Edit" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-sm btn-primary reset-alert" title="Delete" data-type="confirm"><i class="fa fa-lock text-white" onclick="showConfirmMessage()"></i></button>
+                                            <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Delete" data-type="reset-password"><i class="fa fa-lock text-white"></i></button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -103,7 +103,7 @@
                                         <td>active</td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-sm btn-primary reset-alert" title="Delete" data-type="confirm"><i class="fa fa-lock text-white" onclick="showConfirmMessage()"></i></button>
+                                            <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Delete" data-type="reset-password"><i class="fa fa-lock text-white"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -162,22 +162,5 @@
 
 @section('script')
 <script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
-<script>
-
-    $(document).ready(() => {
-        console.log('test')
-    })
-function showConfirmMessage() {
-    swal({
-        title: "Kamu yakin ingin reset password akun ini?",
-        showCancelButton: true,
-        confirmButtonColor: "#007bff",
-        confirmButtonText: "Yakin!",
-        cancelButtonText: "Tidak!",
-        closeOnConfirm: false
-    }, function () {
-        swal("Ubah Password!", "nanti ini muncul modal baru buat ubah pw");
-    });
-}
-</script>
+<script src="{{asset('assets/js/pages/ui/dialogs.js')}}"></script>
 @endsection
