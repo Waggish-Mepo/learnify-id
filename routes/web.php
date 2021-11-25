@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/test-layout', function () {
     return view('example.index');
 });
+
+// route sementara
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+    Route::get('/statistik/account/{role_id}', function () {
+        return view('admin.statistik.account');
+    })->name('statistik.account');
+});

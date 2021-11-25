@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<title>Smart School | Home</title>
+<title>Smart School</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/animate-css/vivify.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/jvectormap/jquery-jvectormap-2.0.3.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/sweetalert/sweetalert.css')}}">
 
 <link rel="stylesheet" href="{{asset('assets/vendor/c3/c3.min.css')}}"/>
 
@@ -44,8 +46,14 @@
 
 </div>
 
-@extends('layouts.script')
+<script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
+<script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script>
+
+<script src="{{asset('assets/bundles/c3.bundle.js')}}"></script>
+
+{{-- script per page --}}
 @yield('script')
 
+<script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
 </body>
 </html>
