@@ -79,7 +79,7 @@
                         <h6 class="mb-0">Statistik Akun</h6>                                    
                     </div>
                     <ul class="nav nav-tabs2">
-                        <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#t-month">Bulan</a></li>
+                        <li class="nav-item"><a class="nav-link active">Bulan</a></li>
                     </ul>
                 </div>
                 <div class="row clearfix">

@@ -1,6 +1,6 @@
 <li class="header">Main</li>
 <li><a href="{{ route('admin.dashboard') }}"><i class="icon-home"></i><span>Dashboard</span></a></li>
-<li>
+<li class="active open">
     <a href="#" class="has-arrow"><i class="icon-user"></i><span>Kelola Akun</span></a>
     <ul>
         {{-- params sementara, nanti diganti data id roles --}}
