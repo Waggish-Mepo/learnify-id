@@ -19,9 +19,13 @@
             <div class="form-group">
                 <label for="status" class="col-form-label">Status</label>
                 <select class="form-control show-tick text-dark" id="status">
-                    <option>aktif</option>
-                    <option>non-aktif</option>
+                    <option>Aktif</option>
+                    <option>Non-Aktif</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="number" class="col-form-label">NIS</label>
+                <input type="number" class="form-control text-dark" id="number">
             </div>
         </div>
         <div class="modal-footer">
