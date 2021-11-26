@@ -30,14 +30,15 @@
                 <div class="login-img">
                     <img class="img-fluid" src="{{asset('assets/images/login-page.svg')}}" />
                 </div>
-                <form class="form-auth-small my-auto" action="index.html">
+                <form class="form-auth-small my-auto" action="{{route('auth')}}" method="post">
+                    {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="signin-email" class="control-label sr-only">Email</label>
-                        <input type="email" class="form-control round" id="signin-username" placeholder="Username">
+                        <label for="signin-username" class="control-label sr-only">Username</label>
+                        <input type="text" class="form-control round" id="signin-username" name="username" placeholder="Username" required>
                     </div>
                     <div class="form-group">
                         <label for="signin-password" class="control-label sr-only">Password</label>
-                        <input type="password" class="form-control round" id="signin-password" placeholder="Password">
+                        <input type="password" class="form-control round" id="signin-password" name="password" placeholder="Password" required>
                     </div>
                     <div class="form-group clearfix">
                         <label class="fancy-checkbox element-left">

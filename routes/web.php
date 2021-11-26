@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,15 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/test-layout', function () {
     return view('example.index');
 });
 
-Route::get('/test-service', [UserController::class, 'dashboard']);
+// Auth
+Route::get('/', [LoginController::class, 'check']);
+Route::get('/login', function () {
+    return view('shared.login');
+})->name('login');
+Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('auth');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/home', function () {
+        return view('index');
+    })->name('home');
+});
 
 // route sementara
 Route::prefix('admin')->name('admin.')->group(function () {

@@ -17,7 +17,7 @@
                 <ul class="dropdown-menu dropdown-menu-right account vivify flipInY">
                     <li><a href="page-profile.html"><i class="icon-user"></i>My Profile</a></li>
                     <li class="divider"></li>
-                    <li><a href="page-login.html"><i class="icon-power"></i>Logout</a></li>
+                    <li><a href="{{route('logout')}}"><i class="icon-power"></i>Logout</a></li>
                 </ul>
             </div>                
         </div>  
