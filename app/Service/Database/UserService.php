@@ -34,7 +34,7 @@ class UserService{
 
         $users = $query->simplePaginate($per_page);
 
-        return $users;
+        return $users->toArray();
     }
 
     public function detail($schoolId, $userId)

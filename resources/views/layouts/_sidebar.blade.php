@@ -24,7 +24,7 @@
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul id="main-menu" class="metismenu">
                 {{-- nanti pake if condition, ambil role user trs nampilin sidebar per role nya --}}
-                @include('layouts.admin._sidebar')
+                @include('layouts.admin._menu')
             </ul>
         </nav>     
     </div>

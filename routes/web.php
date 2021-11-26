@@ -16,32 +16,29 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+// Test
 Route::get('/test-layout', function () {
     return view('example.index');
 });
 
 // Auth
 Route::get('/', [LoginController::class, 'check']);
-Route::get('/login', function () {
-    return view('shared.login');
-})->name('login');
+Route::get('/login', [LoginController::class, 'check'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth']], function(){
-    Route::get('/home', function () {
-        return view('index');
-    })->name('home');
-    // route admin sementara
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+// Admin
+Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('admin.dashboard');
+
+    Route::name('admin.')->group(function() {
         Route::get('/statistik/accounts/{role}', function () {
             return view('admin.statistik.accounts');
         })->name('statistik.accounts');
+        // route admin sementara (buat view aja alias blm dinamis)
         Route::get('/subjects', function () {
             return view('admin.subjects');
         })->name('subjects');
     });
 });
+

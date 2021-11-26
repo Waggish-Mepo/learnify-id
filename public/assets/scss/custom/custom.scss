@@ -77,71 +77,71 @@ $reds: 'red' #dc3545,
 
 @each $name, $color in $blacks {
     .color-#{$name} {
-        color: $color;
+        color: $color !important;
     }
 
     .bg-#{$name} {
-        background: $color;
+        background: $color !important;
     }
 }
 
 @each $name, $color in $greys {
     .color-#{$name} {
-        color: $color;
+        color: $color !important;
     }
 
     .bg-#{$name} {
-        background: $color;
+        background: $color !important;
     }
 }
 
 @each $name, $color in $blues {
     .color-#{$name} {
-        color: $color;
+        color: $color !important;
     }
 
     .bg-#{$name} {
-        background: $color;
+        background: $color !important;
     }
 }
 
 @each $name, $color in $purples {
     .color-#{$name} {
-        color: $color;
+        color: $color !important;
     }
 
     .bg-#{$name} {
-        background: $color;
+        background: $color !important;
     }
 }
 
 @each $name, $color in $oranges {
     .color-#{$name} {
-        color: $color;
+        color: $color !important;
     }
 
     .bg-#{$name} {
-        background: $color;
+        background: $color !important;
     }
 }
 
 @each $name, $color in $greens {
     .color-#{$name} {
-        color: $color;
+        color: $color !important;
     }
 
     .bg-#{$name} {
-        background: $color;
+        background: $color !important;
     }
 }
 
 @each $name, $color in $reds {
     .color-#{$name} {
-        color: $color;
+        color: $color !important;
     }
 
     .bg-#{$name} {
-        background: $color;
+        background: $color !important;
     }
 }
 

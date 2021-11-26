@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function check(){
-        if (! Auth::check()) {
+    public function check(Request $request){
+        if (! Auth::check() && $request->is('login')) {
+            return view('shared.login');
+        } elseif (! Auth::check()) {
             return redirect('login');
         }
 
-        return redirect('home');
+        return redirect('dashboard');
     }
 
     public function authenticate(Request $request){
@@ -22,10 +24,10 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt(($credentials + ['status' => true]))){
-            return redirect('home');
+            return redirect('dashboard');
         }
 
-        return redirect('login');
+        return redirect('login')->view('shared.login');
     }
 
     public function logout(){
