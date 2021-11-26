@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Akun Siswa</li>
                 </ol>
             </nav>
-            <h1 class="text-primary font-weight-bold my-4" style="font-size: 1.8rem;">Akun Siswa</h1>
+            <h1 class="color-blue-2 font-weight-bold my-4" style="font-size: 1.8rem;">Akun Siswa</h1>
         @endif
         @if (request()->route('role') === "TEACHER")
             <h1>Akun Guru</h1>
@@ -24,7 +24,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Akun Guru</li>
                 </ol>
             </nav>
-            <h1 class="text-primary font-weight-bold my-4" style="font-size: 1.8rem;">Akun Guru</h1>
+            <h1 class="color-blue-2 font-weight-bold my-4" style="font-size: 1.8rem;">Akun Guru</h1>
         @endif
         @if (request()->route('role') === "ADMIN")
             <h1>Akun Admin</h1>
@@ -35,7 +35,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Akun Admin</li>
                 </ol>
             </nav>
-            <h1 class="my-4 text-primary" style="font-size: 1.8rem;">Akun Admin</h1>
+            <h1 class="color-blue-2 font-weight-bold my-4" style="font-size: 1.8rem;">Akun Admin</h1>
         @endif
     </div>
     <div class="row clearfix">
@@ -88,16 +88,8 @@
             </div>
         </div>
     </div>
-    @if(request()->route('role') === "STUDENT")
-        @include('layouts.admin._modal_edit_student')
-    @endif
-    @if(request()->route('role') === "TEACHER")
-        @include('layouts.admin._modal_edit_teacher')
-    @endif
-    @if(request()->route('role') === "ADMIN")
-        @include('layouts.admin._modal_edit_admin')
-    @endif
     @include('layouts.admin._modal_import_account')
+    @include('layouts.admin._modal_edit_account')
 </div>
 @endsection
 

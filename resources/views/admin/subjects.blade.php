@@ -10,7 +10,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Kelola Mapel</li>
             </ol>
         </nav>
-        <h1 class="text-primary font-weight-bold my-4" style="font-size: 1.8rem;">Kelola Mata Pelajaran</h1>
+        <h1 class="color-blue-2 font-weight-bold my-4" style="font-size: 1.8rem;">Kelola Mata Pelajaran</h1>
     </div>
     <div class="row clearfix">
         <div class="col-lg-12">
