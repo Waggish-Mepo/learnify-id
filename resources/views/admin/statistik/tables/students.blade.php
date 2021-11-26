@@ -25,7 +25,7 @@
                 <td>marsha</td>
                 <td>active</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-student"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Delete" data-type="reset-password"><i class="fa fa-lock text-white"></i></button>
                 </td>
             </tr>
@@ -42,7 +42,7 @@
                 <td>sussie</td>
                 <td>active</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-student"><i class="fa fa-edit"></i></button>
                     <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Delete" data-type="reset-password"><i class="fa fa-lock text-white"></i></button>
                 </td>
             </tr>

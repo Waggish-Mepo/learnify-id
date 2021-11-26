@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-edit-account" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-edit-teacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -24,8 +24,15 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="number" class="col-form-label">NIS</label>
-                <input type="number" class="form-control text-dark" id="number">
+                {{-- nanti ambil data subject --}}
+                <label for="status" class="col-form-label">Mata Pelajaran</label>
+                <select class="form-control show-tick text-dark" id="status">
+                    <option hidden>--pilih mata pelajaran--</option>
+                    <option>Matematika</option>
+                    <option>Bahasa Indonesia</option>
+                    <option>Bahasa Inggris</option>
+                    <option>PJOK</option>
+                </select>
             </div>
         </div>
         <div class="modal-footer">

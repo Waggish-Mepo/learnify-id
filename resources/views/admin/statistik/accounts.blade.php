@@ -88,7 +88,15 @@
             </div>
         </div>
     </div>
-    @include('layouts.admin._modal_edit_account')
+    @if(request()->route('role') === "STUDENT")
+        @include('layouts.admin._modal_edit_student')
+    @endif
+    @if(request()->route('role') === "TEACHER")
+        @include('layouts.admin._modal_edit_teacher')
+    @endif
+    @if(request()->route('role') === "ADMIN")
+        @include('layouts.admin._modal_edit_admin')
+    @endif
     @include('layouts.admin._modal_import_account')
 </div>
 @endsection

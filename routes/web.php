@@ -32,14 +32,16 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/home', function () {
         return view('index');
     })->name('home');
-});
-
-// route sementara
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
-    Route::get('/statistik/accounts/{role}', function () {
-        return view('admin.statistik.accounts');
-    })->name('statistik.accounts');
+    // route admin sementara
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+        Route::get('/statistik/accounts/{role}', function () {
+            return view('admin.statistik.accounts');
+        })->name('statistik.accounts');
+        Route::get('/subjects', function () {
+            return view('admin.subjects');
+        })->name('subjects');
+    });
 });
