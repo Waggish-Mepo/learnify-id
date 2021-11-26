@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $schoolId = School::factory()->create()->id;
+        $schoolId = School::factory(['name' => 'SMK Indonesia'])->create()->id;
 
         $users = [
             [
