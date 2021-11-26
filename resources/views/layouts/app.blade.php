@@ -19,6 +19,7 @@
 
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="{{asset('assets/css/site.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
 </head>
 <body class="theme-cyan font-montserrat light_version">
