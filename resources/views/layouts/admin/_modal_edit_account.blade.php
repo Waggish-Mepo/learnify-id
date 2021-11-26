@@ -23,10 +23,25 @@
                     <option>Non-Aktif</option>
                 </select>
             </div>
+            @if(request()->route('role') === "STUDENT")
             <div class="form-group">
                 <label for="number" class="col-form-label">NIS</label>
                 <input type="number" class="form-control text-dark" id="number">
             </div>
+            @endif
+            @if(request()->route('role') === "TEACHER")
+            <div class="form-group">
+                {{-- nanti ambil data subject --}}
+                <label for="status" class="col-form-label">Mata Pelajaran</label>
+                <select class="form-control show-tick text-dark" id="status">
+                    <option hidden>--pilih mata pelajaran--</option>
+                    <option>Matematika</option>
+                    <option>Bahasa Indonesia</option>
+                    <option>Bahasa Inggris</option>
+                    <option>PJOK</option>
+                </select>
+            </div>
+            @endif
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary">Simpan</button>

@@ -35,6 +35,10 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::get('/statistik/accounts/{role}', function () {
             return view('admin.statistik.accounts');
         })->name('statistik.accounts');
+        // route admin sementara (buat view aja alias blm dinamis)
+        Route::get('/subjects', function () {
+            return view('admin.subjects');
+        })->name('subjects');
     });
 });
 

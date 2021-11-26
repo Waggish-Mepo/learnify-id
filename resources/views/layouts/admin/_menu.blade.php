@@ -9,3 +9,4 @@
         <li class="{{ Request::is('statistik/accounts/ADMIN') ? 'active' : '' }}"><a href="{{ route('admin.statistik.accounts', ['role' => "ADMIN"]) }}">Akun Admin</a></li>
     </ul>
 </li>
+<li class="{{ Request::is('subjects') ? 'active' : '' }}"><a href="{{ route('admin.subjects') }}"><i class="icon-book-open"></i><span>Kelola Mapel</span></a></li>
