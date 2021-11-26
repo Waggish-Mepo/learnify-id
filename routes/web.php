@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ Route::get('/', function () {
 Route::get('/test-layout', function () {
     return view('example.index');
 });
+
+Route::get('/test-service', [UserController::class, 'dashboard']);
 
 // route sementara
 Route::prefix('admin')->name('admin.')->group(function () {
