@@ -42,6 +42,116 @@ $paddings:
     'ml-9' 'left' 7.5rem,
     'ml-10' 'left' 9rem;
 
+$shadow-0:0px 1px 2px rgba(65, 51, 104, 0.2);
+$shadow-1:0px -1px 1px rgba(65, 51, 104, 0.04),
+0px 1px 3px rgba(65, 51, 104, 0.12),
+0px 1px 2px rgba(65, 51, 104, 0.24);
+$shadow-2: 0px 3px 6px rgba(65, 51, 104, 0.15),
+0px 2px 4px rgba(65, 51, 104, 0.12);
+$shadow-3: 0px 10px 20px rgba(65, 51, 104, 0.15),
+0px 3px 6px rgba(65, 51, 104, 0.1);
+$shadow-4: 0px 15px 25px rgba(65, 51, 104, 0.15),
+0px 5px 10px rgba(65, 51, 104, 0.05);
+$shadow-5: 0px 20px 40px rgba(65, 51, 104, 0.2);
+$shadow-05: 0px 1px 2px rgba(65, 51, 104, 0.05),
+0px 1px 8px rgba(65, 51, 104, 0.08);
+$shadow-active: 0px 1px 1px rgba(65, 51, 104, 0.04),
+0px 1px 8px rgba(65, 51, 104, 0.08);
+$shadow-click: inset 0px -2px 0px rgba(255, 255, 255, 0.15),
+inset 0px 1px 3px rgba(65, 51, 104, 0.2);
+$shadow-avatar: inset 0px 2px 4px rgba(65, 51, 104, 0.2);
+
+$blacks:'black-1' '#000000',
+'black' '#000000';
+
+$greys:'grey' '#6e6e6e',
+'grey-1' '#6e6e6e';
+
+$blues:'blue-1' '#007FFF',
+'blue-2' '#17C2D7';
+
+$purples:'purple' '#9367B4',
+'purple-1' '#9367B4';
+
+$oranges: 'orange' '#FFA117',
+'orange-1' '#FFA117';
+
+$greens: 'green' '#28A745',
+'green-1' '#28A745';
+
+$reds: 'red' '#dc3545',
+'red-1' '#dc3545';
+
+@each $name, $color in $blacks {
+    .color-#{$name} {
+        color: $color;
+    }
+
+    .bg-#{$name} {
+        background: $color;
+    }
+}
+
+@each $name, $color in $greys {
+    .color-#{$name} {
+        color: $color;
+    }
+
+    .bg-#{$name} {
+        background: $color;
+    }
+}
+
+@each $name, $color in $blues {
+    .color-#{$name} {
+        color: $color;
+    }
+
+    .bg-#{$name} {
+        background: $color;
+    }
+}
+
+@each $name, $color in $purples {
+    .color-#{$name} {
+        color: $color;
+    }
+
+    .bg-#{$name} {
+        background: $color;
+    }
+}
+
+@each $name, $color in $oranges {
+    .color-#{$name} {
+        color: $color;
+    }
+
+    .bg-#{$name} {
+        background: $color;
+    }
+}
+
+@each $name, $color in $greens {
+    .color-#{$name} {
+        color: $color;
+    }
+
+    .bg-#{$name} {
+        background: $color;
+    }
+}
+
+@each $name, $color in $reds {
+    .color-#{$name} {
+        color: $color;
+    }
+
+    .bg-#{$name} {
+        background: $color;
+    }
+}
+
 @each $name, $property, $margin in $margins {
     .#{$name} {
         margin-#{$property}: $margin !important;
