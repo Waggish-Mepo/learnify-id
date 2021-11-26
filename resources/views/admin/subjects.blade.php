@@ -36,9 +36,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Mata Pelajaran</th>
+                                        <th>Mapel</th>
                                         <th>Nama Guru</th>
-                                        <th>Actions</th>
+                                        <th>Terapkan pada Guru</th>
+                                        <th>Edit Mapel</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,6 +48,9 @@
                                         <td>Matematika</td>
                                         <td>marsha</td>
                                         <td>
+                                            <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-assign-subject"><i class="icon-user"></i></button>
+                                        </td>
+                                        <td>
                                             <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-subject"><i class="fa fa-edit"></i></button>
                                         </td>
                                     </tr>
@@ -54,6 +58,9 @@
                                         <td>2</td>
                                         <td>Bahasa Indonesia</td>
                                         <td>sussie</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-assign-subject"><i class="icon-user"></i></button>
+                                        </td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-subject"><i class="fa fa-edit"></i></button>
                                         </td>
@@ -64,12 +71,12 @@
                     </div>
                     <div class="tab-pane" id="addSubject">
                         <div class="body mt-2">
-                            <form id="formSubject">
+                            <form>
                             <div class="form-group">
                                 <label>Mata Pelajaran</label>
                                 <input type="text" class="form-control text-dark">
                             </div>
-                            <div class="form-group teacher-field">
+                            {{-- <div class="form-group teacher-field">
                                 <label for="teacher" class="col-form-label">Guru 1</label>
                                 <select class="form-control show-tick text-dark" id="teacher">
                                     <option hidden selected>--pilih guru--</option>
@@ -91,7 +98,7 @@
                             <div class="d-flex flex-wrap mt-2">
                                 <a href="#" id="addTeacherInput" onclick="addInput('newSelect', 'teacher-field')">+ Tambah Input Guru</a>
                                 <a href="#" id="reduceTeacherInput" class="text-danger ml-3" onclick="reduceInput('teacher-field')">- Kurangi Input Guru</a>
-                            </div>
+                            </div> --}}
                             <div class="d-flex justify-content-between mt-3">
                                 <div></div>
                                 <button type="button" class="btn btn-primary">Tambah</button>
@@ -104,6 +111,7 @@
         </div>
     </div>
     @include('layouts.admin._modal_edit_subject')
+    @include('layouts.admin._modal_edit_assign_subject')
 </div>
 @endsection
 
