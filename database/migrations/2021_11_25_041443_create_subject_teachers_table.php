@@ -15,8 +15,8 @@ class CreateSubjectTeachersTable extends Migration
     {
         Schema::create('subject_teachers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id')->index();
-            $table->jsonb('subjects')->nullable();
+            $table->uuid('subject_id')->index();
+            $table->jsonb('teachers')->nullable();
             $table->timestamps();
         });
     }
