@@ -10,15 +10,15 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="name" class="col-form-label">Nama</label>
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control text-dark" id="name">
             </div>
             <div class="form-group">
                 <label for="email" class="col-form-label">Email</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control text-dark" id="email">
             </div>
             <div class="form-group">
                 <label for="status" class="col-form-label">Status</label>
-                <select class="form-control show-tick" id="status">
+                <select class="form-control show-tick text-dark" id="status">
                     <option>aktif</option>
                     <option>non-aktif</option>
                 </select>

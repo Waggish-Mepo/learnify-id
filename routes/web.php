@@ -26,7 +26,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-    Route::get('/statistik/account/{role}', function () {
-        return view('admin.statistik.account');
-    })->name('statistik.account');
+    Route::get('/statistik/accounts/{role}', function () {
+        return view('admin.statistik.accounts');
+    })->name('statistik.accounts');
 });

@@ -8,8 +8,12 @@
                 </button>
             </div>
         <div class="modal-body">
-            <div class="form-group">
-                <input class="form-control" type="file" id="import-account">
+            <p>Import File</p>
+            <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+            </div>
             </div>
         </div>
         <div class="modal-footer">
