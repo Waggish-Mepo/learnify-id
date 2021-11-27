@@ -1,5 +1,5 @@
 <li class="header">Main</li>
-<li class="{{ Request::is('dashboard') ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}"><i class="icon-home"></i><span>Dashboard</span></a></li>
+<li class="{{ Request::is('dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i class="icon-home"></i><span>Dashboard</span></a></li>
 <li class="{{ Request::is('statistik/*') ? 'active' : '' }} open">
     <a href="#" class="has-arrow"><i class="icon-user"></i><span>Kelola Akun</span></a>
     <ul>

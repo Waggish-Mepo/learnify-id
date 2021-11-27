@@ -7,7 +7,7 @@
             <h1>Dashboard</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Smart School</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Smart School</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                 </ol>
             </nav>
