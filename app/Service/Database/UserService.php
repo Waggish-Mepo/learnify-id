@@ -42,7 +42,7 @@ class UserService {
         School::findOrFail($schoolId);
         $user = User::findOrFail($userId);
 
-        return $user;
+        return $user->toArray();
     }
 
     public function bulkDetail($schoolId, $userIds){

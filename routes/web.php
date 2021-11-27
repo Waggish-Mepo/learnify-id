@@ -28,10 +28,12 @@ Route::get('/login', [LoginController::class, 'check'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,STUDENT']], function(){
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+});
+
 // Admin
 Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('admin.dashboard');
-
     Route::name('admin.')->group(function() {
         Route::get('/statistik/accounts/{role}', function () {
             return view('admin.statistik.accounts');
@@ -42,5 +44,19 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::post('/assign-subject', [SubjectController::class, 'assign']);
         Route::patch('/subjects', [SubjectController::class, 'update']);
     });
+});
+
+// Teacher
+Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
+    // Route::name('teacher.')->group(function() {
+        // 
+    // });
+});
+
+// Student
+Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
+    // Route::name('student.')->group(function() {
+        // 
+    // });
 });
 

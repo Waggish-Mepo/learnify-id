@@ -15,8 +15,24 @@ class UserController extends Controller
         $schoolId = Auth::user()->school_id;
         $userId = Auth::user()->id;
 
-        $users = $userService->index($schoolId)['data'];
+        $user = $userService->detail($schoolId, $userId);
 
-        return view('admin.dashboard', compact('users'));
+        // Admin Dashboard
+        if ($user['role'] === 'ADMIN') {
+            $users = $userService->index($schoolId)['data'];
+            return view('admin.dashboard', compact('users'));
+        }
+
+        // Teacher Dashboard
+        if ($user['role'] === 'TEACHER') {
+            // 
+            return view('teacher.dashboard');
+        }
+
+        // Student Dashboard
+        if ($user['role'] === 'STUDENT') {
+            // 
+            return view('student.dashboard');
+        }
     }
 }
