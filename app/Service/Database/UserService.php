@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Ramsey\Uuid\Uuid;
 
-class UserService{
+class UserService {
 
     public function index($schoolId, $filter = [])
     {
@@ -45,12 +45,21 @@ class UserService{
         return $user;
     }
 
+    public function bulkDetail($schoolId, $userIds){
+        $query = User::where('school_id', $schoolId)->whereIn('id', $userIds);
+
+        $users = $query->simplePaginate(20);
+
+        return $users->toArray();
+    }
+
     public function create($schoolId, $payload)
     {
         School::findOrFail($schoolId);
 
         $user = new User;
         $user->id = Uuid::uuid4()->toString();
+        $user->school_id = $schoolId;
         $user = $this->fill($user, $payload);
         $user->password = Hash::make($user->password);
         $user->save();

@@ -7,39 +7,23 @@
                     <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
             </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label>Mata Pelajaran</label>
-                <input type="text" class="form-control text-dark" value="judul mapel" disabled>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Mata Pelajaran</label>
+                    <input type="text" class="form-control text-dark" id="assign-subject-name" value="" disabled>
+                    <input type="hidden" name="subject_id" id="assign-subject-id">
+                    <input type="hidden" name="subject_teacher_id" id="assign-subject-teacher-id">
+                </div>
+
+                <div id="newSelectInModal"></div>
+                <div class="d-flex flex-wrap mt-2">
+                    <a href="#" id="addTeacherInput" onclick="addInput('newSelectInModal','teacher-field-modal')">+ Tambah Guru</a>
+                    <a href="#" id="reduceTeacherInput" class="text-danger ml-3" onclick="reduceInput('teacher-field-modal')">- Kurangi Input Guru</a>
+                </div>
             </div>
-            {{-- jumlah nya sesuai sama di data db-nya --}}
-            <div class="form-group teacher-field-modal">
-                <label for="teacher" class="col-form-label">Guru 1</label>
-                <select class="form-control show-tick text-dark" id="teacher">
-                    <option hidden>--pilih guru--</option>
-                    <option>user 1</option>
-                    <option>user 2</option>
-                    <option>user 3</option>
-                </select>
+            <div class="modal-footer">
+                <button type="button" id="submit-assign-button" class="btn btn-primary">Simpan</button>
             </div>
-            <div class="form-group teacher-field-modal">
-                <label for="teacher" class="col-form-label">Guru 2</label>
-                <select class="form-control show-tick text-dark" id="teacher">
-                    <option hidden>--pilih guru--</option>
-                    <option>user 1</option>
-                    <option>user 2</option>
-                    <option>user 3</option>
-                </select>
-            </div>
-            <div id="newSelectInModal"></div>
-            <div class="d-flex flex-wrap mt-2">
-                <a href="#" id="addTeacherInput" onclick="addInput('newSelectInModal','teacher-field-modal')">+ Tambah Guru</a>
-                <a href="#" id="reduceTeacherInput" class="text-danger ml-3" onclick="reduceInput('teacher-field-modal')">- Kurangi Input Guru</a>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Simpan</button>
-        </div>
         </div>
     </div>
 </div>

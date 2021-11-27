@@ -20,11 +20,11 @@ class SubjectTeacherFactory extends Factory
 
         return [
             'id' => $this->faker->uuid(),
-            'user_id' => User::factory()->create()->id,
-            'subjects' => [
-                Subject::factory(['school_id' => $schoolId])->create()->id,
-                Subject::factory(['school_id' => $schoolId])->create()->id,
-                Subject::factory(['school_id' => $schoolId])->create()->id,
+            'subject_id' => Subject::factory()->create()->id,
+            'teachers' => [
+                User::factory(['school_id' => $schoolId])->create()->id,
+                User::factory(['school_id' => $schoolId])->create()->id,
+                User::factory(['school_id' => $schoolId])->create()->id,
             ]
         ];
     }
