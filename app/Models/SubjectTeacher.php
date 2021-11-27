@@ -13,15 +13,17 @@ class SubjectTeacher extends Model
 
     protected $fillable = [
         'id',
-        'school_id',
-        'name',
-        'username',
-        'password',
-        'role',
-        'status',
-        'email',
-        'nis',
+        'subject_id',
+        'teachers',
         'created_at',
         'update_at',
     ];
+
+    protected $casts = [
+        'teachers' => 'array',
+    ];
+
+    public function subject() {
+        return $this->belongsTo(Subject::class);
+    }
 }

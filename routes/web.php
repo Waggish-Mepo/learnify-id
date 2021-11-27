@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,10 +36,11 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::get('/statistik/accounts/{role}', function () {
             return view('admin.statistik.accounts');
         })->name('statistik.accounts');
-        // route admin sementara (buat view aja alias blm dinamis)
-        Route::get('/subjects', function () {
-            return view('admin.subjects');
-        })->name('subjects');
+
+        Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects');
+        Route::post('/subjects', [SubjectController::class, 'create']);
+        Route::post('/assign-subject', [SubjectController::class, 'assign']);
+        Route::patch('/subjects', [SubjectController::class, 'update']);
     });
 });
 

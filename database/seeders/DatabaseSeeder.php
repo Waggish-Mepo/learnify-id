@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\School;
 use App\Models\Subject;
+use App\Models\SubjectTeacher;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -67,7 +68,9 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($subjects as $subject) {
-            Subject::factory($subject)->create();
+            $createdSubject = Subject::factory($subject)->create();
+
+            SubjectTeacher::factory(['subject_id' => $createdSubject->id, 'teachers' => []])->create();
         }
 
     }

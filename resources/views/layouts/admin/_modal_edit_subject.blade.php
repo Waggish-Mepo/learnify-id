@@ -7,15 +7,20 @@
                     <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
             </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label>Mata Pelajaran</label>
-                <input type="text" class="form-control text-dark">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Simpan</button>
-        </div>
+            <form method="POST" action="{{url('/subjects')}}">
+                @method('PATCH')
+                @csrf
+                <input type="hidden" id="edit-subject-id" name="subject_id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mata Pelajaran</label>
+                        <input type="text" id="edit-subject-name" name="subject_name" class="form-control text-dark">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -18,4 +18,8 @@ class Subject extends Model
         'created_at',
         'update_at',
     ];
+
+    public function subjectTeacher() {
+        return $this->hasOne(SubjectTeacher::class, 'subject_id', 'id');
+    }
 }
