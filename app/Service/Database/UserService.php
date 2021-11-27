@@ -51,6 +51,7 @@ class UserService{
 
         $user = new User;
         $user->id = Uuid::uuid4()->toString();
+        $user->school_id = $schoolId;
         $user = $this->fill($user, $payload);
         $user->password = Hash::make($user->password);
         $user->save();

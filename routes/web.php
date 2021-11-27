@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -35,6 +36,11 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::get('/statistik/accounts/{role}', function () {
             return view('admin.statistik.accounts');
         })->name('statistik.accounts');
+
+        Route::prefix('api')->group(function () {
+            Route::get('/account', [Admin\ManageAccountController::class, 'getAccount']);
+            Route::post('/account', [Admin\ManageAccountController::class, 'createAccount']);
+        });
     });
 });
 
