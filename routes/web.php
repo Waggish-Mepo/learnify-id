@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::post('/subjects', [SubjectController::class, 'create']);
         Route::post('/assign-subject', [SubjectController::class, 'assign']);
         Route::patch('/subjects', [SubjectController::class, 'update']);
+        
         Route::prefix('api')->group(function () {
             Route::get('/account', [Admin\ManageAccountController::class, 'getAccount']);
             Route::post('/account', [Admin\ManageAccountController::class, 'createAccount']);
