@@ -52,7 +52,7 @@
                             <div class="col-lg-4 col-md-12 col-sm-12">
                                 <div class="input-group">
                                 <input type="search" class="form-control bg-white rounded text-dark" placeholder="Search" aria-label="Search"
-                                aria-describedby="search-addon" />
+                                aria-describedby="search-addon" onkeyup="searchAccount(event)" onkeydown="searchAccount(event)" onchange="searchAccount(event)"/>
                                 <button type="button" class="btn btn-outline-primary"><i class="icon-magnifier"></i></button>
                                 </div>
                             </div>
@@ -64,7 +64,6 @@
                             <div></div>
                             <button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
                         </div>
-                        {{-- ntar if nya di ganti --}}
                         @if(request()->route('role') === "STUDENT")
                             @include('admin.statistik.forms.students')
                         @else
@@ -77,8 +76,7 @@
     </div>
     
 @csrf
-    @include('layouts.admin._modal_edit_account')
-    @include('layouts.admin._modal_import_account')
+    {{-- @include('layouts.admin._modal_import_account') --}}
     @include('layouts.admin._modal_edit_account')
 </div>
 @endsection
@@ -88,6 +86,8 @@
 <script src="{{asset('assets/js/pages/ui/dialogs.js')}}"></script>
 <script type="text/javascript">
     let role = "{{ request()->route('role') }}"
+    let accounts = {}
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -100,18 +100,17 @@
     function getAccount() {
         $.ajax({
             type: "get",
-            url: "{{ url('api/account') }}",
+            url: "{{ url('account') }}",
             data: {role},
             success: function (response) {
-                console.log(response);
                 if (response.data.length === 0) {
                     $(`#empty-${role}`).show('fast');
                     $(`#loading-${role}`).hide('fast');
                     $(`#panel-${role}`).hide('fast');
                 } else {
-                    
+                    accounts = response.data
+                    renderAccount(response);
                 }
-                renderAccount(response);
             }
         });
     }
@@ -131,8 +130,8 @@
                 <td>${account.username}</td>
                 <td>${account.status === 1 ? 'Active' : 'Non Active'}</td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Delete" data-type="reset-password"><i class="fa fa-lock text-white"></i></button>
+                    <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account" onclick="editAccount('${account.id}')"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Reset Password" data-type="reset-password" onclick="showResetPasswordMessage('${account.id}', '${account.username}')"><i class="fa fa-lock text-white"></i></button>
                 </td>
             </tr>
             `
@@ -146,11 +145,15 @@
     }
 
     function resetValue() {
-        let name = $(`input[name=${role}Name]`).val('');
-        let username = $(`input[name=${role}Username]`).val('');
-        let email = $(`input[name=${role}Email]`).val('');
+        $(`input[name=${role}Name]`).val('');
+        $(`input[name=${role}Username]`).val('');
+        $(`input[name=${role}Email]`).val('');
+        $('input[name=editName]').val('')
+        $('input[name=editEmail]').val('')
+        $(`input[name=editStatus]`).prop('checked', false)
         if (role === 'STUDENT') {
-            let nis = $(`input[name=${role}Nis]`).val('');
+            $(`input[name=${role}Nis]`).val('');
+            $('input[name=editNis]').val('')
         }
     }
 
@@ -172,7 +175,7 @@
 
         $.ajax({
             type: "post",
-            url: "{{ url('api/account') }}",
+            url: "{{ url('account') }}",
             data: data,
             beforeSend: function () {
                 btnSubmit.html('Loading')
@@ -180,14 +183,108 @@
             success: function (response) {
                 btnSubmit.html('Tambah')
                 $(`#${role}-alert`).show('fast');
+                accounts.push(response)
+                resetValue()
                 getAccount()
             },
             error: function (e) {
                 btnSubmit.html('Tambah')
-                alert('Tambah akun belum berhasin, silahkan coba lagi!')
+                alert('Tambah akun belum berhasil, silahkan coba lagi!')
             }
         });
     }
+
+    function editAccount(accountId) {
+        let dataAccount = accounts.find(account => account.id === accountId);
+        $('input[type=hidden][name=idAccount]').val(dataAccount.id)
+        $('input[name=editName]').val(dataAccount.name)
+        $('input[name=editEmail]').val(dataAccount.email)
+        $(`input[name=editStatus][value=${dataAccount.status}]`).prop('checked', true)
+        if (role === 'STUDENT') {
+            $('input[name=editNis]').val(dataAccount.nis)
+        }
+    }
+
+    function updateAccount() {
+        let id = $('input[type=hidden][name=idAccount]').val()
+        let name = $('input[name=editName]').val()
+        let email = $('input[name=editEmail]').val()
+        let status = $('input[name=editStatus]:checked').val()
+        let data = {
+            id,
+            name,
+            email,
+            status
+        }
+
+        if (role === 'STUDENT') {
+            let nis = $('input[name=editNis]').val()
+            data['nis'] = nis
+        }
+        let button = $('#update-button')
+        $.ajax({
+            type: "patch",
+            url: "{{ url('account') }}",
+            data: data,
+            beforeSend: function () {
+                button.html('Loading')
+            },
+            success: function (response) {
+                $(`#update-alert`).show('fast');
+                setTimeout(function() {
+                    $(`#update-alert`).hide('fast')
+                    $('#modal-edit-account').modal('hide')
+                }, 1000);
+                button.html('Simpan')
+                getAccount()
+                resetValue()
+                
+            },
+            error: function (e) {
+                button.html('Simpan')
+                swal('Edit akun belum berhasil, silahkan coba lagi!')
+            }
+        });
+    }
+
+    function resetPassword(id, username) {
+        $.ajax({
+            type: "get",
+            url: "{{ url('account-reset') }}",
+            data: {
+                id,
+                username
+            },
+            success: function (response) {
+                swal("Berhasil mereset akun!");
+            },
+            error: function () {
+                swal("Gagal mereset akun!");
+            }
+        });
+    }
+
+    function searchAccount(e){
+        let value = e.currentTarget.value
+        
+        $('#render-accounts tr').each(function(){  
+            var found = 'false';  
+            $(this).each(function(){  
+                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                {  
+                    found = 'true';  
+                }  
+            });  
+            if(found == 'true')  
+            {  
+                $(this).show();  
+            }  
+            else  
+            {  
+                $(this).hide();  
+            }  
+        });  
+    } 
 
 </script>
 @endsection

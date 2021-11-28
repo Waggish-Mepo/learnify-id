@@ -42,4 +42,38 @@ class ManageAccountController extends Controller
         
         return response()->json($create);
     }
+
+    public function updateAccount(Request $request)
+    {
+        $userDB = new UserService;
+        $schoolId = Auth::user()->school_id;
+        
+        $payload = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'status' => (int)$request->status,
+        ];
+        
+        if ($request->role === 'STUDENT') {
+            $payload['nis'] = $request->nis;
+        }
+        
+        $update = $userDB->update($schoolId, $request->id, $payload);
+        
+        return response()->json($update);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $userDB = new UserService;
+        $schoolId = Auth::user()->school_id;
+        
+        $payload = [
+            'password' => $request->username,
+        ];
+        
+        $update = $userDB->update($schoolId, $request->id, $payload);
+        
+        return response()->json($update);
+    }
 }
