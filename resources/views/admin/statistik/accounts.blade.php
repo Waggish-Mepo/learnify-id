@@ -42,8 +42,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Users">Akun</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addUser">Tambah Akun</a></li>
+                    <li class="nav-item"><a class="nav-link active show" data-toggle="tab" id="index-account" href="#Users">Akun</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" id="create-account" href="#addUser">Tambah Akun</a></li>
                 </ul>
                 <div class="tab-content mt-0">
                     <div class="tab-pane show active" id="Users">
@@ -57,37 +57,27 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- ntar if nya di ganti --}}
-                        @if(request()->route('role') === "STUDENT")
-                            @include('admin.statistik.tables.students')
-                        @endif
-                        @if(request()->route('role') === "TEACHER")
-                            @include('admin.statistik.tables.teachers')
-                        @endif
-                        @if(request()->route('role') === "ADMIN")
-                            @include('admin.statistik.tables.admins')
-                        @endif
+                        @include("admin.statistik._table")
                     </div>
                     <div class="tab-pane" id="addUser">
                         <div class="d-flex justify-content-between my-3">
                             <div></div>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
+                            <button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
                         </div>
                         {{-- ntar if nya di ganti --}}
                         @if(request()->route('role') === "STUDENT")
                             @include('admin.statistik.forms.students')
-                        @endif
-                        @if(request()->route('role') === "TEACHER")
-                            @include('admin.statistik.forms.teachers')
-                        @endif
-                        @if(request()->route('role') === "ADMIN")
-                            @include('admin.statistik.forms.admins')
+                        @else
+                            @include('admin.statistik._form')
                         @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+@csrf
+    @include('layouts.admin._modal_edit_account')
     @include('layouts.admin._modal_import_account')
     @include('layouts.admin._modal_edit_account')
 </div>
@@ -96,4 +86,108 @@
 @section('script')
 <script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/js/pages/ui/dialogs.js')}}"></script>
+<script type="text/javascript">
+    let role = "{{ request()->route('role') }}"
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(`#loading-${role}`).show('slow');
+    $(`#panel-${role}`).hide('slow');
+    $(`#empty-${role}`).hide('slow');
+    getAccount()
+    function getAccount() {
+        $.ajax({
+            type: "get",
+            url: "{{ url('api/account') }}",
+            data: {role},
+            success: function (response) {
+                console.log(response);
+                if (response.data.length === 0) {
+                    $(`#empty-${role}`).show('fast');
+                    $(`#loading-${role}`).hide('fast');
+                    $(`#panel-${role}`).hide('fast');
+                } else {
+                    
+                }
+                renderAccount(response);
+            }
+        });
+    }
+
+    function renderAccount(data) {
+        let html = ``
+        let no = 1
+        $.each(data.data, function (key, account) { 
+            html += `
+            <tr>
+                <td class="width45">${no}</td>
+                <td>
+                    <h6 class="mb-0">${account.name}</h6>
+                    <span>${account.email === null ? '-' : account.email}</span>
+                </td>
+                <td>${account.nis === null ? '-' : account.nis}</td>
+                <td>${account.username}</td>
+                <td>${account.status === 1 ? 'Active' : 'Non Active'}</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Delete" data-type="reset-password"><i class="fa fa-lock text-white"></i></button>
+                </td>
+            </tr>
+            `
+            no++
+        });
+
+        $(`#render-accounts`).html(html);
+        $(`#panel-${role}`).show('slow');
+        $(`#loading-${role}`).hide('fast');
+        $(`#empty-${role}`).hide('fast');
+    }
+
+    function resetValue() {
+        let name = $(`input[name=${role}Name]`).val('');
+        let username = $(`input[name=${role}Username]`).val('');
+        let email = $(`input[name=${role}Email]`).val('');
+        if (role === 'STUDENT') {
+            let nis = $(`input[name=${role}Nis]`).val('');
+        }
+    }
+
+    function createAccount() {
+        let name = $(`input[name=${role}Name]`).val();
+        let username = $(`input[name=${role}Username]`).val();
+        let email = $(`input[name=${role}Email]`).val();
+        let data = {
+                name,
+                username,
+                email,
+                role
+            }
+        if (role === 'STUDENT') {
+            let nis = $(`input[name=${role}Nis]`).val();
+            data['nis'] = nis
+        }
+        let btnSubmit = $(`#${role}-submit`)
+
+        $.ajax({
+            type: "post",
+            url: "{{ url('api/account') }}",
+            data: data,
+            beforeSend: function () {
+                btnSubmit.html('Loading')
+            },
+            success: function (response) {
+                btnSubmit.html('Tambah')
+                $(`#${role}-alert`).show('fast');
+                getAccount()
+            },
+            error: function (e) {
+                btnSubmit.html('Tambah')
+                alert('Tambah akun belum berhasin, silahkan coba lagi!')
+            }
+        });
+    }
+
+</script>
 @endsection
