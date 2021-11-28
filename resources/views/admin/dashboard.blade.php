@@ -98,7 +98,7 @@
                         <div id="chart-donut-stats" style="height: 250px"></div>
                     </div>
                     <div class="col-lg-8 col-md-12 col-sm-12">
-                        <div id="flotChart" class="flot-chart"></div>
+                        <div id="chart-flot-stats" class="flot-chart"></div>
                     </div>
                 </div>
             </div>
@@ -115,6 +115,10 @@
 <script src="{{asset('assets/js/index4.js')}}"></script>
 
 <script>
+    const months = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12];
+    let teacher_stats = [[1,0], [2,0], [3,0], [4,0], [5,0], [6,0], [7,0], [8,0], [9,0], [10,0], [11,0], [12,0],];
+    let student_stats = [[1,0], [2,0], [3,0], [4,0], [5,0], [6,0], [7,0], [8,0], [9,0], [10,0], [11,0], [12,0],];
+
     const users = {!! json_encode($users) !!};
     let totalAdmin = 0;
     let totalTeacher = 0;
@@ -123,20 +127,37 @@
     for (let i = 0; i < users.length; i++) {
         if (users[i]['role'] === 'ADMIN'){
             totalAdmin += 1;
+            $('.total-admin').html(totalAdmin);
         }
         if (users[i]['role'] === 'TEACHER'){
             totalTeacher += 1;
+            $('.total-teacher').html(totalTeacher);
+
+            if (months.includes(parseInt(users[i]['created_at'].substr(5, 2)))) {
+                let digit = 3
+                let month = users[i]['created_at'].substr(5, 2);
+
+                if (month < 10) digit = 2;
+                let totalInMonth = String(teacher_stats[month - 1]).substr(digit);
+
+                teacher_stats[month - 1] = [month, (parseInt(totalInMonth) + 1)];
+            }
         }
         if (users[i]['role'] === 'STUDENT'){
             totalStudent += 1;
+            $('.total-student').html(totalStudent);
+            if (months.includes(parseInt(users[i]['created_at'].substr(5, 2)))) {
+                let digit = 3;
+                let month = parseInt(users[i]['created_at'].substr(5, 2));
+
+                if (month < 10) digit = 2;
+                let totalInMonth = String(student_stats[month - 1]).substr(digit);
+
+                student_stats[month - 1] = [month, (parseInt(totalInMonth) + 1)];
+            }
         }
     }
 
-    $(function() {
-        $('.total-admin').html(totalAdmin);
-        $('.total-teacher').html(totalTeacher);
-        $('.total-student').html(totalStudent);
-    });
 
     c3.generate({
         bindto: '#chart-donut-stats',
@@ -166,5 +187,45 @@
             top: 0
         },
     });
+
+
+    $.plot('#chart-flot-stats', [{
+            data: teacher_stats,
+            color: '#9367B4',
+            lines: {
+            fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }]}
+            }
+        },{
+            data: student_stats,
+            color: '#17C2D7',
+            lines: {
+            fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }]}
+            }
+        }], 
+        {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 2,
+                    fill: true
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 8
+            },
+            yaxis: {
+                show: true,
+                        min: 0,
+                        max: 100,
+                ticks: [[0,''],[20,'25'],[50,'50'],[75,'75'],[100,'100']],
+            
+            },
+            xaxis: {
+                show: true,
+                ticks: [[1, 'JAN'],[2,'FEB'],[3,'MAR'],[4,'APR'],[5,'MEI'],[6, 'JUN'],[7,'JUL'],[8,'AGU'],[9,'SEP'],[10,'OKT'],[11,'NOV'],[12,'DES']],
+            }
+        });
 </script>
 @endsection
