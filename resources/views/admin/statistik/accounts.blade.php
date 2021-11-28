@@ -266,7 +266,6 @@
 
     function searchAccount(e){
         let value = e.currentTarget.value
-        console.log(value);
         
         $('#render-accounts tr').each(function(){  
             var found = 'false';  
