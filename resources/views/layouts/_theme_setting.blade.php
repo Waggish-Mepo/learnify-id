@@ -1,6 +1,6 @@
 <div class="themesetting">
     <a href="javascript:void(0);" class="theme_btn"><i class="icon-magic-wand"></i></a>
-    <div class="card theme_color">
+    <div class="card theme_color d-none">
         <div class="header">
             <h2>Theme Color</h2>
         </div>
