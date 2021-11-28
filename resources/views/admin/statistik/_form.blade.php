@@ -4,7 +4,7 @@
             Akun berhasil dibuat!.
         </div>
     </div>
-    <div onclick="resetValue(); $('#{{ request()->route('role') }}-alert').hide('fast')">
+    <div onclick="$('#{{ request()->route('role') }}-alert').hide('fast')">
         <div class="form-group">
             <label>Nama</label>
             <input type="text" name="{{ request()->route('role') }}Name" class="form-control text-dark">

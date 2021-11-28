@@ -40,15 +40,16 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
             return view('admin.statistik.accounts');
         })->name('statistik.accounts');
 
-        Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects');
+        Route::get('/subjects', [SubjectController::class, 'index'])
+        ->name('subjects');
         Route::post('/subjects', [SubjectController::class, 'create']);
         Route::post('/assign-subject', [SubjectController::class, 'assign']);
         Route::patch('/subjects', [SubjectController::class, 'update']);
         
-        Route::prefix('api')->group(function () {
-            Route::get('/account', [Admin\ManageAccountController::class, 'getAccount']);
-            Route::post('/account', [Admin\ManageAccountController::class, 'createAccount']);
-        });
+        Route::get('/account', [Admin\ManageAccountController::class, 'getAccount']);
+        Route::post('/account', [Admin\ManageAccountController::class, 'createAccount']);
+        Route::patch('/account', [Admin\ManageAccountController::class, 'updateAccount']);
+        Route::get('/account-reset', [Admin\ManageAccountController::class, 'resetPassword']);
     });
 });
 

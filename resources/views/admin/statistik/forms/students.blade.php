@@ -4,7 +4,7 @@
             Akun berhasil dibuat!.
         </div>
     </div>
-    <div class="row clearfix" onclick="resetValue();$('#{{ request()->route('role') }}-alert').hide('fast')">
+    <div class="row clearfix" onclick="$('#{{ request()->route('role') }}-alert').hide('fast')">
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="form-group">
                 <label>Nama</label>

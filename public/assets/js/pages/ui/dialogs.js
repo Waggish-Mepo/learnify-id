@@ -142,7 +142,7 @@ function showAjaxLoaderMessage() {
     });
 }
 
-function showResetPasswordMessage() {
+function showResetPasswordMessage(id, username) {
     swal({
         title: "Kamu yakin ingin reset password akun ini?",
         showCancelButton: true,
@@ -151,6 +151,6 @@ function showResetPasswordMessage() {
         cancelButtonText: "Tidak!",
         closeOnConfirm: false,
     }, function () {
-        swal("Ubah Password!", "nanti ini muncul modal baru buat ubah pw");
+        resetPassword(id, username)
     });
 }
