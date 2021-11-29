@@ -162,8 +162,8 @@
             ],
             type: 'donut',
             colors: {
-                'data1': '#9367B4',
-                'data2': '#17C2D7',
+                'data1': '#17C2D7',
+                'data2': '#9367B4',
             },
             names: {
                 // name of each serie
@@ -185,13 +185,13 @@
 
     $.plot('#chart-flot-stats', [{
             data: teacher_stats,
-            color: '#9367B4',
+            color: '#17C2D7',
             lines: {
             fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }]}
             }
         },{
             data: student_stats,
-            color: '#17C2D7',
+            color: '#9367B4',
             lines: {
             fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }]}
             }
