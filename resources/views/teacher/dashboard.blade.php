@@ -11,7 +11,7 @@
         <h5 class="color-blue-2 font-weight-bold text-uppercase">matematika | xii</h5>
         <div class="d-flex justify-content-between mt-3 align-items-end font-weight-bold">
             <a class="color-black">Terdapat <span class="color-blue-2">100</span> Materi!</a>
-            <a href="{{ route('teacher.subject', ['subject_id' => 'matematika']) }}" class="color-blue-2">Lihat Semua</a>
+            <a href="{{ route('teacher.subject', ['subject_id' => 'matematika']) }}" class="color-blue-2">Lihat Semua <i class="fa fa-chevron-right color-blue-2 font-12"></i></a>
         </div>
         <div class="mt-3">
             <a href="{{ route('teacher.subject.course', ['subject_id' => 'matematika','course_id' => 1]) }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
@@ -34,7 +34,7 @@
         <h5 class="color-blue-2 font-weight-bold text-uppercase">bahasa indonesia | xii</h5>
         <div class="d-flex justify-content-between mt-3 align-items-end font-weight-bold">
             <a class="color-black">Terdapat <span class="color-blue-2">50</span> Materi!</a>
-            <a href="{{ route('teacher.subject', ['subject_id' => 'bahasa_indonesia']) }}" class="color-blue-2">Lihat Semua</a>
+            <a href="{{ route('teacher.subject', ['subject_id' => 'bahasa_indonesia']) }}" class="color-blue-2">Lihat Semua <i class="fa fa-chevron-right color-blue-2 font-12"></i></a>
         </div>
         <div class="mt-3">
             <a href="{{ route('teacher.subject.course', ['subject_id' => 'bahasa_indonesia','course_id' => 2]) }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
