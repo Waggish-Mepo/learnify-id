@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->jsonb('choices');
             $table->string('answer');
             $table->string('explanation');
+            $table->unsignedInteger('order');
             $table->timestamps();
         });
     }
