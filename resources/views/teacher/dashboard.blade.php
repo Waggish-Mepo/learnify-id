@@ -7,13 +7,13 @@
             <h1 class="color-blue-2 font-weight-bold my-4" style="font-size: 1.8rem;">Dashboard</h1>
         </div>
     </div>
-    <div class="row-clearfix mt-5">
-        <h1 class="color-blue-2 font-weight-bold text-uppercase" style="font-size: 1.8rem;">matematika</h1>
-        <div class="d-flex justify-content-between align-items-top mt-3 font-weight-bold">
-            <p>Terdapat <span class="color-blue-2">100</span> Materi!</p>
+    <div class="row-clearfix mt-3">
+        <h5 class="color-blue-2 font-weight-bold text-uppercase">matematika | xii</h5>
+        <div class="d-flex justify-content-between mt-3 align-items-end font-weight-bold">
+            <a class="color-black">Terdapat <span class="color-blue-2">100</span> Materi!</a>
             <a href="{{ route('subject') }}" class="color-blue-2">Lihat Semua</a>
         </div>
-        <div class="mt-3">
+        <div class="mt-1">
             <div class="d-flex align-items-center p-3 w-100 bg-white shadow-sm rounded border-hover">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                 <div class="ml-3">
