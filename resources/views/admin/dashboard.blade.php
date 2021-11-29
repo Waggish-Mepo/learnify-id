@@ -4,13 +4,7 @@
 <div class="block-header">
     <div class="row clearfix">
         <div class="col-md-6 col-sm-12">
-            <h1>Dashboard</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Smart School</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-            </nav>
+            <h1 class="color-blue-2 font-weight-bold my-4" style="font-size: 1.8rem;">Dashboard</h1>
         </div>
     </div>
 </div>
