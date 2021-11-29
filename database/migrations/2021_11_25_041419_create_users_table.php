@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('school_id')->index();
             $table->string('name');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('password');
             $table->string('role');
             $table->boolean('status');
