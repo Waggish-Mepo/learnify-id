@@ -1,7 +1,7 @@
 <div id="left-sidebar" class="sidebar">
     <div class="navbar-brand">
-        <a href="#">
-           <img src="{{asset('assets/images/logo_learnify.png')}}" alt="Smart School Logo" class="img-fluid" width="300">
+        <a href="{{route('dashboard')}}">
+            <img src="{{asset('assets/images/logo-with-name-learnifyid.svg')}}" alt="Smart School Logo" class="img-fluid">
         </a>
         <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
     </div>

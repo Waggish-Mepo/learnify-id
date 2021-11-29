@@ -3,8 +3,8 @@
 
         <div class="navbar-left">
             <div class="navbar-btn">
-                <a href="index.html">
-                    <img src="{{asset('assets/images/logo_learnify.png')}}" alt="Smart School Logo" class="img-fluid" width="100">
+                <a href="{{route('dashboard')}}">
+                    <img src="{{asset('assets/images/logo-learnifyid.svg')}}" alt="Smart School Logo" width="150px">
                 </a>
                 <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu fa fa-bars"></i></button>
             </div>

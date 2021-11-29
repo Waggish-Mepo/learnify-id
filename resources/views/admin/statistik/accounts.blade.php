@@ -5,33 +5,30 @@
     <div class="clearfix mb-3">
         {{-- if nya semnentara, nanti diganti. pokoknya ngambil role --}}
         @if (request()->route('role') === "STUDENT")
-            <h1>Akun Siswa</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "STUDENT"]) }}">Learnify.id</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "STUDENT"]) }}">Kelola Akun</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Learnify.id</a></li>
+                    <li class="breadcrumb-item active">Kelola Akun</li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Siswa</li>
                 </ol>
             </nav>
             <h1 class="color-blue-2 font-weight-bold my-4" style="font-size: 1.8rem;">Akun Siswa</h1>
         @endif
         @if (request()->route('role') === "TEACHER")
-            <h1>Akun Guru</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "TEACHER"]) }}">Learnify.id</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "TEACHER"]) }}">Kelola Akun</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Learnify.id</a></li>
+                    <li class="breadcrumb-item active">Kelola Akun</li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Guru</li>
                 </ol>
             </nav>
             <h1 class="color-blue-2 font-weight-bold my-4" style="font-size: 1.8rem;">Akun Guru</h1>
         @endif
         @if (request()->route('role') === "ADMIN")
-            <h1>Akun Admin</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "ADMIN"]) }}">Learnify.id</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "ADMIN"]) }}">Kelola Akun</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Learnify.id</a></li>
+                    <li class="breadcrumb-item active">Kelola Akun</li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Admin</li>
                 </ol>
             </nav>
