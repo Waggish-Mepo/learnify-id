@@ -12,7 +12,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Materi</li>
                 </ol>
             </nav>
-        <h3 class="color-blue-2 font-weight-bold my-3 text-uppercase" style="font-size: 1.8rem;">matematika</h3>
+        <h3 class="color-blue-2 font-weight-bold mt-3 text-uppercase" style="font-size: 1.8rem;">matematika</h3>
         </div>
     </div>
     <div class="row-clearfix">
