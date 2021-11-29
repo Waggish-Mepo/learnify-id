@@ -31,6 +31,9 @@ $(function () {
         else if (type === 'ajax-loader') {
             showAjaxLoaderMessage();
         }
+        else if (type === 'reset-password') {
+            showResetPasswordMessage();
+        }
     });
 });
 
@@ -136,5 +139,18 @@ function showAjaxLoaderMessage() {
         setTimeout(function () {
             swal("Ajax request finished!");
         }, 2000);
+    });
+}
+
+function showResetPasswordMessage(id, username) {
+    swal({
+        title: "Kamu yakin ingin reset password akun ini?",
+        showCancelButton: true,
+        confirmButtonColor: "#007bff",
+        confirmButtonText: "Yakin!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+    }, function () {
+        resetPassword(id, username)
     });
 }

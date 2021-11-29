@@ -1,0 +1,176 @@
+$margins: 
+    'mt-6' 'top' 4rem,
+    'mt-7' 'top' 5.5rem,
+    'mt-8' 'top' 7rem,
+    'mt-9' 'top' 7.5rem,
+    'mt-10' 'top' 9rem,
+    'mr-6' 'right' 4rem,
+    'mr-7' 'right' 5.5rem,
+    'mr-8' 'right' 7rem,
+    'mr-9' 'right' 7.5rem,
+    'mr-10' 'right' 9rem,
+    'mb-6' 'bottom' 4rem,
+    'mb-7' 'bottom' 5.5rem,
+    'mb-8' 'bottom' 7rem,
+    'mb-9' 'bottom' 7.5rem,
+    'mb-10' 'bottom' 9rem,
+    'ml-6' 'left' 4rem,
+    'ml-7' 'left' 5.5rem,
+    'ml-8' 'left' 7rem,
+    'ml-9' 'left' 7.5rem,
+    'ml-10' 'left' 9rem;
+
+$paddings: 
+    'mt-6' 'top' 4rem,
+    'mt-7' 'top' 5.5rem,
+    'mt-8' 'top' 7rem,
+    'mt-9' 'top' 7.5rem,
+    'mt-10' 'top' 9rem,
+    'mr-6' 'right' 4rem,
+    'mr-7' 'right' 5.5rem,
+    'mr-8' 'right' 7rem,
+    'mr-9' 'right' 7.5rem,
+    'mr-10' 'right' 9rem,
+    'mb-6' 'bottom' 4rem,
+    'mb-7' 'bottom' 5.5rem,
+    'mb-8' 'bottom' 7rem,
+    'mb-9' 'bottom' 7.5rem,
+    'mb-10' 'bottom' 9rem,
+    'ml-6' 'left' 4rem,
+    'ml-7' 'left' 5.5rem,
+    'ml-8' 'left' 7rem,
+    'ml-9' 'left' 7.5rem,
+    'ml-10' 'left' 9rem;
+
+$shadow-0:0px 1px 2px rgba(65, 51, 104, 0.2);
+$shadow-1:0px -1px 1px rgba(65, 51, 104, 0.04),
+0px 1px 3px rgba(65, 51, 104, 0.12),
+0px 1px 2px rgba(65, 51, 104, 0.24);
+$shadow-2: 0px 3px 6px rgba(65, 51, 104, 0.15),
+0px 2px 4px rgba(65, 51, 104, 0.12);
+$shadow-3: 0px 10px 20px rgba(65, 51, 104, 0.15),
+0px 3px 6px rgba(65, 51, 104, 0.1);
+$shadow-4: 0px 15px 25px rgba(65, 51, 104, 0.15),
+0px 5px 10px rgba(65, 51, 104, 0.05);
+$shadow-5: 0px 20px 40px rgba(65, 51, 104, 0.2);
+
+$blacks:'black-1' #000000,
+'black' #000000;
+
+$greys:'grey' #6e6e6e,
+'grey-1' #6e6e6e;
+
+$blues:blue-1 #007FFF,
+'blue-2' #17C2D7;
+
+$purples:'purple' #9367B4,
+'purple-1' #9367B4;
+
+$oranges: 'orange' #FFA117,
+'orange-1' #FFA117;
+
+$greens: 'green' #28A745,
+'green-1' #28A745;
+
+$reds: 'red' #dc3545,
+'red-1' #dc3545;
+
+@each $name, $color in $blacks {
+    .color-#{$name} {
+        color: $color !important;
+    }
+
+    .bg-#{$name} {
+        background: $color !important;
+    }
+}
+
+@each $name, $color in $greys {
+    .color-#{$name} {
+        color: $color !important;
+    }
+
+    .bg-#{$name} {
+        background: $color !important;
+    }
+}
+
+@each $name, $color in $blues {
+    .color-#{$name} {
+        color: $color !important;
+    }
+
+    .bg-#{$name} {
+        background: $color !important;
+    }
+}
+
+@each $name, $color in $purples {
+    .color-#{$name} {
+        color: $color !important;
+    }
+
+    .bg-#{$name} {
+        background: $color !important;
+    }
+}
+
+@each $name, $color in $oranges {
+    .color-#{$name} {
+        color: $color !important;
+    }
+
+    .bg-#{$name} {
+        background: $color !important;
+    }
+}
+
+@each $name, $color in $greens {
+    .color-#{$name} {
+        color: $color !important;
+    }
+
+    .bg-#{$name} {
+        background: $color !important;
+    }
+}
+
+@each $name, $color in $reds {
+    .color-#{$name} {
+        color: $color !important;
+    }
+
+    .bg-#{$name} {
+        background: $color !important;
+    }
+}
+
+@each $name, $property, $margin in $margins {
+    .#{$name} {
+        margin-#{$property}: $margin !important;
+    }
+}
+
+@each $name, $property, $padding in $paddings {
+    .#{$name} {
+        margin-#{$property}: $padding !important;
+    }
+}
+
+@for $key from 0 through 10 {
+    .border-radius-#{$key} {
+        border-radius: #{$key}px;
+    }
+}
+
+@for $key from 0 through 10 {
+    .border-#{$key} {
+        border: #{$key}px;
+    }
+}
+
+@for $key from 0 through 20 {
+    .font-#{$key} {
+        font-size: #{$key}px;
+    }
+}

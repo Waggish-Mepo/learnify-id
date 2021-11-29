@@ -1,6 +1,6 @@
 <div class="themesetting">
     <a href="javascript:void(0);" class="theme_btn"><i class="icon-magic-wand"></i></a>
-    <div class="card theme_color">
+    <div class="card theme_color d-none">
         <div class="header">
             <h2>Theme Color</h2>
         </div>
@@ -13,7 +13,7 @@
             <li data-theme="red"><div class="red"></div></li>
         </ul>
     </div>
-    <div class="card font_setting">
+    <div class="card font_setting d-none">
         <div class="header">
             <h2>Font Settings</h2>
         </div>
@@ -43,7 +43,7 @@
                     </label>
                 </div>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item d-none">
                 RTL Version
                 <div class="float-right">
                     <label class="switch">
@@ -52,7 +52,7 @@
                     </label>
                 </div>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item d-none">
                 Horizontal Henu
                 <div class="float-right">
                     <label class="switch">
@@ -61,7 +61,7 @@
                     </label>
                 </div>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item d-none">
                 Mini Sidebar
                 <div class="float-right">
                     <label class="switch">
@@ -71,19 +71,5 @@
                 </div>
             </li>
         </ul>
-    </div>
-    <div class="card">
-        <div class="form-group">
-            <label class="d-block">Traffic this Month <span class="float-right">77%</span></label>
-            <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;"></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="d-block">Server Load <span class="float-right">50%</span></label>
-            <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
-            </div>
-        </div>
     </div>
 </div>
