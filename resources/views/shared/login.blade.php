@@ -16,6 +16,7 @@
 
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="{{asset('assets/css/site.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
 </head>
 
@@ -31,6 +32,7 @@
                     <img class="img-fluid" src="{{asset('assets/images/login-page.svg')}}" />
                 </div>
                 <form class="form-auth-small my-auto" action="{{route('auth')}}" method="post">
+                    <img src="{{asset('assets/images/logo-with-name-learnifyid.svg')}}" alt="Smart School Logo" class="img-fluid">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="signin-username" class="control-label sr-only">Username</label>
@@ -44,9 +46,9 @@
                         <label class="fancy-checkbox element-left">
                             <input type="checkbox">
                             <span>Ingat saya</span>
-                        </label>								
+                        </label>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-round btn-block">MASUK</button>
+                    <button type="submit" class="btn bg-blue-2 text-white btn-round btn-block">MASUK</button>
                 </form>
                 <div class="pattern">
                     <span class="red"></span>
