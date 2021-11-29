@@ -17,7 +17,7 @@
     </div>
     <div class="row-clearfix">
         <p class="font-weight-bold">Terdapat <span class="color-blue-2">100</span> Materi!</p>
-        <div class="mt-3">
+        <div class="mt-1">
             <div class="d-flex align-items-center p-3 w-100 bg-white shadow-sm rounded border-hover">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                 <div class="ml-3">
