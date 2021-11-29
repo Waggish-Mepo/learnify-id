@@ -1,8 +1,7 @@
 <div id="left-sidebar" class="sidebar">
     <div class="navbar-brand">
         <a href="#">
-            <!-- <img src="" alt="Smart School Logo" class="img-fluid logo"> -->
-            <span>Smart School</span>
+           <img src="{{asset('assets/images/logo_learnify.png')}}" alt="Smart School Logo" class="img-fluid" width="300">
         </a>
         <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
     </div>
@@ -21,8 +20,12 @@
         </div>  
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul id="main-menu" class="metismenu">
-                {{-- nanti pake if condition, ambil role user trs nampilin sidebar per role nya --}}
-                @include('layouts.admin._menu')
+                @if (Auth::user()->role === "ADMIN")
+                    @include('layouts.admin._menu')
+                @endif
+                @if (Auth::user()->role === "TEACHER")
+                    @include('layouts.teacher._menu')
+                @endif
             </ul>
         </nav>     
     </div>

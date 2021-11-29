@@ -4,7 +4,7 @@
         <div class="navbar-left">
             <div class="navbar-btn">
                 <a href="index.html">
-                    <img src="{{asset('assets/images/icon.svg')}}" alt="Smart School Logo" class="img-fluid logo">
+                    <img src="{{asset('assets/images/logo_learnify.png')}}" alt="Smart School Logo" class="img-fluid" width="100">
                 </a>
                 <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu fa fa-bars"></i></button>
             </div>

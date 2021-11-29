@@ -8,7 +8,7 @@
             <h1>Akun Siswa</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "STUDENT"]) }}">Smart School</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "STUDENT"]) }}">Learnify.id</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "STUDENT"]) }}">Kelola Akun</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Siswa</li>
                 </ol>
@@ -19,7 +19,7 @@
             <h1>Akun Guru</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "TEACHER"]) }}">Smart School</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "TEACHER"]) }}">Learnify.id</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "TEACHER"]) }}">Kelola Akun</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Guru</li>
                 </ol>
@@ -30,7 +30,7 @@
             <h1>Akun Admin</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "ADMIN"]) }}">Smart School</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "ADMIN"]) }}">Learnify.id</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.statistik.accounts', ['role' => "ADMIN"]) }}">Kelola Akun</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Akun Admin</li>
                 </ol>

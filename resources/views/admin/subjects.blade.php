@@ -6,7 +6,7 @@
         <h1>Kelola Mapel</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.subjects') }}">Smart School</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.subjects') }}">Learnify.id</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Kelola Mapel</li>
             </ol>
         </nav>
