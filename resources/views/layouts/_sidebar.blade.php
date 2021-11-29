@@ -20,8 +20,18 @@
         </div>  
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul id="main-menu" class="metismenu">
-                {{-- nanti pake if condition, ambil role user trs nampilin sidebar per role nya --}}
-                @include('layouts.admin._menu')
+                @if (Auth::user()->role === "ADMIN")
+                    @include('layouts.admin._menu')
+                @endif
+                @if (Auth::user()->role === "TEACHER")
+                    @if(Request::is('subject/*/course/*'))
+                        @include('layouts.teacher._menu_course')
+                    @elseif(Request::is('subject/*'))
+                        @include('layouts.teacher._menu_subject')
+                    @else 
+                        @include('layouts.teacher._menu')
+                    @endif
+                @endif
             </ul>
         </nav>     
     </div>
