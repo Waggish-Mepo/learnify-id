@@ -55,10 +55,10 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
 
 // Teacher
 Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
-    Route::get('/subject', function () {
+    Route::get('/subject/{subject_id}', function () {
             return view('teacher.subject');
     })->name('subject');
-    Route::get('/subjects/course', function () {
+    Route::get('/subject/{subject_id}/course/{course_id}', function () {
             return view('teacher.course');
     })->name('subject.course');
 });

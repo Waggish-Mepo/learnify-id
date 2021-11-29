@@ -24,7 +24,13 @@
                     @include('layouts.admin._menu')
                 @endif
                 @if (Auth::user()->role === "TEACHER")
-                    @include('layouts.teacher._menu')
+                    @if(Request::is('subject/*/course/*'))
+                        @include('layouts.teacher._menu_course')
+                    @elseif(Request::is('subject/*'))
+                        @include('layouts.teacher._menu_subject')
+                    @else 
+                        @include('layouts.teacher._menu')
+                    @endif
                 @endif
             </ul>
         </nav>     
