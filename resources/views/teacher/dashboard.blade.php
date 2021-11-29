@@ -13,7 +13,7 @@
             <a class="color-black">Terdapat <span class="color-blue-2">100</span> Materi!</a>
             <a href="{{ route('subject') }}" class="color-blue-2">Lihat Semua</a>
         </div>
-        <div class="mt-1">
+        <div class="mt-3">
             <a href="{{ route('subject.course') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                 <div class="ml-3">
@@ -21,7 +21,7 @@
                 </div>
             </a>
         </div>
-        <div class="mt-1">
+        <div class="mt-3">
             <a href="{{ route('subject.course') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                 <div class="ml-3">
@@ -36,7 +36,7 @@
             <a class="color-black">Terdapat <span class="color-blue-2">50</span> Materi!</a>
             <a href="{{ route('subject') }}" class="color-blue-2">Lihat Semua</a>
         </div>
-        <div class="mt-1">
+        <div class="mt-3">
             <a href="{{ route('subject.course') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                 <div class="ml-3">
@@ -44,7 +44,7 @@
                 </div>
             </a>
         </div>
-        <div class="mt-1">
+        <div class="mt-3">
             <a href="{{ route('subject.course') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                 <div class="ml-3">
