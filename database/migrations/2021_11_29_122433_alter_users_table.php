@@ -15,6 +15,7 @@ class AlterUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedTinyInteger('grade')->nullable();
+            $table->rememberToken();
         });
     }
 
@@ -27,6 +28,7 @@ class AlterUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('grade');
+            $table->dropColumn('remember_token');
         });
     }
 }

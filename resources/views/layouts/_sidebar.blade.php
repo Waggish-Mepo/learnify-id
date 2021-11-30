@@ -14,7 +14,7 @@
                 <span>Welcome,</span>
                 <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong>{{ Auth::user()->name }}</strong></a>
                 <ul class="dropdown-menu dropdown-menu-right account vivify flipInY">
-                    <li><a href="{{route('logout')}}"><i class="icon-power"></i>Logout</a></li>
+                    <li><a href="#" class="js-sweetalert" data-type="confirm-logout" data-toggle="tooltip" data-placement="bottom" title="Keluar"><i class="icon-power"></i>Logout</a></li>
                 </ul>
             </div>                
         </div>  
