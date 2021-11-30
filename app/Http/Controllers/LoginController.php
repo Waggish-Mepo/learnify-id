@@ -23,7 +23,7 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt(($credentials + ['status' => true]))){
+        if (Auth::attempt(($credentials + ['status' => true]), $request->get('remember'))){
             return redirect('dashboard');
         }
 
