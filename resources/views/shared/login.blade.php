@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-<title>Login</title>
+<title>Masuk - Learnify.Id</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group clearfix">
                         <label class="fancy-checkbox element-left">
-                            <input type="checkbox">
+                            <input type="checkbox" name="remember">
                             <span>Ingat saya</span>
                         </label>
                     </div>
