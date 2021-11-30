@@ -5,6 +5,9 @@
                 <th class="w60">#</th>
                 <th class="w60">Name</th>
                 <th>NIS</th>
+                @if(request()->route('role') === "STUDENT")
+                <th>Kelas</th>
+                @endif
                 <th>Username</th>
                 <th>Status</th>
                 <th class="w100">Action</th>
@@ -56,6 +59,9 @@
                 <th class="w60">#</th>
                 <th class="w60">Name</th>
                 <th>NIS</th>
+                @if(request()->route('role') === "STUDENT")
+                <th>Kelas</th>
+                @endif
                 <th>Username</th>
                 <th>Status</th>
                 <th class="w100">Action</th>
@@ -76,6 +82,9 @@
                 <th class="w60">#</th>
                 <th class="w60">Name</th>
                 <th>NIS</th>
+                @if(request()->route('role') === "STUDENT")
+                <th>Kelas</th>
+                @endif
                 <th>Username</th>
                 <th>Status</th>
                 <th class="w100">Action</th>

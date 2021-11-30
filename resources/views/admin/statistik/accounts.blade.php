@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    
+
 @csrf
     {{-- @include('layouts.admin._modal_import_account') --}}
     @include('layouts.admin._modal_edit_account')
@@ -115,7 +115,7 @@
     function renderAccount(data) {
         let html = ``
         let no = 1
-        $.each(data.data, function (key, account) { 
+        $.each(data.data, function (key, account) {
             html += `
             <tr>
                 <td class="width45">${no}</td>
@@ -124,6 +124,7 @@
                     <span>${account.email === null ? '-' : account.email}</span>
                 </td>
                 <td>${account.nis === null ? '-' : account.nis}</td>
+                ${role ==='STUDENT' ? `<td>${account.grade}</td>` : ''}
                 <td>${account.username}</td>
                 <td>${account.status === 1 ? 'Active' : 'Non Active'}</td>
                 <td>
@@ -166,7 +167,9 @@
             }
         if (role === 'STUDENT') {
             let nis = $(`input[name=${role}Nis]`).val();
+            let grade = $(`select[name=${role}Grade]`).val();
             data['nis'] = nis
+            data['grade'] = grade
         }
         let btnSubmit = $(`#${role}-submit`)
 
@@ -211,12 +214,15 @@
             id,
             name,
             email,
-            status
+            status,
+            role
         }
 
         if (role === 'STUDENT') {
             let nis = $('input[name=editNis]').val()
+            let grade = $('select[name=editGrade]').val()
             data['nis'] = nis
+            data['grade'] = grade
         }
         let button = $('#update-button')
         $.ajax({
@@ -235,7 +241,7 @@
                 button.html('Simpan')
                 getAccount()
                 resetValue()
-                
+
             },
             error: function (e) {
                 button.html('Simpan')
@@ -263,25 +269,25 @@
 
     function searchAccount(e){
         let value = e.currentTarget.value
-        
-        $('#render-accounts tr').each(function(){  
-            var found = 'false';  
-            $(this).each(function(){  
-                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
-                {  
-                    found = 'true';  
-                }  
-            });  
-            if(found == 'true')  
-            {  
-                $(this).show();  
-            }  
-            else  
-            {  
-                $(this).hide();  
-            }  
-        });  
-    } 
+
+        $('#render-accounts tr').each(function(){
+            var found = 'false';
+            $(this).each(function(){
+                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                {
+                    found = 'true';
+                }
+            });
+            if(found == 'true')
+            {
+                $(this).show();
+            }
+            else
+            {
+                $(this).hide();
+            }
+        });
+    }
 
 </script>
 @endsection

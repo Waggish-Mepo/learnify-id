@@ -32,6 +32,18 @@
             </div>
         </div>
     </div>
+    <div class="row clearfix" onclick="$('#{{ request()->route('role') }}-alert').hide('fast')">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Kelas</label>
+                <select name="{{ request()->route('role') }}Grade" class="form-control show-tick text-dark" id="">
+                    @foreach ($grades as $key => $grade)
+                        <option value="{{$key}}">{{$grade}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
     <div class="d-flex justify-content-between mt-3">
         <button type="button" id="{{ request()->route('role') }}-submit" class="btn btn-primary" onclick="createAccount()">Tambah</button>
     </div>

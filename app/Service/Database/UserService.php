@@ -91,6 +91,7 @@ class UserService {
             'password' => 'required|string',
             'status' => 'required',
             'nis' => 'nullable|numeric',
+            'grade' => 'nullable|numeric',
             'email' => 'nullable|email',
             'role' => ['required', Rule::in(config('constant.user.roles'))],
         ])->validate();

@@ -14,7 +14,7 @@ class ManageAccountController extends Controller
         $userDB = new UserService;
 
         $schoolId = Auth::user()->school_id;
-        
+
         $accounts = $userDB->index($schoolId, ['role' => $request->role]);
 
         return response()->json($accounts);
@@ -24,7 +24,7 @@ class ManageAccountController extends Controller
     {
         $userDB = new UserService;
         $schoolId = Auth::user()->school_id;
-        
+
         $payload = [
             'name' => $request->name,
             'username' => $request->username,
@@ -33,13 +33,14 @@ class ManageAccountController extends Controller
             'email' => $request->email,
             'status' => 1,
         ];
-        
+
         if ($request->role === 'STUDENT') {
             $payload['nis'] = $request->nis;
+            $payload['grade'] = $request->grade;
         }
-        
+
         $create = $userDB->create($schoolId, $payload);
-        
+
         return response()->json($create);
     }
 
@@ -47,19 +48,20 @@ class ManageAccountController extends Controller
     {
         $userDB = new UserService;
         $schoolId = Auth::user()->school_id;
-        
+
         $payload = [
             'name' => $request->name,
             'email' => $request->email,
             'status' => (int)$request->status,
         ];
-        
+
         if ($request->role === 'STUDENT') {
             $payload['nis'] = $request->nis;
+            $payload['grade'] = $request->grade;
         }
-        
+
         $update = $userDB->update($schoolId, $request->id, $payload);
-        
+
         return response()->json($update);
     }
 
@@ -67,13 +69,13 @@ class ManageAccountController extends Controller
     {
         $userDB = new UserService;
         $schoolId = Auth::user()->school_id;
-        
+
         $payload = [
             'password' => $request->username,
         ];
-        
+
         $update = $userDB->update($schoolId, $request->id, $payload);
-        
+
         return response()->json($update);
     }
 }
