@@ -63,6 +63,8 @@
                         </div>
                         @if(request()->route('role') === "STUDENT")
                             @include('admin.statistik.forms.students')
+                        @elseif(request()->route('role') === 'TEACHER')
+                            @include('admin.statistik.forms.teachers')
                         @else
                             @include('admin.statistik._form')
                         @endif
@@ -123,13 +125,13 @@
                     <h6 class="mb-0">${account.name}</h6>
                     <span>${account.email === null ? '-' : account.email}</span>
                 </td>
-                <td>${account.nis === null ? '-' : account.nis}</td>
-                ${role ==='STUDENT' ? `<td>${account.grade}</td>` : ''}
+                ${role === 'STUDENT' ? `<td>${account.nis === null ? '-' : account.nis}</td>` : ''}
+                ${role === 'STUDENT' || role === 'TEACHER' ? `<td>${account.grade}</td>` : ''}
                 <td>${account.username}</td>
                 <td>${account.status === 1 ? 'Active' : 'Non Active'}</td>
                 <td>
                     <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account" onclick="editAccount('${account.id}')"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Reset Password" data-type="reset-password" onclick="showResetPasswordMessage('${account.id}', '${account.username}')"><i class="fa fa-lock text-white"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Reset Password" data-type="reset-password" onclick="showResetPasswordMessage('${account.id}', '${account.username}')" title="Reset Password"><i class="fa fa-lock text-white"></i></button>
                 </td>
             </tr>
             `
@@ -170,6 +172,9 @@
             let grade = $(`select[name=${role}Grade]`).val();
             data['nis'] = nis
             data['grade'] = grade
+        } else if (role === 'TEACHER') {
+            let grade = $(`select[name=${role}Grade]`).val();
+            data['grade'] = grade
         }
         let btnSubmit = $(`#${role}-submit`)
 
@@ -202,6 +207,10 @@
         $(`input[name=editStatus][value=${dataAccount.status}]`).prop('checked', true)
         if (role === 'STUDENT') {
             $('input[name=editNis]').val(dataAccount.nis)
+            $(`select[name=editGrade] option[value=${dataAccount.grade}]`).attr('selected','selected');
+        }
+        if (role === 'TEACHER') {
+            $(`select[name=editGrade] option[value=${dataAccount.grade}]`).attr('selected','selected');
         }
     }
 
@@ -223,7 +232,11 @@
             let grade = $('select[name=editGrade]').val()
             data['nis'] = nis
             data['grade'] = grade
+        } else if (role === 'TEACHER') {
+            let grade = $(`select[name=editGrade]`).val();
+            data['grade'] = grade
         }
+
         let button = $('#update-button')
         $.ajax({
             type: "patch",

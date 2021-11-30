@@ -39,6 +39,10 @@ class ManageAccountController extends Controller
             $payload['grade'] = $request->grade;
         }
 
+        if ($request->role === 'TEACHER') {
+            $payload['grade'] = $request->grade;
+        }
+
         $create = $userDB->create($schoolId, $payload);
 
         return response()->json($create);
@@ -57,6 +61,10 @@ class ManageAccountController extends Controller
 
         if ($request->role === 'STUDENT') {
             $payload['nis'] = $request->nis;
+            $payload['grade'] = $request->grade;
+        }
+
+        if ($request->role === 'TEACHER') {
             $payload['grade'] = $request->grade;
         }
 
