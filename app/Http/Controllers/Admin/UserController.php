@@ -25,8 +25,8 @@ class UserController extends Controller
 
         // Teacher Dashboard
         if ($user['role'] === 'TEACHER') {
-            // 
-            return view('teacher.dashboard');
+            return view('teacher.dashboard')
+            ->with('user', $user);
         }
 
         // Student Dashboard

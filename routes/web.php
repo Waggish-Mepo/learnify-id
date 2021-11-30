@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Teacher;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -56,12 +57,17 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
 // Teacher
 Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
     Route::name('teacher.')->group(function() {
-        Route::get('/subject/{subject_id}', function () {
-                return view('teacher.subject');
-        })->name('subject');
-        Route::get('/subject/{subject_id}/course/{course_id}', function () {
-                return view('teacher.course');
-        })->name('subject.course');
+        
+        Route::prefix('subject')->group(function () {
+            Route::get('/course', [Teacher\CourseController::class, 'getCourse']);
+            Route::get('/{subject_id}/course', function () {
+                    return view('teacher.subject');
+            })->name('subject');
+            Route::get('/{subject_id}/course/{course_id}', function () {
+                    return view('teacher.course');
+            })->name('subject.course');
+        });
+
     });
 });
 
