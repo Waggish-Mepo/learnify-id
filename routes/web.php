@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,STUDENT']], function(
 Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
     Route::name('admin.')->group(function() {
         Route::get('/statistik/accounts/{role}', function () {
-            return view('admin.statistik.accounts');
+            return view('admin.statistik.accounts')->with('grades', config('constant.grades'));
         })->name('statistik.accounts');
 
         Route::get('/subjects', [SubjectController::class, 'index'])
@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::post('/subjects', [SubjectController::class, 'create']);
         Route::post('/assign-subject', [SubjectController::class, 'assign']);
         Route::patch('/subjects', [SubjectController::class, 'update']);
-        
+
         Route::get('/account', [Admin\ManageAccountController::class, 'getAccount']);
         Route::post('/account', [Admin\ManageAccountController::class, 'createAccount']);
         Route::patch('/account', [Admin\ManageAccountController::class, 'updateAccount']);
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
 // Student
 Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
     // Route::name('student.')->group(function() {
-        // 
+        //
     // });
 });
 
