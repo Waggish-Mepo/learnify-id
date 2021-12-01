@@ -1,19 +1,42 @@
 <div class="body mt-2">
-    <div class="form-group">
-        <label>Nama</label>
-        <input type="text" class="form-control text-dark">
+    <div class="w-100">
+        <div class="alert alert-success" id="{{ request()->route('role') }}-alert" role="alert" style="display: none;">
+            Akun berhasil dibuat!.
+        </div>
     </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control text-dark">
+    <div class="row clearfix" onclick="$('#{{ request()->route('role') }}-alert').hide('fast')">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Nama</label>
+                <input type="text" name="{{ request()->route('role') }}Name" class="form-control text-dark">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="{{ request()->route('role') }}Username" class="form-control text-dark">
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label>Username</label>
-        <input type="text" class="form-control text-dark">
+    <div class="row clearfix" onclick="$('#{{ request()->route('role') }}-alert').hide('fast')">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="{{ request()->route('role') }}Email" class="form-control text-dark">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+                <label>Guru Kelas</label>
+                <select name="{{ request()->route('role') }}Grade" class="form-control show-tick text-dark" id="">
+                    @foreach ($grades as $key => $grade)
+                        <option value="{{$key}}">{{$grade}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
     <div class="d-flex justify-content-between mt-3">
-        <div></div>
-        {{-- pas post, ntar kirim data role nya sesuai sama route --}}
-        <button type="button" class="btn btn-primary">Tambah</button>
+        <button type="button" id="{{ request()->route('role') }}-submit" class="btn btn-primary" onclick="createAccount()">Tambah</button>
     </div>
 </div>

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-<title>Login</title>
+<title>Masuk - Learnify.Id</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -17,6 +17,7 @@
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="{{asset('assets/css/site.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/animation.css')}}">
 
 </head>
 
@@ -26,10 +27,10 @@
 
 <div class="auth-main2 particles_js">
     <div class="auth_div vivify fadeInTop">
-        <div class="card">            
-            <div class="body">
+        <div class="card">
+            <div class="body justify-content-around">
                 <div class="login-img">
-                    <img class="img-fluid" src="{{asset('assets/images/login-page.svg')}}" />
+                    @include('shared.svg.login-svg')
                 </div>
                 <form class="form-auth-small my-auto" action="{{route('auth')}}" method="post">
                     <img src="{{asset('assets/images/logo-with-name-learnifyid.svg')}}" alt="Smart School Logo" class="img-fluid">
@@ -44,7 +45,7 @@
                     </div>
                     <div class="form-group clearfix">
                         <label class="fancy-checkbox element-left">
-                            <input type="checkbox">
+                            <input type="checkbox" name="remember">
                             <span>Ingat saya</span>
                         </label>
                     </div>
@@ -57,13 +58,13 @@
                     <span class="green"></span>
                     <span class="orange"></span>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
     <div id="particles-js"></div>
 </div>
 <!-- END WRAPPER -->
-    
+
 <script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
 <script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script>
 <script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>

@@ -61,6 +61,9 @@
 <script src="{{asset('assets/vendor/metisMenu/metisMenu.js')}}"></script> --}}
 
 <script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
+
+<script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{asset('assets/js/pages/ui/dialogs.js')}}"></script>
 @yield('script')
 
 </body>

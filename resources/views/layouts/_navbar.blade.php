@@ -61,7 +61,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="{{route('logout')}}" class="icon-menu"><i class="icon-power"></i></a></li>
+                    <li><a href="#" class="icon-menu js-sweetalert" data-type="confirm-logout" data-toggle="tooltip" data-placement="bottom" title="Keluar"><i class="icon-power"></i></a></li>
                 </ul>
             </div>
         </div>
