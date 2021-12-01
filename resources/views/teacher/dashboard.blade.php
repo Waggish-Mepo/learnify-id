@@ -116,7 +116,7 @@
             $.each(data, function (key, subject) { 
                 html += `
                 <div class="row-clearfix mt-5">
-                    <h5 class="color-blue-2 font-weight-bold text-uppercase">${subject.name} | -</h5>
+                    <h5 class="color-blue-2 font-weight-bold text-uppercase">${subject.name}</h5>
                     <div class="d-flex justify-content-between mt-3 align-items-end font-weight-bold">
                         <a class="color-black">Terdapat <span class="color-blue-2">100</span> Materi!</a>
                         <a href="{{ url('subject/${subject.id}/course') }}" class="color-blue-2">Lihat Semua <i class="fa fa-chevron-right color-blue-2 font-12"></i></a>
@@ -127,7 +127,7 @@
                             <a href="{{ url('subject/${subject.id}/course/${course.id}') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
                                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                                 <div class="ml-3">
-                                <p class="text-dark text-uppercase text-dark pt-3">${subject.name} | ${course.description}</p>
+                                <p class="text-dark text-uppercase text-dark pt-3">${subject.name} | ${course.description} Kelas ${course.grade}</p>
                                 </div>
                             </a>
                         </div>

@@ -30,6 +30,7 @@ class CourseController extends Controller
             $dataSubject = $subjectDB->detail($schoolId, $subjectId);
             $dataCourse = $coruseDB->index($schoolId, [
                 'subject_id' => $subjectId,
+                'by_grade' => 1,
             ])['data'];
             
             $subjects[$key] = $dataSubject;
