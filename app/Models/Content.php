@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     use HasFactory;
+    public $incrementing = false;
 
     const PUBLISHED = 'PUBLISHED';
     const DRAFT = 'DRAFT';

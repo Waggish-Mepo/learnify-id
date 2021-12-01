@@ -9,12 +9,13 @@
             </div>
         <div class="modal-body">
             <div class="form-group">
+                <input type="hidden" name="subject_id" value="{{ $subject['id'] }}">
                 <label for="name" class="col-form-label">Materi</label>
-                <input type="text" class="form-control text-dark" name="editName" id="name" placeholder="Masukkan materi baru">
+                <input type="text" class="form-control text-dark" name="name" placeholder="Masukkan materi baru">
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Tambah</button>
+            <button type="button" class="btn btn-primary" id="btn-create" onclick="createCourse()">Tambah</button>
         </div>
         </div>
     </div>

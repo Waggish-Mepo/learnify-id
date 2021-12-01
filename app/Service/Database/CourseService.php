@@ -34,7 +34,7 @@ class CourseService{
         }
 
         $courses = $query->simplePaginate($per_page);
-
+        
         return $courses->toArray();
     }
 
