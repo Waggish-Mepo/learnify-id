@@ -40,7 +40,7 @@ class SubjectService{
         School::findOrFail($schoolId);
         $subject = Subject::findOrFail($subjectId);
 
-        return $subject;
+        return $subject->toArray();
     }
 
     public function create($schoolId, $payload)

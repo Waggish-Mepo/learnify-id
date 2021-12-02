@@ -101,5 +101,16 @@ class DatabaseSeeder extends Seeder
             Course::factory($course)->create();
         }
 
+        foreach($subjectIds as $subjectId) {
+            $course = [
+                'description' => $courseDescription->random(),
+                'grade' => 11,
+                'created_by' => $selectedTeacherId,
+                'subject_id' => $subjectId,
+            ];
+
+            Course::factory($course)->create();
+        }
+
     }
 }

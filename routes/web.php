@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Teacher;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -58,21 +59,26 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
 // Teacher
 Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
     Route::name('teacher.')->group(function() {
-        Route::prefix('/subject/{subject_id}')->group(function () {
-            Route::get('/', function () {
-                return view('teacher.subject');
-            })->name('subject');
-            Route::prefix('/course/{course_id}')->group(function () {
-                Route::get('/', function () {
-                    return view('teacher.course');
-                })->name('subject.course');
-                Route::get('/topic/{topic_id}', function () {
-                    return view('teacher.topic.index');
-                })->name('subject.topic');
-                Route::prefix('/topic/{topic_id}/detail')->name('subject.topic.')->group(function () {
-                    Route::get('/content/{content_id}', function () {
-                        return view('teacher.topic.content');
-                    })->name('content');
+        
+        Route::prefix('subject')->group(function () {
+            Route::get('/course', [Teacher\CourseController::class, 'getCourse']);
+            Route::post('/course', [Teacher\CourseController::class, 'createCourse']);
+
+            Route::get('/course/topic', [Teacher\CourseController::class, 'getCourseTopic']);
+            Route::post('/course/topic', [Teacher\CourseController::class, 'createCourseTopic']);
+
+            Route::prefix('/{subject_id}')->group(function () {
+                Route::get('/course', [Teacher\CourseController::class, 'index'])->name('subject');
+                Route::prefix('/course/{course_id}')->group(function () {
+                    Route::get('/', [Teacher\CourseController::class, 'detail'])->name('subject.course');
+                    Route::get('/topic/{topic_id}', function () {
+                        return view('teacher.topic.index');
+                    })->name('subject.topic');
+                    Route::prefix('/topic/{topic_id}/detail')->name('subject.topic.')->group(function () {
+                        Route::get('/content/{content_id}', function () {
+                            return view('teacher.topic.content');
+                        })->name('content');
+                    });
                 });
             });
         });

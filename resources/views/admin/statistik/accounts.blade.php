@@ -183,7 +183,7 @@
             url: "{{ url('account') }}",
             data: data,
             beforeSend: function () {
-                btnSubmit.html('Loading')
+                btnSubmit.html('Menyimpan...')
             },
             success: function (response) {
                 btnSubmit.html('Tambah')
@@ -243,7 +243,7 @@
             url: "{{ url('account') }}",
             data: data,
             beforeSend: function () {
-                button.html('Loading')
+                button.html('Menyimpan...')
             },
             success: function (response) {
                 $(`#update-alert`).show('fast');

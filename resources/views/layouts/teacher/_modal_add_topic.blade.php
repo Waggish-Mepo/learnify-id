@@ -10,11 +10,11 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="name" class="col-form-label">Bab</label>
-                <input type="text" class="form-control text-dark" name="editName" id="name" placeholder="Masukkan bab baru">
+                <input type="text" class="form-control text-dark" name="name" placeholder="Masukkan bab baru">
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Tambah</button>
+            <button type="button" class="btn btn-primary" id="btn-create" onclick="createCourseTopic()">Tambah</button>
         </div>
         </div>
     </div>

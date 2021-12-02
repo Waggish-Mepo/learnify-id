@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use HasFactory;
+    public $incrementing = false;
 
     const EXERCISE = 'EXERCISE';
     const EXAM = 'EXAM';
