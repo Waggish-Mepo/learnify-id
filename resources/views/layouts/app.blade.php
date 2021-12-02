@@ -22,6 +22,8 @@
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/teacher.css')}}">
 
+{{-- ckeditor --}}
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 </head>
 <body class="theme-cyan font-montserrat light_version">
 
