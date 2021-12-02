@@ -13,6 +13,14 @@
                 <label for="name" class="col-form-label">Materi</label>
                 <input type="text" class="form-control text-dark" name="name" placeholder="Masukkan materi baru">
             </div>
+            <div class="form-group">
+                <label>Kelas</label>
+                <select name="grade" class="form-control show-tick text-dark" id="">
+                    @foreach ($grades as $key => $grade)
+                        <option value="{{$key}}">{{$grade}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="btn-create" onclick="createCourse()">Tambah</button>

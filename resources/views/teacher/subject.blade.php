@@ -43,6 +43,7 @@
 <script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script type="text/javascript">
     let user = {!! json_encode(Auth::user()) !!};
+    let subject = {!! json_encode($subject) !!};
 
 
     $("#loading-course").show('fast');
@@ -61,7 +62,8 @@
             type: "get",
             url: url,
             data: {
-                teacher_id:user.id
+                teacher_id:user.id,
+                subject_id:subject.id
             },
             success: function (response) {
                 renderCourse(response);
@@ -75,14 +77,13 @@
     function renderCourse(data) {
         let html = ``
 
-        $.each(data, function (key, subject) { 
             html += `
             <div class="row-clearfix mt-5">
                 <h5 class="color-blue-2 font-weight-bold text-uppercase">${subject.name}</h5>
                 <div class="d-flex justify-content-between mt-3 align-items-end font-weight-bold">
-                    <a class="color-black">Terdapat <span class="color-blue-2">${subject.count_course}</span> Materi!</a>
+                    <a class="color-black">Terdapat <span class="color-blue-2">${data.total}</span> Materi!</a>
                 </div>`
-                $.each(subject.courses, function (key, course) { 
+                $.each(data.data, function (key, course) { 
                     html += `
                     <div class="mt-3">
                         <a href="{{ url('subject/${subject.id}/course/${course.id}') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
@@ -96,7 +97,6 @@
                 });
             html +=`</div>
             `
-        });
 
         html += `
         <div class="mt-4 pl-3">
@@ -109,9 +109,15 @@
         $("#render-course").show('fast');
     }
 
+    function resetValue() {
+        $("input[type=text][name=name]").val('')
+        $("select[name=grade] option[value=1]").attr('selected','selected');
+    }
+
     function createCourse() {
-        subjectId = $("input[type=hidden][name=subject_id]").val();
+        subjectId = $("input[type=hidden][name=subject_id]").val()
         name = $("input[type=text][name=name]").val();
+        grade = $("select[name=grade]").find(":selected").val()
         button = $("#btn-create")
         
         if (name === '') {
@@ -122,13 +128,16 @@
                 url: "{{ url('subject/course') }}",
                 data: {
                     subject_id:subjectId,
-                    name
+                    name,
+                    grade
                 },
                 beforeSend: function () {
                     button.html('Menyimpan...')
                 },
                 success: function (response) {
                     button.html('Tambah')
+                    $("#modal-add-course").modal('hide')
+                    resetValue()
                     getCourse()
                     swal('Berhasil menyimpan materi !')
                 },

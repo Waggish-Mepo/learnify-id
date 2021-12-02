@@ -62,13 +62,13 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
             Route::get('/course', [Teacher\CourseController::class, 'getCourse']);
             Route::post('/course', [Teacher\CourseController::class, 'createCourse']);
 
+            Route::get('/course/topic', [Teacher\CourseController::class, 'getCourseTopic']);
+            Route::post('/course/topic', [Teacher\CourseController::class, 'createCourseTopic']);
+
             Route::prefix('/{subject_id}')->group(function () {
                 Route::get('/course', [Teacher\CourseController::class, 'index'])->name('subject');
+                Route::get('/course/{course_id}', [Teacher\CourseController::class, 'detail'])->name('subject.course');
             });
-
-            Route::get('/{subject_id}/course/{course_id}', function () {
-                    return view('teacher.course');
-            })->name('subject.course');
         });
 
     });

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@dump($user)
 <div class="block-header">
     <div class="row clearfix">
         <div class="col-md-6 col-sm-12">
