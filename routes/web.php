@@ -62,6 +62,10 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
         Route::get('/subject/{subject_id}/course/{course_id}', function () {
                 return view('teacher.course');
         })->name('subject.course');
+
+        Route::get('/subject/{subject_id}/exercise/{exercise_id}', function() {
+            return view('teacher.activity.exercise');
+        });
     });
 });
 

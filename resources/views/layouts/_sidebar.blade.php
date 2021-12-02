@@ -26,6 +26,8 @@
                 @if (Auth::user()->role === "TEACHER")
                     @if(Request::is('subject/*/course/*'))
                         @include('layouts.teacher._menu_course')
+                    @elseif(Request::is('subject/*/exercise/*'))
+                        @include('layouts.teacher._menu_exercise')
                     @elseif(Request::is('subject/*'))
                         @include('layouts.teacher._menu_subject')
                     @else 
