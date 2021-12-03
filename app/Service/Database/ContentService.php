@@ -46,7 +46,7 @@ class ContentService{
         School::findOrFail($schoolId);
         $content = Content::findOrFail($contentId);
 
-        return $content;
+        return $content->toArray();
     }
 
     public function create($schoolId, $topicId, $payload)
