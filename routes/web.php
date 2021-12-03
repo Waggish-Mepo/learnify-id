@@ -78,12 +78,12 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
                     Route::get('/', [Teacher\CourseController::class, 'detail'])->name('subject.course');
 
                     // Topic
-                    Route::prefix('/topic/{topic_id}')->group(function () {
+                    Route::prefix('/topic/{topic_id}')->name('subject.topic.')->group(function () {
                         Route::get('/', [Teacher\TopicController::class, 'index'])->name('subject.topic');
 
                         // Content
-                        Route::prefix('/content/{content_id}')->name('subject.topic.')->group(function () {
-                            Route::get('/', [Teacher\TopicController::class, 'index'])->name('content');
+                        Route::prefix('/content/{content_id}')->name('content')->group(function () {
+                            Route::get('/', [Teacher\TopicController::class, 'index']);
                             Route::get('/publish/{status}', [Teacher\TopicController::class, 'publishContent']);
                         });
                     });

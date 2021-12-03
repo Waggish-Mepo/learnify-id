@@ -8,7 +8,7 @@
             <nav aria-label="breadcrumb" class="mt-4">
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ url('/subject/'.'matematika'.'/course/'.'1') }}">List Bab</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/subject/'. $subject_id .'/course/'. $course_id) }}">List Bab</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Detail Bab</li>
                 </ol>
             </nav>
@@ -114,6 +114,7 @@
     
     function renderContents(data) {
         let html = ``
+        let menuContent = ``
 
             html += `
             <a class="color-black font-weight-bold">Terdapat <span class="color-blue-2">${data.total}</span> Ulasan!</a>
@@ -129,11 +130,15 @@
                         </a>
                     </div>
                     `
+                    menuContent += `
+                    <a href="{{url('/subject/'. $subject_id .'/course/'. $course_id .'/topic/'. $topic_id .'/content/${content.id}')}}" class="text-capitalize"><span>${content.name}</span></a>
+                    `
                 });
             html +=`</div>
             `
 
         $("#render-contents").html(html);
+        $("#menu-content").html(menuContent);
         $("#loading-contents").hide('fast');
         $("#render-contents").show('fast');
     }

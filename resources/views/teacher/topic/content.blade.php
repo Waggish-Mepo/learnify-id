@@ -123,6 +123,38 @@
       }
    });
 
+   function getContents() {
+      url = "{{ url('/subject/course/topic/contents') }}"
+
+      $.ajax({
+         type: "get",
+         url: url,
+         data: {
+               topic_id:topicId,
+         },
+         success: function (response) {
+               renderContents(response);
+         }, 
+         error: function (e) {
+               swal('Gagal Mengambil Data !')
+         }
+      });
+   }
+
+   function renderContents(data) {
+      let menuContent = ``;
+      $.each(data.data, function (key, content) {
+         menuContent += `
+            <a href="{{url('/subject/'. $subject_id .'/course/'. $course_id .'/topic/'. $topic_id .'/content/${content.id}')}}" 
+            class="{{ Request::is('subject/'. $subject_id .'/course/'. $course_id .'/topic/'. $topic_id .'/content/${content.id}') ? 'active' : '' }}"><i class="icon-book-open"></i>
+               <span class="font-12">${content.name}</span>
+            </a>
+         `;
+      });
+
+      $("#menu-content").html(menuContent);
+   }
+
    getContent()
 
    function getContent() {
@@ -135,6 +167,7 @@
                content_id:contentId,
          },
          success: function (response) {
+               getContents();
                renderContent(response);
          }, 
          error: function (e) {
@@ -180,6 +213,7 @@
                $('#btn-save').html('<i class="fa fa-save mr-2"></i>Menyimpan ...');
          },
          success: function (response) {
+               getContents();
                renderContent(response);
                swal({
                   title: "Ulasan berhasil disimpan!",
