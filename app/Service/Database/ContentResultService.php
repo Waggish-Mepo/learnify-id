@@ -14,24 +14,24 @@ class ContentService{
     public function index($schoolId,  $filter = []) {
         $orderBy = $filter['order_by'] ?? 'DESC';
         $per_page = $filter['per_page'] ?? 20;
-        $conten_id = $filter['conten_id'] ?? null;
+        $content_id = $filter['content_id'] ?? null;
         $student_id = $filter['student_id'] ?? null;
 
         School::findOrFail($schoolId);
 
         $query = ContentResult::orderBy('created_at', $orderBy);
 
-        if ($conten_id !== null) {
-            $query->where('conten_id', $conten_id);
+        if ($content_id !== null) {
+            $query->where('content_id', $content_id);
         }
         
         if ($student_id !== null) {
             $query->where('student_id', $student_id);
         }
 
-        $contentResult = $query->simplePaginate($per_page);
+        $contentResults = $query->simplePaginate($per_page);
 
-        return $contentResult->toArray();
+        return $contentResults->toArray();
     }
 
     public function detail($schoolId, $contentResultId)
