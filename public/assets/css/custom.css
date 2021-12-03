@@ -441,4 +441,8 @@
 .font-20 {
   font-size: 20px;
 }
+
+.ck.ck-editor__main .ck-content {
+  height: 250px;
+}
 /*# sourceMappingURL=custom.css.map */
