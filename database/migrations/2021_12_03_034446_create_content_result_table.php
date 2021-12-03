@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContenResultTable extends Migration
+class CreateContentResultTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateContenResultTable extends Migration
      */
     public function up()
     {
-        Schema::create('conten_result', function (Blueprint $table) {
+        Schema::create('content_result', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('content_id')->index();
             $table->uuid('student_id')->index();
@@ -29,6 +29,6 @@ class CreateContenResultTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conten_result');
+        Schema::dropIfExists('content_result');
     }
 }
