@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\School;
 use App\Models\Subject;
 use App\Models\SubjectTeacher;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -81,7 +82,7 @@ class DatabaseSeeder extends Seeder
             $createdSubject = Subject::factory($subject)->create();
             $subjectIds[] = $createdSubject->id;
 
-            SubjectTeacher::factory(['subject_id' => $createdSubject->id, 'teachers' => []])->create();
+            SubjectTeacher::factory(['subject_id' => $createdSubject->id, 'teachers' => [$selectedTeacherId]])->create();
         }
 
         $courseDescription = collect([
@@ -90,6 +91,7 @@ class DatabaseSeeder extends Seeder
             'Umum',
         ]);
 
+        $courseIds = [];
         foreach($subjectIds as $subjectId) {
             $course = [
                 'description' => $courseDescription->random(),
@@ -98,7 +100,7 @@ class DatabaseSeeder extends Seeder
                 'subject_id' => $subjectId,
             ];
 
-            Course::factory($course)->create();
+            $courseIds[] = Course::factory($course)->create()->id;
         }
 
         foreach($subjectIds as $subjectId) {
@@ -109,8 +111,19 @@ class DatabaseSeeder extends Seeder
                 'subject_id' => $subjectId,
             ];
 
-            Course::factory($course)->create();
+            $courseIds[] = Course::factory($course)->create()->id;
         }
+
+        foreach($subjectIds as $subjectId) {
+            foreach($courseIds as $courseId) {
+                for($i = 0; $i < 3; $i++) {
+                    Topic::factory(['course_id' => $courseId, 'subject_id' => $subjectId])->create();
+                }
+            }
+        }
+
+
+
 
     }
 }
