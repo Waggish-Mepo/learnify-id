@@ -59,7 +59,7 @@
                     <div class="tab-pane" id="addUser">
                         <div class="d-flex justify-content-between my-3">
                             <div></div>
-                            <button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
                         </div>
                         @if(request()->route('role') === "STUDENT")
                             @include('admin.statistik.forms.students')
@@ -75,7 +75,7 @@
     </div>
 
 @csrf
-    {{-- @include('layouts.admin._modal_import_account') --}}
+    @include('layouts.admin._modal_import_account')
     @include('layouts.admin._modal_edit_account')
 </div>
 @endsection
@@ -301,6 +301,10 @@
             }
         });
     }
+
+    $('#inputGroupFile04').on('change', (e) => {
+        $('#input-excel-label').html(e.target.files[0].name);
+    })
 
 </script>
 @endsection

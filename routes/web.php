@@ -53,13 +53,15 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::post('/account', [Admin\ManageAccountController::class, 'createAccount']);
         Route::patch('/account', [Admin\ManageAccountController::class, 'updateAccount']);
         Route::get('/account-reset', [Admin\ManageAccountController::class, 'resetPassword']);
+        Route::get('/download-excel-student', [Admin\ManageAccountController::class, 'downloadExcelStudent']);
+        Route::post('/import-excel-student', [Admin\ManageAccountController::class, 'importStudent']);
     });
 });
 
 // Teacher
 Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
     Route::name('teacher.')->group(function() {
-        
+
         Route::prefix('subject')->group(function () {
             Route::get('/course', [Teacher\CourseController::class, 'getCourse']);
             Route::post('/course', [Teacher\CourseController::class, 'createCourse']);

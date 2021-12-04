@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Imports\StudentImport;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Service\Database\UserService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ManageAccountController extends Controller
 {
@@ -85,5 +87,18 @@ class ManageAccountController extends Controller
         $update = $userDB->update($schoolId, $request->id, $payload);
 
         return response()->json($update);
+    }
+
+    public function downloadExcelStudent() {
+        $file = public_path()."\assets\\excel\learnify_id_user_import_format_student.xlsx";
+        $headers = array('Content-Type: application/xlsx',);
+        return response()->download($file, 'learnify_id_user_import_format_student.xlsx', $headers);
+    }
+
+    public function importStudent(Request $request) {
+
+        Excel::import(new StudentImport, $request->file('excel-file'));
+
+        return redirect()->back();
     }
 }

@@ -8,16 +8,20 @@
                 </button>
             </div>
         <div class="modal-body">
+            <form action="{{ url('/import-excel-student')}}" enctype="multipart/form-data" method="post">
+            @csrf
             <p>Import File</p>
-            <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+            <div class="input-group mb-2">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="excel-file" id="inputGroupFile04" accept=".xlsx" aria-describedby="inputGroupFile04">
+                    <label class="custom-file-label" id="input-excel-label" for="inputGroupFile04">Choose file</label>
+                </div>
             </div>
-            </div>
+            <a href="{{url('/download-excel-student')}}" target="_blank" rel="noopener noreferrer">Download format disini</a>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Tambah</button>
+            <button type="submit" class="btn btn-primary">Tambah</button>
+            </form>
         </div>
         </div>
     </div>
