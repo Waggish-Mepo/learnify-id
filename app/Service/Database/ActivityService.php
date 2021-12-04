@@ -50,7 +50,7 @@ class ActivityService{
         School::findOrFail($schoolId);
         $activity = Activity::findOrFail($activityId);
 
-        return $activity;
+        return $activity->toArray();
     }
 
     public function create($schoolId, $topicId, $payload)
