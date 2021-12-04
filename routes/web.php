@@ -7,7 +7,7 @@ use App\Http\Controllers\Teacher;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\uploadController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,6 @@ Route::get('/', [LoginController::class, 'check']);
 Route::get('/login', [LoginController::class, 'check'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::post('/upload-image', [uploadController::class, 'store'])->name('upload-image');
 
 Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,STUDENT']], function(){
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
@@ -58,6 +57,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
 
 // Teacher
 Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
+    Route::post('/upload-image', [UploadController::class, 'store'])->name('upload-image');
     Route::name('teacher.')->group(function() {
         
         Route::prefix('subject')->group(function () {
@@ -67,17 +67,25 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
             Route::get('/course/topic', [Teacher\CourseController::class, 'getCourseTopic']);
             Route::post('/course/topic', [Teacher\CourseController::class, 'createCourseTopic']);
 
+            Route::get('/course/topic/content', [Teacher\TopicController::class, 'getContent']);
+            Route::post('/course/topic/content', [Teacher\TopicController::class, 'createContent']);
+            Route::patch('/course/topic/content', [Teacher\TopicController::class, 'updateContent']);
+            Route::get('/course/topic/contents', [Teacher\TopicController::class, 'getContents']);
+
             Route::prefix('/{subject_id}')->group(function () {
                 Route::get('/course', [Teacher\CourseController::class, 'index'])->name('subject');
                 Route::prefix('/course/{course_id}')->group(function () {
                     Route::get('/', [Teacher\CourseController::class, 'detail'])->name('subject.course');
-                    Route::get('/topic/{topic_id}', function () {
-                        return view('teacher.topic.index');
-                    })->name('subject.topic');
-                    Route::prefix('/topic/{topic_id}/detail')->name('subject.topic.')->group(function () {
-                        Route::get('/content/{content_id}', function () {
-                            return view('teacher.topic.content');
-                        })->name('content');
+
+                    // Topic
+                    Route::prefix('/topic/{topic_id}')->name('subject.topic.')->group(function () {
+                        Route::get('/', [Teacher\TopicController::class, 'index'])->name('subject.topic');
+
+                        // Content
+                        Route::prefix('/content/{content_id}')->name('content')->group(function () {
+                            Route::get('/', [Teacher\TopicController::class, 'index']);
+                            Route::get('/publish/{status}', [Teacher\TopicController::class, 'publishContent']);
+                        });
                     });
                 });
             });
