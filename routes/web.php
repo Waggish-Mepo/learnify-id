@@ -52,6 +52,12 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::post('/account', [Admin\ManageAccountController::class, 'createAccount']);
         Route::patch('/account', [Admin\ManageAccountController::class, 'updateAccount']);
         Route::get('/account-reset', [Admin\ManageAccountController::class, 'resetPassword']);
+        Route::get('/export-excel-student', [Admin\ManageAccountController::class, 'exportStudent']);
+        Route::get('/export-excel-teacher', [Admin\ManageAccountController::class, 'exportTeacher']);
+        Route::get('/download-excel-student', [Admin\ManageAccountController::class, 'downloadExcelStudent']);
+        Route::get('/download-excel-teacher', [Admin\ManageAccountController::class, 'downloadExcelTeacher']);
+        Route::post('/import-excel-student', [Admin\ManageAccountController::class, 'importStudent']);
+        Route::post('/import-excel-teacher', [Admin\ManageAccountController::class, 'importTeacher']);
     });
 });
 
@@ -59,7 +65,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
 Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
     Route::post('/upload-image', [UploadController::class, 'store'])->name('upload-image');
     Route::name('teacher.')->group(function() {
-        
+
         Route::prefix('subject')->group(function () {
             Route::get('/course', [Teacher\CourseController::class, 'getCourse']);
             Route::post('/course', [Teacher\CourseController::class, 'createCourse']);

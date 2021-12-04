@@ -45,7 +45,13 @@
                 <div class="tab-content mt-0">
                     <div class="tab-pane show active" id="Users">
                         <div class="row my-3">
-                            <div class="col-lg-8 col-md-12 col-sm-12"></div>
+                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                @if(request()->route('role') === "STUDENT")
+                                    <a class="btn btn-primary" href="{{url('/export-excel-student')}}" target="_blank" rel="noopener noreferrer"><i class="icon-arrow-down mr-2"></i>Export Akun</a>
+                                @elseif(request()->route('role') === "TEACHER")
+                                    <a class="btn btn-primary" href="{{url('/export-excel-teacher')}}" target="_blank" rel="noopener noreferrer"><i class="icon-arrow-down mr-2"></i>Export Akun</a>
+                                @endif
+                            </div>
                             <div class="col-lg-4 col-md-12 col-sm-12">
                                 <div class="input-group">
                                 <input type="search" class="form-control bg-white rounded text-dark" placeholder="Search" aria-label="Search"
@@ -59,7 +65,9 @@
                     <div class="tab-pane" id="addUser">
                         <div class="d-flex justify-content-between my-3">
                             <div></div>
-                            <button type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
+                            @if(request()->route('role') === "STUDENT" || request()->route('role') === 'TEACHER')
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
+                            @endif
                         </div>
                         @if(request()->route('role') === "STUDENT")
                             @include('admin.statistik.forms.students')
@@ -75,7 +83,7 @@
     </div>
 
 @csrf
-    {{-- @include('layouts.admin._modal_import_account') --}}
+    @include('layouts.admin._modal_import_account')
     @include('layouts.admin._modal_edit_account')
 </div>
 @endsection
@@ -126,7 +134,7 @@
                     <span>${account.email === null ? '-' : account.email}</span>
                 </td>
                 ${role === 'STUDENT' ? `<td>${account.nis === null ? '-' : account.nis}</td>` : ''}
-                ${role === 'STUDENT' || role === 'TEACHER' ? `<td>${account.grade}</td>` : ''}
+                ${role === 'STUDENT' ? `<td>${account.grade}</td>` : ''}
                 <td>${account.username}</td>
                 <td>${account.status === 1 ? 'Active' : 'Non Active'}</td>
                 <td>
@@ -301,6 +309,10 @@
             }
         });
     }
+
+    $('#inputGroupFile04').on('change', (e) => {
+        $('#input-excel-label').html(e.target.files[0].name);
+    })
 
 </script>
 @endsection

@@ -50,16 +50,6 @@
                         </select>
                     </div>
                     @endif
-                    @if(request()->route('role') === "TEACHER")
-                    <div class="form-group">
-                        <label for="editGrade" class="col-form-label">Kelas</label>
-                        <select name="editGrade" class="form-control show-tick text-dark" id="">
-                            @foreach ($grades as $key => $grade)
-                                <option value="{{$key}}">{{$grade}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @endif
                 </div>
             </div>
         <div class="modal-footer">

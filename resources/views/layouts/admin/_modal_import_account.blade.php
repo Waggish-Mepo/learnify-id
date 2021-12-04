@@ -8,16 +8,24 @@
                 </button>
             </div>
         <div class="modal-body">
+            <form @if( request()->route('role') === "STUDENT") action="{{url('/import-excel-student')}}" @else action="{{url('/import-excel-teacher') }}" @endif  enctype="multipart/form-data" method="post">
+            @csrf
             <p>Import File</p>
-            <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-                <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+            <div class="input-group mb-2">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="excel-file" id="inputGroupFile04" accept=".xlsx" aria-describedby="inputGroupFile04">
+                    <label class="custom-file-label" id="input-excel-label" for="inputGroupFile04">Choose file</label>
+                </div>
             </div>
-            </div>
+            @if(request()->route('role') === "STUDENT")
+                <a href="{{url('/download-excel-student')}}" target="_blank" rel="noopener noreferrer">Download format disini</a>
+            @elseif(request()->route('role') === "TEACHER")
+                <a href="{{url('/download-excel-teacher')}}" target="_blank" rel="noopener noreferrer">Download format disini</a>
+            @endif
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Tambah</button>
+            <button type="submit" class="btn btn-primary">Tambah</button>
+            </form>
         </div>
         </div>
     </div>
