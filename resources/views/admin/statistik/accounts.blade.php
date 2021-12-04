@@ -63,6 +63,8 @@
                         </div>
                         @if(request()->route('role') === "STUDENT")
                             @include('admin.statistik.forms.students')
+                        @elseif(request()->route('role') === 'TEACHER')
+                            @include('admin.statistik.forms.teachers')
                         @else
                             @include('admin.statistik._form')
                         @endif
@@ -71,7 +73,7 @@
             </div>
         </div>
     </div>
-    
+
 @csrf
     {{-- @include('layouts.admin._modal_import_account') --}}
     @include('layouts.admin._modal_edit_account')
@@ -115,7 +117,7 @@
     function renderAccount(data) {
         let html = ``
         let no = 1
-        $.each(data.data, function (key, account) { 
+        $.each(data.data, function (key, account) {
             html += `
             <tr>
                 <td class="width45">${no}</td>
@@ -123,12 +125,13 @@
                     <h6 class="mb-0">${account.name}</h6>
                     <span>${account.email === null ? '-' : account.email}</span>
                 </td>
-                <td>${account.nis === null ? '-' : account.nis}</td>
+                ${role === 'STUDENT' ? `<td>${account.nis === null ? '-' : account.nis}</td>` : ''}
+                ${role === 'STUDENT' || role === 'TEACHER' ? `<td>${account.grade}</td>` : ''}
                 <td>${account.username}</td>
                 <td>${account.status === 1 ? 'Active' : 'Non Active'}</td>
                 <td>
                     <button type="button" class="btn btn-sm btn-default" title="Edit" data-toggle="modal" data-target="#modal-edit-account" onclick="editAccount('${account.id}')"><i class="fa fa-edit"></i></button>
-                    <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Reset Password" data-type="reset-password" onclick="showResetPasswordMessage('${account.id}', '${account.username}')"><i class="fa fa-lock text-white"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary js-sweetalert" title="Reset Password" data-type="reset-password" onclick="showResetPasswordMessage('${account.id}', '${account.username}')" title="Reset Password"><i class="fa fa-lock text-white"></i></button>
                 </td>
             </tr>
             `
@@ -166,7 +169,12 @@
             }
         if (role === 'STUDENT') {
             let nis = $(`input[name=${role}Nis]`).val();
+            let grade = $(`select[name=${role}Grade]`).val();
             data['nis'] = nis
+            data['grade'] = grade
+        } else if (role === 'TEACHER') {
+            let grade = $(`select[name=${role}Grade]`).val();
+            data['grade'] = grade
         }
         let btnSubmit = $(`#${role}-submit`)
 
@@ -175,7 +183,7 @@
             url: "{{ url('account') }}",
             data: data,
             beforeSend: function () {
-                btnSubmit.html('Loading')
+                btnSubmit.html('Menyimpan...')
             },
             success: function (response) {
                 btnSubmit.html('Tambah')
@@ -199,6 +207,10 @@
         $(`input[name=editStatus][value=${dataAccount.status}]`).prop('checked', true)
         if (role === 'STUDENT') {
             $('input[name=editNis]').val(dataAccount.nis)
+            $(`select[name=editGrade] option[value=${dataAccount.grade}]`).attr('selected','selected');
+        }
+        if (role === 'TEACHER') {
+            $(`select[name=editGrade] option[value=${dataAccount.grade}]`).attr('selected','selected');
         }
     }
 
@@ -211,20 +223,27 @@
             id,
             name,
             email,
-            status
+            status,
+            role
         }
 
         if (role === 'STUDENT') {
             let nis = $('input[name=editNis]').val()
+            let grade = $('select[name=editGrade]').val()
             data['nis'] = nis
+            data['grade'] = grade
+        } else if (role === 'TEACHER') {
+            let grade = $(`select[name=editGrade]`).val();
+            data['grade'] = grade
         }
+
         let button = $('#update-button')
         $.ajax({
             type: "patch",
             url: "{{ url('account') }}",
             data: data,
             beforeSend: function () {
-                button.html('Loading')
+                button.html('Menyimpan...')
             },
             success: function (response) {
                 $(`#update-alert`).show('fast');
@@ -235,7 +254,7 @@
                 button.html('Simpan')
                 getAccount()
                 resetValue()
-                
+
             },
             error: function (e) {
                 button.html('Simpan')
@@ -263,25 +282,25 @@
 
     function searchAccount(e){
         let value = e.currentTarget.value
-        
-        $('#render-accounts tr').each(function(){  
-            var found = 'false';  
-            $(this).each(function(){  
-                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
-                {  
-                    found = 'true';  
-                }  
-            });  
-            if(found == 'true')  
-            {  
-                $(this).show();  
-            }  
-            else  
-            {  
-                $(this).hide();  
-            }  
-        });  
-    } 
+
+        $('#render-accounts tr').each(function(){
+            var found = 'false';
+            $(this).each(function(){
+                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                {
+                    found = 'true';
+                }
+            });
+            if(found == 'true')
+            {
+                $(this).show();
+            }
+            else
+            {
+                $(this).hide();
+            }
+        });
+    }
 
 </script>
 @endsection

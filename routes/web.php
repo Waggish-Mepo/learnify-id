@@ -3,9 +3,11 @@
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Teacher;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,STUDENT']], function(
 Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
     Route::name('admin.')->group(function() {
         Route::get('/statistik/accounts/{role}', function () {
-            return view('admin.statistik.accounts');
+            return view('admin.statistik.accounts')->with('grades', config('constant.grades'));
         })->name('statistik.accounts');
 
         Route::get('/subjects', [SubjectController::class, 'index'])
@@ -45,7 +47,7 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::post('/subjects', [SubjectController::class, 'create']);
         Route::post('/assign-subject', [SubjectController::class, 'assign']);
         Route::patch('/subjects', [SubjectController::class, 'update']);
-        
+
         Route::get('/account', [Admin\ManageAccountController::class, 'getAccount']);
         Route::post('/account', [Admin\ManageAccountController::class, 'createAccount']);
         Route::patch('/account', [Admin\ManageAccountController::class, 'updateAccount']);
@@ -55,16 +57,46 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
 
 // Teacher
 Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
+    Route::post('/upload-image', [UploadController::class, 'store'])->name('upload-image');
     Route::name('teacher.')->group(function() {
-        Route::get('/subject/{subject_id}', function () {
-                return view('teacher.subject');
-        })->name('subject');
-        Route::get('/subject/{subject_id}/course/{course_id}', function () {
-                return view('teacher.course');
-        })->name('subject.course');
 
-        Route::get('/subject/{subject_id}/exercise/{exercise_id}', function() {
-            return view('teacher.activity.exercise');
+        // Route::get('/subject/{subject_id}/exercise/{exercise_id}', function() {
+        //     return view('teacher.activity.exercise');
+
+        
+        Route::prefix('subject')->group(function () {
+            Route::get('/course', [Teacher\CourseController::class, 'getCourse']);
+            Route::post('/course', [Teacher\CourseController::class, 'createCourse']);
+
+            Route::get('/course/topic', [Teacher\CourseController::class, 'getCourseTopic']);
+            Route::post('/course/topic', [Teacher\CourseController::class, 'createCourseTopic']);
+
+            Route::get('/course/topic/content', [Teacher\TopicController::class, 'getContent']);
+            Route::post('/course/topic/content', [Teacher\TopicController::class, 'createContent']);
+            Route::patch('/course/topic/content', [Teacher\TopicController::class, 'updateContent']);
+            Route::get('/course/topic/contents', [Teacher\TopicController::class, 'getContents']);
+
+            Route::prefix('/{subject_id}')->group(function () {
+                Route::get('/course', [Teacher\CourseController::class, 'index'])->name('subject');
+                Route::prefix('/course/{course_id}')->group(function () {
+                    Route::get('/', [Teacher\CourseController::class, 'detail'])->name('subject.course');
+
+                    // Topic
+                    Route::prefix('/topic/{topic_id}')->name('subject.topic.')->group(function () {
+                        Route::get('/', [Teacher\TopicController::class, 'index'])->name('subject.topic');
+
+                        // Content
+                        Route::prefix('/content/{content_id}')->name('content')->group(function () {
+                            Route::get('/', [Teacher\TopicController::class, 'index']);
+                            Route::get('/publish/{status}', [Teacher\TopicController::class, 'publishContent']);
+                        });
+
+                        Route::prefix('/activity/{activity_id}')->name('content')->group(function () {
+                            Route::get('/', [Teacher\ActivityController::class, 'index']);
+                        });
+                    });
+                });
+            });
         });
     });
 });
@@ -72,7 +104,7 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
 // Student
 Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
     // Route::name('student.')->group(function() {
-        // 
+        //
     // });
 });
 
