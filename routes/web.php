@@ -7,6 +7,7 @@ use App\Http\Controllers\Teacher;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\uploadController;
 
 /*
@@ -25,12 +26,19 @@ Route::get('/test-layout', function () {
     return view('example.index');
 });
 
+
+
 // Auth
 Route::get('/', [LoginController::class, 'check']);
 Route::get('/login', [LoginController::class, 'check'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('auth');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/upload-image', [uploadController::class, 'store'])->name('upload-image');
+
+Route::get('/reset-password', [ResetPasswordController::class, 'edit'])->name('resetPw');
+Route::patch('/reset-password', [ResetPasswordController::class, 'update'])->name('resetPw');
+
+
 
 Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,STUDENT']], function(){
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');

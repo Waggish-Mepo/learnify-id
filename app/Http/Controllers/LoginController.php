@@ -27,7 +27,7 @@ class LoginController extends Controller
             return redirect('dashboard');
         }
 
-        return redirect('login')->view('shared.login');
+        return redirect('login');
     }
 
     public function logout(){

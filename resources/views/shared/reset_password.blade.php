@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-<title>Masuk - Learnify.Id</title>
+<title>Reset Password</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -30,29 +30,28 @@
         <div class="card">
             <div class="body justify-content-around">
                 <div class="login-img">
-                    @include('shared.svg.login-svg')
+                    @include('shared.svg.pw')
                 </div>
-                <form class="form-auth-small my-auto" action="{{route('auth')}}" method="post">
+                <form class="form-auth-small my-auto" action="{{route('resetPw')}}" method="post">
                     <img src="{{asset('assets/images/logo-with-name-learnifyid.svg')}}" alt="Smart School Logo" class="img-fluid">
-                    {{ csrf_field() }}
-
-                    <p class="text-center" style="font-size: 12px;">Silahkan masukan username & password anda.</p>
+                    @csrf
+                    @method("PATCH")
+                    <p class="text-center" style="font-size: 12px;">Silahkan ganti password anda.</p>
 
                     <div class="form-group">
-                        <label for="signin-username" class="control-label sr-only">Username</label>
-                        <input type="text" class="form-control round" id="signin-username" name="username" placeholder="Username" required>
+                        <label for="old_password" class="control-label sr-only">password_lama</label>
+                        <input type="password" class="form-control round" id="old_password" name="old_password" placeholder="Password Lama" required>
+
                     </div>
                     <div class="form-group">
-                        <label for="signin-password" class="control-label sr-only">Password</label>
-                        <input type="password" class="form-control round" id="signin-password" name="password" placeholder="Password" required>
+                        <label for="password" class="control-label sr-only">password_baru</label>
+                        <input type="password" class="form-control round" id="password" name="password" placeholder="Password Baru" required>
                     </div>
-                    <div class="form-group clearfix">
-                        <label class="fancy-checkbox element-left">
-                            <input type="checkbox" name="remember">
-                            <span>Ingat saya</span>
-                        </label>
+                    <div class="form-group">
+                        <label for="password_confirmation" class="control-label sr-only">password_baru</label>
+                        <input type="password" class="form-control round" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi Password Baru" required>
                     </div>
-                    <button type="submit" class="btn bg-blue-2 text-white btn-round btn-block">MASUK</button>
+                    <button type="submit" class="btn bg-blue-2 text-white btn-round btn-block">Simpan & Masuk</button>
                 </form>
                 <div class="pattern">
                     <span class="red"></span>
