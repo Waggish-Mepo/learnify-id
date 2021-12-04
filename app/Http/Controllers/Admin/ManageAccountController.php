@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\StudentExport;
+use App\Exports\TeacherExport;
+use App\Imports\StudentImport;
+use App\Imports\TeacherImport;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Service\Database\UserService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ManageAccountController extends Controller
 {
@@ -112,5 +117,39 @@ class ManageAccountController extends Controller
         else{
             return back()->with('error', 'Gagal memperbarui password');
         }
+    }
+
+    public function downloadExcelStudent() {
+        $file = public_path()."\assets\\excel\learnify_id_user_import_format_student.xlsx";
+        $headers = array('Content-Type: application/xlsx',);
+        return response()->download($file, 'learnify_id_user_import_format_student.xlsx', $headers);
+    }
+
+    public function downloadExcelTeacher() {
+        $file = public_path()."\assets\\excel\learnify_id_user_import_format_teacher.xlsx";
+        $headers = array('Content-Type: application/xlsx',);
+        return response()->download($file, 'learnify_id_user_import_format_teacher.xlsx', $headers);
+    }
+
+    public function importStudent(Request $request) {
+
+        Excel::import(new StudentImport, $request->file('excel-file'));
+
+        return redirect()->back();
+    }
+
+    public function importTeacher(Request $request) {
+
+        Excel::import(new TeacherImport, $request->file('excel-file'));
+
+        return redirect()->back();
+    }
+
+    public function exportStudent() {
+        return Excel::download(new StudentExport, "student_account.xlsx");
+    }
+
+    public function exportTeacher() {
+        return Excel::download(new TeacherExport, "teacher_account.xlsx");
     }
 }

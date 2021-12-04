@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class uploadController extends Controller
+class UploadController extends Controller
 {
     public function store(Request $request)
     {
@@ -19,4 +19,5 @@ class uploadController extends Controller
             }
         }
     }
+
 }

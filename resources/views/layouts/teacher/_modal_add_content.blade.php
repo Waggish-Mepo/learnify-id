@@ -7,16 +7,15 @@
                     <span aria-hidden="true" class="text-white">&times;</span>
                 </button>
             </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="name" class="col-form-label">Judul Ulasan</label>
-                <input type="text" class="form-control text-dark" name="editName" id="name" placeholder="Masukkan judul ulasan baru">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name" class="col-form-label">Judul Ulasan</label>
+                    <input type="text" class="form-control text-dark" name="title_content" id="name" placeholder="Masukkan judul ulasan baru">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-create-content" onclick="createContent()" type="button" class="btn btn-primary">Tambah</button>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Tambah</button>
-        </div>
-        </div>
     </div>
-</div>
 </div>
