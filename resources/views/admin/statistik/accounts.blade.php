@@ -59,7 +59,9 @@
                     <div class="tab-pane" id="addUser">
                         <div class="d-flex justify-content-between my-3">
                             <div></div>
+                            @if(request()->route('role') === "STUDENT" || request()->route('role') === 'TEACHER')
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-import-account"><i class="icon-arrow-down mr-2"></i>Import Akun</button>
+                            @endif
                         </div>
                         @if(request()->route('role') === "STUDENT")
                             @include('admin.statistik.forms.students')

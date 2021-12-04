@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Imports\StudentImport;
+use App\Imports\TeacherImport;
 use App\Http\Controllers\Controller;
 use App\Service\Database\UserService;
 use Illuminate\Http\Request;
@@ -95,9 +96,22 @@ class ManageAccountController extends Controller
         return response()->download($file, 'learnify_id_user_import_format_student.xlsx', $headers);
     }
 
+    public function downloadExcelTeacher() {
+        $file = public_path()."\assets\\excel\learnify_id_user_import_format_teacher.xlsx";
+        $headers = array('Content-Type: application/xlsx',);
+        return response()->download($file, 'learnify_id_user_import_format_teacher.xlsx', $headers);
+    }
+
     public function importStudent(Request $request) {
 
         Excel::import(new StudentImport, $request->file('excel-file'));
+
+        return redirect()->back();
+    }
+
+    public function importTeacher(Request $request) {
+
+        Excel::import(new TeacherImport, $request->file('excel-file'));
 
         return redirect()->back();
     }

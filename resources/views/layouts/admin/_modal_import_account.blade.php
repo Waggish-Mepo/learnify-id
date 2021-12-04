@@ -8,7 +8,7 @@
                 </button>
             </div>
         <div class="modal-body">
-            <form action="{{ url('/import-excel-student')}}" enctype="multipart/form-data" method="post">
+            <form @if( request()->route('role') === "STUDENT") action="{{url('/import-excel-student')}}" @else action="{{url('/import-excel-teacher') }}" @endif  enctype="multipart/form-data" method="post">
             @csrf
             <p>Import File</p>
             <div class="input-group mb-2">

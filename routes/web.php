@@ -54,7 +54,9 @@ Route::group(['middleware' => ['auth', 'role:ADMIN']], function(){
         Route::patch('/account', [Admin\ManageAccountController::class, 'updateAccount']);
         Route::get('/account-reset', [Admin\ManageAccountController::class, 'resetPassword']);
         Route::get('/download-excel-student', [Admin\ManageAccountController::class, 'downloadExcelStudent']);
+        Route::get('/download-excel-teacher', [Admin\ManageAccountController::class, 'downloadExcelTeacher']);
         Route::post('/import-excel-student', [Admin\ManageAccountController::class, 'importStudent']);
+        Route::post('/import-excel-teacher', [Admin\ManageAccountController::class, 'importTeacher']);
     });
 });
 
