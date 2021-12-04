@@ -45,7 +45,13 @@
                 <div class="tab-content mt-0">
                     <div class="tab-pane show active" id="Users">
                         <div class="row my-3">
-                            <div class="col-lg-8 col-md-12 col-sm-12"></div>
+                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                @if(request()->route('role') === "STUDENT")
+                                    <a class="btn btn-primary" href="{{url('/export-excel-student')}}" target="_blank" rel="noopener noreferrer"><i class="icon-arrow-down mr-2"></i>Export Akun</a>
+                                @elseif(request()->route('role') === "TEACHER")
+                                    <a class="btn btn-primary" href="{{url('/export-excel-teacher')}}" target="_blank" rel="noopener noreferrer"><i class="icon-arrow-down mr-2"></i>Export Akun</a>
+                                @endif
+                            </div>
                             <div class="col-lg-4 col-md-12 col-sm-12">
                                 <div class="input-group">
                                 <input type="search" class="form-control bg-white rounded text-dark" placeholder="Search" aria-label="Search"

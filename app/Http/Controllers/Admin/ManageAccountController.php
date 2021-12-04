@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\StudentExport;
+use App\Exports\TeacherExport;
 use App\Imports\StudentImport;
 use App\Imports\TeacherImport;
 use App\Http\Controllers\Controller;
@@ -114,5 +116,13 @@ class ManageAccountController extends Controller
         Excel::import(new TeacherImport, $request->file('excel-file'));
 
         return redirect()->back();
+    }
+
+    public function exportStudent() {
+        return Excel::download(new StudentExport, "student_account.xlsx");
+    }
+
+    public function exportTeacher() {
+        return Excel::download(new TeacherExport, "teacher_account.xlsx");
     }
 }
