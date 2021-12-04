@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ManageAccountController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin;
@@ -7,7 +8,6 @@ use App\Http\Controllers\Teacher;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\uploadController;
 
 /*
@@ -35,13 +35,13 @@ Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('au
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/upload-image', [uploadController::class, 'store'])->name('upload-image');
 
-Route::get('/reset-password', [ResetPasswordController::class, 'edit'])->name('resetPw');
-Route::patch('/reset-password', [ResetPasswordController::class, 'update'])->name('resetPw');
-
-
-
 Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,STUDENT']], function(){
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/change-password', function () {
+        return view('shared.change_password');
+    })->name('change-password');
+    Route::patch('/change-password/update', [ManageAccountController::class, 'updatePassword'])->name('update-password');
 });
 
 // Admin

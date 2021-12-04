@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/animate-css/vivify.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/sweetalert/sweetalert.css')}}">
 
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="{{asset('assets/css/site.min.css')}}">
@@ -32,7 +33,7 @@
                 <div class="login-img">
                     @include('shared.svg.pw')
                 </div>
-                <form class="form-auth-small my-auto" action="{{route('resetPw')}}" method="post">
+                <form class="form-auth-small my-auto" action="{{route('update-password')}}" method="post">
                     <img src="{{asset('assets/images/logo-with-name-learnifyid.svg')}}" alt="Smart School Logo" class="img-fluid">
                     @csrf
                     @method("PATCH")
@@ -51,7 +52,8 @@
                         <label for="password_confirmation" class="control-label sr-only">password_baru</label>
                         <input type="password" class="form-control round" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi Password Baru" required>
                     </div>
-                    <button type="submit" class="btn bg-blue-2 text-white btn-round btn-block">Simpan & Masuk</button>
+                    <button type="submit" class="btn bg-blue-2 text-white btn-round btn-block">Simpan</button>
+                    <a href="{{route('dashboard')}}" type="button" class="btn bg-blue-2 text-white btn-round btn-block">Kembali ke Dashboard</a>
                 </form>
                 <div class="pattern">
                     <span class="red"></span>

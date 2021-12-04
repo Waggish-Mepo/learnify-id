@@ -66,6 +66,24 @@
 
 <script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/js/pages/ui/dialogs.js')}}"></script>
+<script>
+    let pwMatches = {!! $pw_matches = $pw_matches ?? false !!};
+    console.log(pwMatches);
+
+    if (pwMatches) {
+        swal({
+            title: 'Password kamu belum diganti!',
+            text: 'Ganti password untuk memperkuat keamanan akun kamu',
+            showCancelButton: true,
+            confirmButtonColor: "#007bff",
+            confirmButtonText: "Ganti Password",
+            cancelButtonText: "Lewati",
+            closeOnConfirm: false,
+        }, function () {
+            window.location = `{{ route('change-password') }}`;
+        })
+    }
+</script>
 @yield('script')
 
 </body>
