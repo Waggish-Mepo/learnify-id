@@ -17,7 +17,11 @@
                     <label class="custom-file-label" id="input-excel-label" for="inputGroupFile04">Choose file</label>
                 </div>
             </div>
-            <a href="{{url('/download-excel-student')}}" target="_blank" rel="noopener noreferrer">Download format disini</a>
+            @if(request()->route('role') === "STUDENT")
+                <a href="{{url('/download-excel-student')}}" target="_blank" rel="noopener noreferrer">Download format disini</a>
+            @elseif(request()->route('role') === "TEACHER")
+                <a href="{{url('/download-excel-teacher')}}" target="_blank" rel="noopener noreferrer">Download format disini</a>
+            @endif
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Tambah</button>

@@ -126,7 +126,7 @@
                     <span>${account.email === null ? '-' : account.email}</span>
                 </td>
                 ${role === 'STUDENT' ? `<td>${account.nis === null ? '-' : account.nis}</td>` : ''}
-                ${role === 'STUDENT' || role === 'TEACHER' ? `<td>${account.grade}</td>` : ''}
+                ${role === 'STUDENT' ? `<td>${account.grade}</td>` : ''}
                 <td>${account.username}</td>
                 <td>${account.status === 1 ? 'Active' : 'Non Active'}</td>
                 <td>
