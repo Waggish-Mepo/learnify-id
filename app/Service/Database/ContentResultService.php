@@ -7,10 +7,9 @@ use App\Models\ContentResult;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Ramsey\Uuid\Uuid;
 
-class ContentService{
+class ContentResultService{
     public function index($schoolId,  $filter = []) {
         $orderBy = $filter['order_by'] ?? 'DESC';
         $per_page = $filter['per_page'] ?? 20;
@@ -24,7 +23,7 @@ class ContentService{
         if ($content_id !== null) {
             $query->where('content_id', $content_id);
         }
-        
+
         if ($student_id !== null) {
             $query->where('student_id', $student_id);
         }
