@@ -32,7 +32,7 @@ class UserController extends Controller
         // Student Dashboard
         if ($user['role'] === 'STUDENT') {
             // 
-            return view('student.dashboard');
+            return view('student.dashboard', compact('user'));
         }
     }
 }

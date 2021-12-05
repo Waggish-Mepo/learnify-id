@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Teacher;
+use App\Http\Controllers\Student;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -103,15 +104,16 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
 Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
     Route::name('student.')->group(function() {
         Route::prefix('/student/subject')->group(function () {
-            Route::get('/{subject_id}/course', function () {
-                return view('student.course');
-            });
-            Route::get('/{subject_id}/course/{course_id}', function () {
-                return view('student.topic.index');
-            });
-            Route::get('/{subject_id}/course/{course_id}/detail', function () {
-                return view('student.topic.detail');
-            });
+            Route::get('/', [Student\LessonController::class, 'getSubject']);
+            Route::get('/course', [Student\LessonController::class, 'getCourse']);
+            Route::get('/course/topic', [Student\LessonController::class, 'getTopic']);
+            Route::get('/{subject_id}/course', [Student\LessonController::class, 'course']);
+            Route::get('/{subject_id}/course/{course_id}/topic', [Student\LessonController::class, 'topic']);
+
+            // SESUAIKAN ROUTENYA !
+            // Route::get('/{subject_id}/course/{course_id}/detail', function () {
+            //     return view('student.topic.detail');
+            // });
         });
     });
 });
