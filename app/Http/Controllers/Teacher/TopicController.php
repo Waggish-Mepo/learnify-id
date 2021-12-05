@@ -36,10 +36,17 @@ class TopicController extends Controller
         $subject = $subjectDB->detail($schoolId, $request->subject_id);
         $course = $courseDB->detail($schoolId, $request->course_id);
         $topic = $topicDB->detail($schoolId, $request->topic_id);
+        $topics = $topicDB->index($schoolId,
+            [
+                'subject_id' => $request->subject_id,
+                'course_id' => $request->course_id,
+            ],
+        );
 
         return view('teacher.topic.index')
             ->with('subject', $subject)
             ->with('course', $course)
+            ->with('topics', $topics['data'])
             ->with('topic', $topic);
     }
 

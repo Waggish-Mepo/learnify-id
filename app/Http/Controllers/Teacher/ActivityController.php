@@ -21,6 +21,13 @@ class ActivityController extends Controller
         $schoolId = Auth::user()->school_id;
 
         $activity = $activityDB->detail($schoolId, $request->activity_id);
+        $activities = $activityDB->index($schoolId,
+            [
+                'per_page' => 99,
+                'type' => $activity['type'],
+                'topic_id' => $request->topic_id,
+            ],
+        );
         $subject = $subjectDB->detail($schoolId, $request->subject_id);
         $course = $courseDB->detail($schoolId, $request->course_id);
         $topic = $topicDB->detail($schoolId, $request->topic_id);
@@ -29,6 +36,7 @@ class ActivityController extends Controller
         ->with('subject', $subject)
         ->with('course', $course)
         ->with('topic', $topic)
+        ->with('activities', $activities['data'])
         ->with('activity', $activity);
     }
 
@@ -43,6 +51,8 @@ class ActivityController extends Controller
         );
 
         $data = collect($activities['data'])->groupBy('type');
+        $data['total_exam'] = count($data['EXAM']);
+        $data['total_exercise'] = count($data['EXERCISE']);
         
         return response()->json($data);
     }
