@@ -7,10 +7,9 @@ use App\Models\ActivityResult;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Ramsey\Uuid\Uuid;
 
-class ActivityResultService extends Controller
+class ActivityResultService
 {
     public function index($schoolId,  $filter = [])
     {
@@ -31,7 +30,7 @@ class ActivityResultService extends Controller
             $query->where('student_id', $student_id);
         }
 
-        $activityResults->simplePaginate($per_page);
+        $activityResults = $query->simplePaginate($per_page);
 
         return $activityResults->toArray();
     }

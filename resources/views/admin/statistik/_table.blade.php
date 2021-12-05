@@ -7,8 +7,8 @@
                 @if(request()->route('role') === 'STUDENT')
                 <th>NIS</th>
                 @endif
-                @if(request()->route('role') === "STUDENT" || request()->route('role') === "TEACHER")
-                <th>{{request()->route('role') === "TEACHER" ? 'Guru ' : ''}}Kelas</th>
+                @if(request()->route('role') === "STUDENT")
+                <th>Kelas</th>
                 @endif
                 <th>Username</th>
                 <th>Status</th>
@@ -64,7 +64,7 @@
                 <th>NIS</th>
                 @endif
                 @if(request()->route('role') === "STUDENT" || request()->route('role') === "TEACHER")
-                <th>{{request()->route('role') === "TEACHER" ? 'Guru ' : ''}}Kelas</th>
+                <th>Kelas</th>
                 @endif
                 <th>Username</th>
                 <th>Status</th>
@@ -88,8 +88,8 @@
                 @if(request()->route('role') === 'STUDENT')
                 <th>NIS</th>
                 @endif
-                @if(request()->route('role') === "STUDENT" || request()->route('role') === "TEACHER")
-                <th>{{request()->route('role') === "TEACHER" ? 'Guru ' : ''}}Kelas</th>
+                @if(request()->route('role') === "STUDENT")
+                <th>Kelas</th>
                 @endif
                 <th>Username</th>
                 <th>Status</th>

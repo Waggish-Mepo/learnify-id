@@ -85,7 +85,9 @@ class ContentService{
         Validator::make($content->toArray(), [
             'topic_id' => 'required|string',
             'name' => 'required|string',
-            'content' => 'required',
+            'content' => 'nullable|string',
+            'experience' => 'nullable|numeric',
+            'estimation' => 'nullable|numeric',
             'status' => ['required', Rule::in(config('constant.content.status'))],
         ])->validate();
 
