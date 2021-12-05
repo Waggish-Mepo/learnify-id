@@ -49,7 +49,7 @@
         <a class="color-black font-weight-bold">Terdapat <span class="color-blue-2">1</span> Latihan!</a>
         <div class="mt-3">
             <a href="" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
-                <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
+                <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="fa fa-puzzle-piece text-white"></i></div>
                 <div class="ml-3">
                 <p class="text-dark text-uppercase text-dark pt-3">latihan bentuk-bentuk aljabar</p>
                 </div>
@@ -65,7 +65,7 @@
         <a class="color-black font-weight-bold">Terdapat <span class="color-blue-2">1</span> Ulangan!</a>
         <div class="mt-3">
             <a href="" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
-                <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
+                <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="fa fa-puzzle-piece text-white"></i></div>
                 <div class="ml-3">
                 <p class="text-dark text-uppercase text-dark pt-3">ulangan bentuk-bentuk aljabar</p>
                 </div>
