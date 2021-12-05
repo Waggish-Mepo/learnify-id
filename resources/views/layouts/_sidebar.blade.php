@@ -25,11 +25,15 @@
                 @endif
                 @if (Auth::user()->role === "TEACHER")
                     @if(Request::is('subject/*/course/*/topic/*/content/*'))
-                        @include('layouts.teacher._menu_topic_content')
+                    @include('layouts.teacher._menu_topic_content')
+                    @elseif(Request::is('subject/*/course/*/topic/*/activity/*'))
+                        @include('layouts.teacher._menu_activity')
                     @elseif(Request::is('subject/*/course/*/topic/*'))
                         @include('layouts.teacher._menu_topic')
                     @elseif(Request::is('subject/*/course/*'))
                         @include('layouts.teacher._menu_course')
+                    @elseif(Request::is('subject/*/exercise/*'))
+                        @include('layouts.teacher._menu_exercise')
                     @elseif(Request::is('subject/*'))
                         @include('layouts.teacher._menu_subject')
                     @else 

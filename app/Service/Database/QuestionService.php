@@ -75,6 +75,7 @@ class QuestionService{
             'question' => 'required|string',
             'answer' => 'required|string',
             'explanation' => 'required|string',
+            'order' => 'required|numeric',
             'choices' => 'required',
         ])->validate();
 
