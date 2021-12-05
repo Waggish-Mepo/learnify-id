@@ -206,8 +206,6 @@
                 topic_id:topicId,
             },
             success: function (response) {
-                console.log(response);
-                
                 renderActivity(response);
             }, 
             error: function (e) {

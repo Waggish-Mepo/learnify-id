@@ -33,10 +33,14 @@
                 <label for="description" class="font-18">Deskripsi Pengerjaan</label>
                 <textarea type="text" class="form-control" id="description" placeholder="Masukkan deskripsi pengerjaan" name="activity_desc">{{ $activity['description'] }}</textarea>
             </div>
-            {{-- <div class="form-group mb-3">
-                <label for="title" class="font-18">Estimasi Waktu (Menit)</label>
-                <input type="number" class="form-control" id="title" placeholder="Masukkan estimasi waktu" name="activity_time" value="{{ $activity['time'] }}">
-            </div> --}}
+            <div class="form-group mb-3">
+                <label for="time" class="font-18">Estimasi Waktu (Menit)</label>
+                <input type="number" min="0" class="form-control" id="time" placeholder="Masukkan estimasi waktu" name="activity_time" value="{{ $activity['time'] }}">
+            </div>
+            <div class="form-group mb-3">
+                <label for="exp" class="font-18">EXP</label>
+                <input type="number"min="0" max="100" class="form-control" id="exp" placeholder="Masukkan EXP" name="activity_exp" value="{{ $activity['experience'] }}">
+            </div>
             <div class="mb-4">
                 <p class="font-18 mb-1">Daftar Soal</p>
                 <a id="add-question" onclick="addQuestion()" href="#modal-add-question" data-toggle="modal" class="color-blue-2 py-1"><i class="fa fa-plus mr-1"></i> Tambah Soal</a>
@@ -111,7 +115,6 @@
                     activity_id:activity.id,
                 },
                 success: function (response) {
-                    console.log(response);
                     questions = response.data
                     renderQuestion(response.data);
                 }, 
@@ -305,23 +308,26 @@
         }
 
         function updateActivityFull() {
-            let name =$('input[type=text][name=activity_name]').val()
+            let name = $('input[type=text][name=activity_name]').val()
             let description =$('textarea[name=activity_desc]').val()
+            let time = $('input[type=number][name=activity_time]').val() == '' ? activity.time : parseInt($('input[type=number][name=activity_time]').val())
+            let experience = $('input[type=number][name=activity_exp]').val() == '' ? activity.experience : parseInt($('input[type=number][name=activity_exp]').val())
             let data = {
                 name:name,
                 description:description,
                 status:'DRAFT',
                 type:activity.type,
+                time:time,
+                experience:experience,
                 topic_id:topic.id,
                 activity_id:activity.id
             }
+            
             let button = 'btn-update-activity'
             let buttonHtml = 'Simpan'
             let message = 'Mengubah'
 
             $("#btn-publish").html('Terbitkan');
-
-            console.log(message);
             
             updateActivity(data, message, button, buttonHtml)
         }
@@ -333,6 +339,8 @@
                 description:activity.description,
                 status:status,
                 type:activity.type,
+                time:activity.time,
+                experience:activity.experience,
                 topic_id:topic.id,
                 activity_id:activity.id
             }

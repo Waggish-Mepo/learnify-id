@@ -51,8 +51,8 @@ class ActivityController extends Controller
         );
 
         $data = collect($activities['data'])->groupBy('type');
-        $data['total_exam'] = count($data['EXAM']);
-        $data['total_exercise'] = count($data['EXERCISE']);
+        $data['total_exam'] = count($data['EXAM'] ?? []);
+        $data['total_exercise'] = count($data['EXERCISE'] ?? []);
         
         return response()->json($data);
     }
@@ -132,14 +132,17 @@ class ActivityController extends Controller
     public function updateActivity(Request $request) {
         $activityDB = new ActivityService;
         $schoolId = Auth::user()->school_id;
-
+        $time = $request->time !== null ? intval($request->time) : $request->time;
+        $experience = $request->experience !== null ? intval($request->experience) : $request->experience;
         $payload = [
             'name' => $request->name,
             'type' => $request->type,
             'status' => $request->status,
-            'description' => $request->description
+            'description' => $request->description,
+            'time' => $time,
+            'experience' => $experience,
         ];
-
+        
         $update = $activityDB->update($schoolId, $request->topic_id, $request->activity_id, $payload);
 
         return response()->json($update);
