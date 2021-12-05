@@ -89,6 +89,22 @@ class ActivityController extends Controller
         return response()->json($create);
     }
 
+    public function updateQuestion(Request $request) {
+        $questionDB = new QuestionService;
+        $schoolId = Auth::user()->school_id;
+
+        $payload = [
+            'question' => $request->question,
+            'choices' => $request->choices,
+            'answer' => $request->answer,
+            'explanation' => $request->explanation,
+        ];
+
+        $update = $questionDB->update($schoolId, $request->activity_id, $request->question_id, $payload);
+
+        return response()->json($update);
+    }
+
     public function getQuestion(Request $request) {
         $questionDB = new QuestionService;
         $schoolId = Auth::user()->school_id;
@@ -101,5 +117,21 @@ class ActivityController extends Controller
         );
 
         return response()->json($questions);
+    }
+
+    public function updateActivity(Request $request) {
+        $activityDB = new ActivityService;
+        $schoolId = Auth::user()->school_id;
+
+        $payload = [
+            'name' => $request->name,
+            'type' => $request->type,
+            'status' => $request->status,
+            'description' => $request->description
+        ];
+
+        $update = $activityDB->update($schoolId, $request->topic_id, $request->activity_id, $payload);
+
+        return response()->json($update);
     }
 }

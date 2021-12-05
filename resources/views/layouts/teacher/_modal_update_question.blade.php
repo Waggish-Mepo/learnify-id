@@ -9,8 +9,11 @@
             </div>
         <div class="modal-body">
             <div class="form-group">
+                <input type="hidden" name="question_id">
                 <label for="name" class="col-form-label">Pertanyaan</label>
                 <textarea type="text" class="form-control text-dark" name="update_question" placeholder="Masukan pertanyaan"></textarea>
+                <label for="name" class="col-form-label">Penjelasan</label>
+                <textarea type="text" class="form-control text-dark" name="update_explanation" placeholder="Masukan pertanyaan"></textarea>
                 <p class="mb-1 mt-2">Jawaban</p>
                 <div class="row m-auto">
                     <div class="col-12 form-check d-flex align-content-center">
@@ -42,7 +45,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btn-update-activity">Ubah</button>
+            <button type="button" class="btn btn-primary" id="btn-update-activity" onclick="updateQuestionFull()">Ubah</button>
         </div>
         </div>
     </div>

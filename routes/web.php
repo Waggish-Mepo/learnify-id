@@ -77,9 +77,11 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
 
                 Route::get('/activity', [Teacher\ActivityController::class, 'getActivity']);
                 Route::post('/activity', [Teacher\ActivityController::class, 'createActivity']);
+                Route::patch('/activity', [Teacher\ActivityController::class, 'updateActivity']);
 
                 Route::get('/question', [Teacher\ActivityController::class, 'getQuestion']);
                 Route::post('/question', [Teacher\ActivityController::class, 'createQuestion']);
+                Route::patch('/question', [Teacher\ActivityController::class, 'updateQuestion']);
             });
 
             Route::prefix('/{subject_id}')->group(function () {

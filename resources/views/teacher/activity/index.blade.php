@@ -15,11 +15,11 @@
     </div>
     <div class="d-flex justify-content-end mt-5">
         <div class="d-flex">
-            <button type="button" class="btn bg-blue-2 text-white mr-2 d-flex align-items-center">
-            <i class="fa fa-save mr-2"></i>Simpan
+            <button type="button" class="btn bg-blue-2 text-white mr-2 d-flex align-items-center" onclick="updateActivityFull()">
+            <i class="fa fa-save mr-2"></i> <span id="btn-update-activity">Simpan</span>
             </button>
-            <button type="button" class="btn btn-primary d-flex align-items-center">
-                <i class="icon-cloud-upload mr-2"></i>Terbitkan
+            <button type="button" class="btn btn-primary d-flex align-items-center" onclick="publishActivity('{{ $activity['status'] }}')">
+                <i class="icon-cloud-upload mr-2"></i> <span id="btn-publish">{{ $activity['status'] === 'DRAFT' ? 'Terbitkan' : 'Draft' }}</span>
             </button>
         </div>
     </div>
@@ -27,12 +27,16 @@
         <form>
             <div class="form-group mb-3">
                 <label for="title" class="font-18">Judul Latihan</label>
-                <input type="text" class="form-control" id="title" placeholder="Masukkan judul latihan" name="activity_title" value="{{ $activity['name'] }}">
+                <input type="text" class="form-control" id="title" placeholder="Masukkan judul latihan" name="activity_name" value="{{ $activity['name'] }}">
             </div>
             <div class="form-group mb-3">
                 <label for="description" class="font-18">Deskripsi Pengerjaan</label>
-                <textarea type="text" class="form-control" id="desc" placeholder="Masukkan deskripsi pengerjaan" name="activity_desc">{{ $activity['description'] }}</textarea>
+                <textarea type="text" class="form-control" id="description" placeholder="Masukkan deskripsi pengerjaan" name="activity_desc">{{ $activity['description'] }}</textarea>
             </div>
+            {{-- <div class="form-group mb-3">
+                <label for="title" class="font-18">Estimasi Waktu (Menit)</label>
+                <input type="number" class="form-control" id="title" placeholder="Masukkan estimasi waktu" name="activity_time" value="{{ $activity['time'] }}">
+            </div> --}}
             <div class="mb-4">
                 <p class="font-18 mb-1">Daftar Soal</p>
                 <a id="add-question" onclick="addQuestion()" href="#modal-add-question" data-toggle="modal" class="color-blue-2 py-1"><i class="fa fa-plus mr-1"></i> Tambah Soal</a>
@@ -85,6 +89,8 @@
 @section('script')
     <script>
         let activity = {!! json_encode($activity) !!};
+        let topic = {!! json_encode($topic) !!};
+        let questions = {};
 
         $.ajaxSetup({
             headers: {
@@ -106,7 +112,7 @@
                 },
                 success: function (response) {
                     console.log(response);
-                    
+                    questions = response.data
                     renderQuestion(response.data);
                 }, 
                 error: function (e) {
@@ -125,7 +131,7 @@
                         <p class="my-auto font-16">Soal ${question.order}</p>
                         <button class="btn btn-link text-decoration-none" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v text-white font-16"></i></button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menu">
-                            <button onclick="editQuestion('${question.id}')" class="dropdown-item color-blue-2" type="button" data-toggle="modal" data-target="#modal-exercise"><i class="fa fa-edit color-blue-2"></i> Edit</button>
+                            <button onclick="editQuestion('${question.id}')" class="dropdown-item color-blue-2" type="button" ><i class="fa fa-edit color-blue-2"></i> Edit</button>
                             <button class="dropdown-item color-red-1" type="button" onclick="destroyQuestion('${question.id}')"><i class="fa fa-trash color-red-1"></i> Hapus</button>
                         </div>
                     </div>
@@ -136,8 +142,8 @@
 
                         $.each(question.choices, function (key, choice) { 
                             html += `<div class="form-check">
-                                <input class="form-check-input" type="radio" name="${question.id}_activity_answer" value="${key}" ${key == question.answer ? 'checked' : ''}>
-                                <label class="form-check-label" id="1-answer-1">${choice}</label>
+                                <input class="form-check-input" type="radio" name="${question.id}_activity_answer" id="${question.id}_answer" value="${key}" ${key == question.answer ? 'checked' : ''} onclick="updateQuestionAnswer('${question.id}')">
+                                <label class="form-check-label" for="${question.id}_answer" onclick="updateQuestionAnswer('${question.id}')">${choice}</label>
                             </div>`
                         });
 
@@ -153,10 +159,14 @@
 
         function resetValue() {
             $('input[name=activity_answer]').attr('checked', false)
+            $('input[name=update_activity_answer]').attr('checked', false)
             $('textarea[name=question]').val('')
+            $('textarea[name=update_question]').val('')
             $("textarea[name=explanation]").val('')
+            $("textarea[name=update_explanation]").val('')
             for (let i = 0; i < 5; i++) {
-                $(`textarea[name=answer_${i}]`).val('');
+                $(`textarea[name=answer_${i}]`).val('')
+                $(`textarea[name=update_answer_${i}]`).val('')
             }
         }
 
@@ -168,6 +178,20 @@
             for (let i = 0; i < 5; i++) {
                 $(`textarea[name=answer_${i}]`).val('');
             }
+        }
+
+        function editQuestion(questionId) {
+            let question = questions.find(quest => quest.id === questionId)
+            $('input[type=hidden][name=question_id]').val(questionId)
+            $('textarea[name=update_question]').val(question.question)
+            $('textarea[name=update_explanation]').val(question.explanation)
+            $(`input[name=update_activity_answer][value=${question.answer}]`).attr('checked', true)
+            no = 1
+            $.each(question.choices, function (key, choice) { 
+                $(`textarea[name=update_answer_${no++}]`).val(choice)
+            });
+
+            $("#modal-update-question").modal('show')
         }
 
         function createQuestion() {
@@ -212,6 +236,134 @@
                     }
                 })
             }
+        }
+
+        function updateQuestion(data) {
+            let button = $("#btn-update-activity");
+            
+            $.ajax({
+                type: "patch",
+                url: "{{ url('subject/course/topic/question') }}",
+                data: data,
+                beforeSend: function () {
+                    button.html('Menyimpan...')
+                },
+                success: function (response) {
+                    button.html('Ubah')
+                    $("#modal-update-question").modal('hide')
+                    resetValue()
+                    getQuestion()
+                    swal('Berhasil mengubah soal!')
+                },
+                error: function (e) {
+                    button.html('Ubah')
+                    swal('Gagal mengubah soal. Silahkan coba lagi!')
+                }
+            })
+        }
+
+        function updateQuestionFull() {
+            let questionId = $('input[type=hidden][name=question_id]').val()
+            let question = $('textarea[name=update_question]').val()
+            let explanation = $("textarea[name=update_explanation]").val()
+            let choices = {}
+            let answer = $("input[type=radio][name=update_activity_answer]:checked")
+            choices['A'] = $("textarea[name=update_answer_1]").val()
+            choices['B'] = $("textarea[name=update_answer_2]").val()
+            choices['C'] = $("textarea[name=update_answer_3]").val()
+            choices['D'] = $("textarea[name=update_answer_4]").val()
+
+            let data = {
+                question,
+                question_id:questionId,
+                choices,
+                answer:answer.val(),
+                explanation,
+                activity_id:activity.id
+            }
+
+            updateQuestion(data)
+        }
+
+        function updateQuestionAnswer(questionId) {
+            let thisQuestion = questions.find(quest => quest.id === questionId)
+            let question = thisQuestion.question
+            let explanation = thisQuestion.explanation
+            let choices = thisQuestion.choices
+            let answer = $(`input[type=radio][name=${questionId}_activity_answer]:checked`)
+
+            let data = {
+                question,
+                question_id:questionId,
+                choices,
+                answer:answer.val(),
+                explanation,
+                activity_id:activity.id
+            }
+
+            updateQuestion(data)
+        }
+
+        function updateActivityFull() {
+            let name =$('input[type=text][name=activity_name]').val()
+            let description =$('textarea[name=activity_desc]').val()
+            let data = {
+                name:name,
+                description:description,
+                status:'DRAFT',
+                type:activity.type,
+                topic_id:topic.id,
+                activity_id:activity.id
+            }
+            let button = 'btn-update-activity'
+            let buttonHtml = 'Simpan'
+            let message = 'Mengubah'
+
+            $("#btn-publish").html('Terbitkan');
+
+            console.log(message);
+            
+            updateActivity(data, message, button, buttonHtml)
+        }
+
+        function publishActivity(currentStatus) {
+            let status = currentStatus === 'PUBLISHED' ? 'DRAFT' : 'PUBLISHED';
+            let data = {
+                name:activity.name,
+                description:activity.description,
+                status:status,
+                type:activity.type,
+                topic_id:topic.id,
+                activity_id:activity.id
+            }
+            let button = 'btn-publish'
+            let buttonHtml = currentStatus === 'PUBLISHED' ? 'Draf' :'Terbitkan'
+            let message = currentStatus === 'PUBLISHED' ? 'mendrafkan' : 'menerbitkan'
+            
+            updateActivity(data, message, button, buttonHtml)
+        }
+
+        function updateActivity(data, message, button, buttonHtml) {
+            button = $(`#${button}`)
+            $.ajax({
+                type: "patch",
+                url: "{{ url('subject/course/topic/activity') }}",
+                data: data,
+                success: function (response) {
+                    button.html(buttonHtml)
+                    swal({
+                        title: `Berhasil ${message} aktifitas!`,
+                        confirmButtonText: "Oke !",
+                        closeOnConfirm: false,
+                    }, function () {
+                        window.location.reload()
+                    });
+                },
+                error: function (e) {
+                    button.html(buttonHtml)
+                    swal(`Gagal ${message} aktifitas. Silahkan coba lagi!`)
+                }
+            });
         }
     </script>
 @endsection
