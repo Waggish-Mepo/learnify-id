@@ -17,6 +17,7 @@ class UserService {
         $per_page = $filter['per_page'] ?? 20;
         $role = $filter['role'] ?? null;
         $name = $filter['name'] ?? null;
+        $with_experience = $filter['with_experience'] ?? null;
 
         School::findOrFail($schoolId);
 
@@ -30,6 +31,10 @@ class UserService {
 
         if ($name!== null) {
             $query->where('name', $name);
+        }
+
+        if ($with_experience) {
+            $query->with('experience');
         }
 
         $users = $query->simplePaginate($per_page);

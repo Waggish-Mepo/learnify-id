@@ -41,5 +41,6 @@ return [
         10 => 'X',
         11 => 'XI',
         12 => 'XII',
-    ]
+    ],
+    'required_exp' => 100
 ];
