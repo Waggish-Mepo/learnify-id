@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Service\Database\ContentService;
 use App\Service\Database\TopicService;
 use App\Models\Content;
+use App\Service\Database\CourseService;
+use App\Service\Database\SubjectService;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +17,8 @@ class TopicController extends Controller
 {
     public function index(Request $request) {
         $schoolId = Auth::user()->school_id;
+        $subjectDB = new SubjectService;
+        $courseDB = new CourseService;
         $topicDB = new TopicService;
 
         if ($request->content_id !== null) {
@@ -29,12 +33,21 @@ class TopicController extends Controller
                 ->with('content_id', $request->content_id);
         }
 
-        $topicDB->detail($schoolId, $request->topic_id);
+        $subject = $subjectDB->detail($schoolId, $request->subject_id);
+        $course = $courseDB->detail($schoolId, $request->course_id);
+        $topic = $topicDB->detail($schoolId, $request->topic_id);
+        $topics = $topicDB->index($schoolId,
+            [
+                'subject_id' => $request->subject_id,
+                'course_id' => $request->course_id,
+            ],
+        );
 
         return view('teacher.topic.index')
-            ->with('subject_id', $request->subject_id)
-            ->with('course_id', $request->course_id)
-            ->with('topic_id', $request->topic_id);
+            ->with('subject', $subject)
+            ->with('course', $course)
+            ->with('topics', $topics['data'])
+            ->with('topic', $topic);
     }
 
 
