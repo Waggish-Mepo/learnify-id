@@ -117,8 +117,18 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
 
 // Student
 Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
-    // Route::name('student.')->group(function() {
-        //
-    // });
+    Route::name('student.')->group(function() {
+        Route::prefix('/student/subject')->group(function () {
+            Route::get('/{subject_id}/course', function () {
+                return view('student.course');
+            });
+            Route::get('/{subject_id}/course/{course_id}', function () {
+                return view('student.topic.index');
+            });
+            Route::get('/{subject_id}/course/{course_id}/detail', function () {
+                return view('student.topic.detail');
+            });
+        });
+    });
 });
 

@@ -40,6 +40,17 @@
                         @include('layouts.teacher._menu')
                     @endif
                 @endif
+                @if (Auth::user()->role === "STUDENT")
+                    @if(Request::is('student/subject/*/course/*/detail'))
+                        @include('layouts.student._menu_topic_detail')
+                    @elseif(Request::is('student/subject/*/course/*'))
+                        @include('layouts.student._menu_topic')
+                    @elseif(Request::is('student/subject/*/course'))
+                        @include('layouts.student._menu_subject')
+                    @else 
+                        @include('layouts.student._menu')
+                    @endif
+                @endif
             </ul>
         </nav>     
     </div>
