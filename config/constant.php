@@ -2,6 +2,7 @@
 
 use App\Models\Activity;
 use App\Models\Content;
+use App\Models\Experience;
 use App\Models\User;
 
 return [
@@ -41,5 +42,6 @@ return [
         10 => 'X',
         11 => 'XI',
         12 => 'XII',
-    ]
+    ],
+    'required_exp' => Experience::REQUIRED_XP,
 ];

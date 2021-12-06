@@ -1,0 +1,83 @@
+.main-student{
+    background-image: linear-gradient(#17C2D7, #fff);
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container-student{
+    min-height: 89vh;
+    padding-bottom: 200px;
+}
+
+.top-img{
+    top: -15px;
+    right: -10px;
+}
+
+.bottom-img{
+    bottom: 0;
+    left: 5px;
+}
+
+.bottom-img img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.opacity-90{
+    opacity: 90%;
+}
+
+.f-15{
+    font-size: 1.3rem;
+}
+
+.i-search{
+    top: 7px;
+    left: 10px;
+}
+
+.w-progress{
+    z-index: 1080;
+    width: 15rem;
+}
+
+.w-search{
+    width: 45%;
+}
+
+.w-motif{
+    width: 40px;
+    padding: 0.7rem 0;
+    font-size: 1rem;
+    height: auto;
+}
+
+.img-roket{
+    display: none;
+}
+
+.border-hover:hover .img-roket{
+    display: block;
+}
+
+@media (max-width: 960px){
+    .f-15{
+        font-size: 1rem;
+    }
+    .form-control.search{
+        font-size: 0.7rem !important;
+    }
+    .i-search{
+        top: 5px;
+    }
+}
+@media (max-width: 540px) {
+    .container-studen {
+        min-height: 85vh;
+        padding-bottom: 150px;
+    }
+    .f-15{
+        font-size: 0.85rem;
+    }
+}

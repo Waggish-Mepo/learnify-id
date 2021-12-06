@@ -50,7 +50,7 @@ class ActivityService{
         School::findOrFail($schoolId);
         $activity = Activity::findOrFail($activityId);
 
-        return $activity;
+        return $activity->toArray();
     }
 
     public function create($schoolId, $topicId, $payload)
@@ -90,6 +90,8 @@ class ActivityService{
             'topic_id' => 'required|string',
             'name' => 'required|string',
             'description' => 'required|string',
+            'time' => 'nullable|numeric',
+            'estimation' => 'nullable|numeric',
             'status' => ['required', Rule::in(config('constant.activity.status'))],
             'type' => ['required', Rule::in(config('constant.activity.type'))],
         ])->validate();

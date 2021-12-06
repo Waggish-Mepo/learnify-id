@@ -7,6 +7,7 @@ use App\Exports\TeacherExport;
 use App\Imports\StudentImport;
 use App\Imports\TeacherImport;
 use App\Http\Controllers\Controller;
+use App\Service\Database\ExperienceService;
 use App\Service\Database\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,7 @@ class ManageAccountController extends Controller
     public function createAccount(Request $request)
     {
         $userDB = new UserService;
+        $experienceDB = new ExperienceService;
         $schoolId = Auth::user()->school_id;
 
         $payload = [
@@ -51,6 +53,8 @@ class ManageAccountController extends Controller
         }
 
         $create = $userDB->create($schoolId, $payload);
+
+        $experienceDB->create($schoolId, $create->id, ['experience_point' => 0, 'level' => 0]);
 
         return response()->json($create);
     }

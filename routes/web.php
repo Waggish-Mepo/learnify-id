@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Teacher;
+use App\Http\Controllers\Student;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -78,13 +79,25 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
             Route::get('/course', [Teacher\CourseController::class, 'getCourse']);
             Route::post('/course', [Teacher\CourseController::class, 'createCourse']);
 
-            Route::get('/course/topic', [Teacher\CourseController::class, 'getCourseTopic']);
-            Route::post('/course/topic', [Teacher\CourseController::class, 'createCourseTopic']);
+            
+            
+            Route::prefix('/course/topic')->name('content')->group(function () {
+                Route::get('/', [Teacher\CourseController::class, 'getCourseTopic']);
+                Route::post('/', [Teacher\CourseController::class, 'createCourseTopic']);
 
-            Route::get('/course/topic/content', [Teacher\TopicController::class, 'getContent']);
-            Route::post('/course/topic/content', [Teacher\TopicController::class, 'createContent']);
-            Route::patch('/course/topic/content', [Teacher\TopicController::class, 'updateContent']);
-            Route::get('/course/topic/contents', [Teacher\TopicController::class, 'getContents']);
+                Route::get('/content', [Teacher\TopicController::class, 'getContent']);
+                Route::post('/content', [Teacher\TopicController::class, 'createContent']);
+                Route::patch('/content', [Teacher\TopicController::class, 'updateContent']);
+                Route::get('/contents', [Teacher\TopicController::class, 'getContents']);
+
+                Route::get('/activity', [Teacher\ActivityController::class, 'getActivity']);
+                Route::post('/activity', [Teacher\ActivityController::class, 'createActivity']);
+                Route::patch('/activity', [Teacher\ActivityController::class, 'updateActivity']);
+
+                Route::get('/question', [Teacher\ActivityController::class, 'getQuestion']);
+                Route::post('/question', [Teacher\ActivityController::class, 'createQuestion']);
+                Route::patch('/question', [Teacher\ActivityController::class, 'updateQuestion']);
+            });
 
             Route::prefix('/{subject_id}')->group(function () {
                 Route::get('/course', [Teacher\CourseController::class, 'index'])->name('subject');
@@ -100,6 +113,10 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
                             Route::get('/', [Teacher\TopicController::class, 'index']);
                             Route::get('/publish/{status}', [Teacher\TopicController::class, 'publishContent']);
                         });
+
+                        Route::prefix('/activity/{activity_id}')->name('content')->group(function () {
+                            Route::get('/', [Teacher\ActivityController::class, 'index']);
+                        });
                     });
                 });
             });
@@ -109,8 +126,19 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
 
 // Student
 Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
-    // Route::name('student.')->group(function() {
-        //
-    // });
+    Route::name('student.')->group(function() {
+        Route::prefix('/student/subject')->group(function () {
+            Route::get('/', [Student\LessonController::class, 'getSubject']);
+            Route::get('/course', [Student\LessonController::class, 'getCourse']);
+            Route::get('/course/topic', [Student\LessonController::class, 'getTopic']);
+            Route::get('/{subject_id}/course', [Student\LessonController::class, 'course']);
+            Route::get('/{subject_id}/course/{course_id}/topic', [Student\LessonController::class, 'topic']);
+
+            // SESUAIKAN ROUTENYA !
+            // Route::get('/{subject_id}/course/{course_id}/detail', function () {
+            //     return view('student.topic.detail');
+            // });
+        });
+    });
 });
 

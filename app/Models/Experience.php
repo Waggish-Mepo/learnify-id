@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class Experience extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'choices' => 'array'
-    ];
+    const REQUIRED_XP = 100;
 
     public $incrementing = false;
 }

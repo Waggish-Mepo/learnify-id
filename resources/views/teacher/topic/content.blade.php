@@ -54,7 +54,6 @@
                   this._initRequest();
                   this._initListeners(resolve, reject, file);
                   this._sendRequest(file);
-                  console.log(file);
                })
          );
       }

@@ -35,7 +35,7 @@ class UserController extends Controller
         // Student Dashboard
         if ($user['role'] === 'STUDENT') {
             // 
-            return view('student.dashboard', compact('pw_matches'));
+            return view('student.dashboard', compact('pw_matches', 'user'));
         }
     }
 }

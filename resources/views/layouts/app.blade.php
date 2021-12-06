@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="{{asset('assets/css/site.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/teacher.css')}}">
+<link rel="stylesheet" href="{{asset('assets/css/student.css')}}">
 
 {{-- ckeditor --}}
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
@@ -42,11 +43,25 @@
 
     @extends('layouts._sidebar')
 
-    <div id="main-content">
-        <div class="container-fluid">
-            @yield('content')
+    @if (Auth::user()->role === "STUDENT")
+        <div id="main-content" class="main-student">
+            <div class="container-fluid position-relative container-student">
+                <div class="position-absolute top-img">
+                    <img src="{{asset('assets/images/top.svg')}}" width="130">
+                </div>
+                @yield('content')
+                <div class="position-absolute bottom-img">
+                    <img src="{{asset('assets/images/bottom.svg')}}">
+                </div>
+            </div>
         </div>
-    </div>
+    @else
+        <div id="main-content">
+            <div class="container-fluid">
+                @yield('content')
+            </div>
+        </div>
+    @endif
 
 </div>
 

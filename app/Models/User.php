@@ -30,4 +30,8 @@ class User extends Authenticatable
         'created_at',
         'update_at',
     ];
+
+    public function experience(){
+        return $this->hasOne(Experience::class);
+    }
 }

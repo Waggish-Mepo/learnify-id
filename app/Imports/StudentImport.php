@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\User;
+use App\Service\Database\ExperienceService;
 use Faker\Factory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,9 +22,10 @@ class StudentImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         $faker = Factory::create();
+        $experienceService = new ExperienceService;
 
         if($row['nama']) {
-            $username = strtolower(explode(' ', $row['nama'])[0] . $faker->numerify('###'));
+            $username = strtolower(explode(' ', $row['nama'])[0] . $faker->numerify('####'));
 
             $user = new User([
                 'id'  => Uuid::uuid4()->toString(),
@@ -37,8 +39,8 @@ class StudentImport implements ToModel, WithHeadingRow
                 'role' => User::STUDENT,
                 'status' => true,
             ]);
-
             $user->save();
+            $experienceService->create(Auth::user()->school_id, $user->id, ['experience_point' => 0, 'level' => 0]);
         }
     }
 }
