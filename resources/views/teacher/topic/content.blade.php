@@ -30,6 +30,10 @@
                <label for="title">Judul Ulasan</label>
                <input type="text" class="form-control" id="title" placeholder="Masukkan judul ulasan" name="title">
          </div>
+         <div class="form-group mb-3">
+               <label for="title">Estimasi Waktu Baca (Menit)</label>
+               <input type="number" class="form-control" id="estimation" placeholder="0" name="estimation">
+         </div>
          <textarea id="editor" name="content"></textarea>
       </form>
    </div>
@@ -146,7 +150,7 @@
          menuContent += `
             <a href="{{url('/subject/'. $subject_id .'/course/'. $course_id .'/topic/'. $topic_id .'/content/${content.id}')}}" 
             class="{{ Request::is('subject/'. $subject_id .'/course/'. $course_id .'/topic/'. $topic_id .'/content/${content.id}') ? 'active' : '' }}"><i class="icon-book-open"></i>
-               <span class="font-12">${content.name}</span>
+               <span>${content.name}</span>
             </a>
          `;
       });
@@ -180,21 +184,24 @@
          $('#btn-save').prop('disabled', false);
          $('#btn-publish').html('<i class="icon-cloud-upload mr-2"></i>Terbitkan');
          $('input[type=text][name=title]').prop('disabled', false);
-         $('textarea[name=content]').prop('disabled', false);
+         $('input[type=number][name=estimation]').prop('disabled', false);
          editor.isReadOnly = false;
       } else if (data.status === 'PUBLISHED') {
          $('#btn-save').prop('disabled', true);
          $('#btn-publish').html('<i class="icon-cloud-upload mr-2"></i>Edit');
          $('input[type=text][name=title]').prop('disabled', true);
+         $('input[type=number][name=estimation]').prop('disabled', true);
          editor.isReadOnly = true;
       }
 
       $('input[type=text][name=title]').val(data.name);
+      $('input[type=number][name=estimation]').val(data.estimation);
       editor.setData(data.content);
    }
 
    function updateContent() {
       let title = $('input[type=text][name=title]').val();
+      let estimation = $('input[type=number][name=estimation]').val();
       let content = editor.getData();
 
       url = "{{ url('/subject/course/topic/content') }}"
@@ -206,6 +213,7 @@
                topic_id:topicId,
                content_id:contentId,
                title:title,
+               estimation:estimation,
                content:content
          },
          beforeSend: function (response) {
@@ -221,22 +229,32 @@
                   confirmButtonColor: "#007bff",
                   showCancelButton: true,
                   cancelButtonText: "Tidak",
+                  closeOnConfirm: false,
                }, function () {
                      publishContent();
                });
                $('#btn-save').html('<i class="fa fa-save mr-2"></i>Simpan');
          }, 
          error: function (e) {
-               swal('Gagal Memperbarui Data !')
+               swal('Gagal Memperbarui Data!')
                $('#btn-save').html('<i class="fa fa-save mr-2"></i>Simpan');
          }
       });
    }
 
    function publishContent(){
+      let title = $('input[type=text][name=title]').val();
       let status = $('#btn-publish').html() === '<i class="icon-cloud-upload mr-2"></i>Edit' ? 'DRAFT' : 'PUBLISHED';
+      let estimation = $('input[type=number][name=estimation]').val();
+      let content = editor.getData();
 
-      if (status === 'PUBLISHED') {
+      if ((title === '' || (estimation === '0' || estimation === '') || content === '') && status === 'PUBLISHED'){
+         swal({
+            title: "Judul, Estimasi, dan Konten tidak boleh kosong",
+            text: "Isi judul, estimasi, dan konten terlebih dahulu untuk menerbitkan ulasan",
+            closeOnConfirm: false,
+         });
+      } else if (status === 'PUBLISHED') {
          swal({
             title: "Sudah simpan ulasan?",
             text: "Harap menyimpan ulasan terlebih dahulu sebelum diterbitkan",
