@@ -11,6 +11,8 @@ use App\Service\Database\ExperienceService;
 use App\Service\Database\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ManageAccountController extends Controller
@@ -94,6 +96,26 @@ class ManageAccountController extends Controller
         $update = $userDB->update($schoolId, $request->id, $payload);
 
         return response()->json($update);
+    }
+
+    public function updatePassword(){
+        $schoolId = Auth::user()->school_id;
+        $userDB = new UserService;
+
+        $currentPassword = Auth::user()->password;
+        $oldPassword = request('old_password');
+
+        if(HASH::check($oldPassword, $currentPassword)){
+            $userDB->update(
+                $schoolId,
+                Auth::user()->id,
+                ['password' => request('password')]
+            );
+
+            return redirect()->back()->with('success', 'Berhasil memperbarui password');
+        } else {
+            return redirect()->back()->with('warning', 'Gagal memperbarui password');
+        }
     }
 
     public function downloadExcelStudent() {
