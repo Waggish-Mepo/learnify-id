@@ -11,6 +11,7 @@ use App\Service\Database\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ManageAccountController extends Controller
@@ -94,11 +95,6 @@ class ManageAccountController extends Controller
     }
 
     public function updatePassword(){
-        $validator = request()->validate([
-            'old_password' => 'required',
-            'password' => ['required', 'string', 'confirmed'],
-        ]);
-
         $schoolId = Auth::user()->school_id;
         $userDB = new UserService;
 
@@ -112,10 +108,9 @@ class ManageAccountController extends Controller
                 ['password' => request('password')]
             );
 
-            return back()->with('success', 'Berhasil memperbarui password');
-        }
-        else{
-            return back()->with('error', 'Gagal memperbarui password');
+            return redirect()->back()->with('success', 'Berhasil memperbarui password');
+        } else {
+            return redirect()->back()->with('warning', 'Gagal memperbarui password');
         }
     }
 
