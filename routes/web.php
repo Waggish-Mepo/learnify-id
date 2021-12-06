@@ -142,15 +142,31 @@ Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
                 return view('student.topic.content');
             });
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}', function () {
-                return view('student.activity.index');
+                return view('student.activity.exercise');
             });
-            // ini testing soal doang en, buat bedain button sama kalo ada gambar. nanti dihapus aja okay. blade 2, 3 nya juga diapus aja
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/exam/{exam_id}', function () {
+                return view('student.activity.exam');
+            });
+            // ini testing soal sama tampilan nilai doang, buat bedain button sama kalo ada gambar. nanti dihapus aja okay. blade 2, 3 nya juga diapus aja
             // buat result nilainya ada di activity/result blade nya ya
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}/2', function () {
-                return view('student.activity.index2');
+                return view('student.activity.testing-soal-berikutnya.exercise_2');
             });
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}/3', function () {
-                return view('student.activity.index3');
+                return view('student.activity.testing-soal-berikutnya.exercise_3');
+            });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}/result', function () {
+                return view('student.activity.result_100');
+            });
+            // ini juga sama buat testing soal selanjutnya doang. apus ajeu. semanggat!
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/exam/{exam_id}/2', function () {
+                return view('student.activity.testing-soal-berikutnya.exam_2');
+            });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/exam/{exam_id}/3', function () {
+                return view('student.activity.testing-soal-berikutnya.exam_3');
+            });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/exam/{exam_id}/result', function () {
+                return view('student.activity.result_80');
             });
         });
     });

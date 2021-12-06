@@ -15,7 +15,7 @@
             <div class="d-flex mt-3 align-items-center">
                 <div class="m-auto">
                 <a href="#" class="btn bg-blue-2 color-black font-weight-bold mr-2 opacity-50">Ulangi</a>
-                <a href="#" class="btn bg-blue-2 text-white font-weight-bold">Selesai</a>
+                <a href="{{url('/dashboard')}}" class="btn bg-blue-2 text-white font-weight-bold">Selesai</a>
                 </div>
             </div>
         </div>

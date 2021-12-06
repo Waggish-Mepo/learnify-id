@@ -7,13 +7,13 @@
         <div class="h-auto p-4 mt-3 w-100 bg-white shadow-sm rounded">
             <div class="d-flex justify-content-between mb-3">
                 <div>
-                    <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2 text-white" data-toggle="tooltip" data-placement="top" title="materi"><span class="font-weight-bold">1</span>/3</div>
-                </div>
-                <div>
                     <a href="#" class="color-blue-2 d-flex align-items-center js-sweetalert" data-type="confirm-back" data-toggle="tooltip" title="Kembali">
                         <i class="fa fa-sign-out"></i>
-                        <span class="ml-1">Kembali</span>
+                        <span class="ml-1">Keluar</span>
                     </a>
+                </div>
+                <div>
+                    <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2 text-white" data-toggle="tooltip" data-placement="top" title="materi"><span class="font-weight-bold">1</span>/3</div>
                 </div>
             </div>
             <div class="py-2 w-50 m-auto">

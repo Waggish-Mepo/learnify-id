@@ -6,11 +6,11 @@
         <h3 class="text-capitalize text-white text-center">materi bentuk-bentuk aljabar | minggu 1</h3>
         <div class="h-auto p-4 mt-3 w-100 bg-white shadow-sm rounded">
             <div class="d-flex justify-content-between mb-3">
-                <div></div>
                 <a href="#" class="color-blue-2 d-flex align-items-center js-sweetalert" data-type="confirm-back" data-toggle="tooltip" title="Kembali">
                     <i class="fa fa-sign-out"></i>
-                    <span class="ml-1">Kembali</span>
+                    <span class="ml-1">Keluar</span>
                 </a>
+                <div></div>
             </div>
             <p class="text-justify color-black">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima reiciendis ut atque in ex eos voluptatibus. Aspernatur reiciendis modi minima in perferendis nihil, animi accusantium enim? Porro cum saepe dolorem nulla quidem! Fugit cupiditate quae molestiae fuga, dolorem dolore distinctio minus esse delectus, nam porro quo tempore sunt maxime, temporibus dolor illo tenetur exercitationem libero. Consectetur a cum omnis ea ut quos laboriosam eius in debitis suscipit quo accusamus rem unde, iste dolor molestiae libero maxime quia porro amet iusto adipisci. Eaque possimus enim repudiandae reiciendis facilis inventore laborum numquam! Natus, sint fugit. Cumque ex minus, soluta sed voluptate doloremque.
