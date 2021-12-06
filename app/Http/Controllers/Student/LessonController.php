@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Service\Database\ActivityService;
+use App\Service\Database\ContentService;
 use App\Service\Database\CourseService;
 use App\Service\Database\SubjectService;
 use App\Service\Database\TopicService;
@@ -100,5 +102,64 @@ class LessonController extends Controller
         $topics['total'] = count($topics['data']);
 
         return response()->json($topics);
+    }
+
+    public function detailTopic(Request $request) {
+        $subjectDB = new SubjectService;
+        $courseDB = new CourseService;
+        $topicDB = new TopicService;
+
+
+        $schoolId = Auth::user()->school_id;
+
+        $subject = $subjectDB->detail($schoolId, $request->subject_id);
+        $course = $courseDB->detail($schoolId, $request->course_id);
+        $topic = $topicDB->detail($schoolId, $request->topic_id);
+
+        $topics = $topicDB->index($schoolId,
+            [
+                'subject_id' => $request->subject_id,
+                'course_id' => $request->course_id,
+                'per_page' => 99,
+            ]
+        );
+
+        return view('student.topic.detail')
+        ->with('subject', $subject)
+        ->with('course', $course)
+        ->with('topic', $topic)
+        ->with('topics', $topics['data']);
+    }
+
+    public function getContent(Request $request) {
+        $contentDB = new ContentService;
+        $schoolId = Auth::user()->school_id;
+
+        $contents = $contentDB->index($schoolId, [
+            'topic_id' => $request->topic_id,
+            'status' => 'PUBLISHED',
+            'order_by' => 'ASC',
+        ]);
+        $contents['total'] = count($contents['data']);
+
+        return response()->json($contents);
+    }
+
+    public function getActivity(Request $request) {
+        $activityDB = new ActivityService;
+        $schoolId = Auth::user()->school_id;
+
+        $activities = $activityDB->index($schoolId,
+            [
+                'topic_id' => $request->topic_id,
+                'status' => 'PUBLISHED',
+            ],
+        );
+
+        $data = collect($activities['data'])->groupBy('type');
+        $data['total_exam'] = count($data['EXAM'] ?? []);
+        $data['total_exercise'] = count($data['EXERCISE'] ?? []);
+        
+        return response()->json($data);
     }
 }
