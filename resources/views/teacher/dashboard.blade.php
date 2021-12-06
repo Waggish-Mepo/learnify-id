@@ -38,7 +38,7 @@
 
 
         $("#loading-course").show('fast');
-        $("#render-course").hide();
+        $("#render-course").hide('fast');
 
         $.ajaxSetup({
             headers: {

@@ -43,7 +43,7 @@
                 @if (Auth::user()->role === "STUDENT")
                     @if(Request::is('student/subject/*/course/*/detail'))
                         @include('layouts.student._menu_topic_detail')
-                    @elseif(Request::is('student/subject/*/course/*'))
+                    @elseif(Request::is('student/subject/*/course/*/topic'))
                         @include('layouts.student._menu_topic')
                     @elseif(Request::is('student/subject/*/course'))
                         @include('layouts.student._menu_subject')
