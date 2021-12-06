@@ -20,7 +20,7 @@
         <h5 class="color-black font-weight-bold text-capitalize">daftar ulasan</h5>
         <a class="color-black font-weight-bold">Terdapat <span class="text-white">1</span> Ulasan!</a>
         <div class="mt-3">
-            <a href="" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
+            <a href="{{ url('/student/subject/'.'matematika'.'/course/'.'1'.'/topic/'.'1'.'/content/'.'1') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                 <div class="ml-3">
                 <p class="text-dark text-uppercase text-dark pt-3">pengertian</p>
@@ -33,7 +33,7 @@
         <h5 class="color-black font-weight-bold text-capitalize">latihan ulangan</h5>
         <a class="color-black font-weight-bold">Terdapat <span class="text-white">1</span> Latihan!</a>
         <div class="mt-3">
-            <a href="" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
+            <a href="{{ url('/student/subject/'.'matematika'.'/course/'.'1'.'/topic/'.'1'.'/activity/'.'1') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="fa fa-puzzle-piece text-white"></i></div>
                 <div class="ml-3">
                 <p class="text-dark text-uppercase text-dark pt-3">latihan minggu ke-1</p>

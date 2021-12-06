@@ -37,6 +37,9 @@ $(function () {
         else if (type === 'confirm-logout') {
             showConfirmLogoutMessage();
         }
+        else if (type === 'confirm-back') {
+            showConfirmBackMessage();
+        }
     });
 });
 
@@ -168,5 +171,18 @@ function showConfirmLogoutMessage() {
         closeOnConfirm: false,
     }, function () {
         window.location.href = "/logout";
+    });
+}
+
+function showConfirmBackMessage() {
+    swal({
+        title: "Kamu yakin ingin kembali?",
+        showCancelButton: true,
+        confirmButtonColor: "#dc3545",
+        confirmButtonText: "Yakin!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+    }, function () {
+        window.location.href = "/dashboard";
     });
 }

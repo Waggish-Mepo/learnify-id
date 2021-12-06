@@ -1,3 +1,6 @@
+@if (Auth::user()->role === "STUDENT" && Request::is('student/subject/*/course/*/topic/*/*'))
+    <div id="left-sidebar" class="sidebar d-none"></div>
+@else
 <div id="left-sidebar" class="sidebar">
     <div class="navbar-brand">
         <a href="{{route('dashboard')}}">
@@ -41,7 +44,7 @@
                     @endif
                 @endif
                 @if (Auth::user()->role === "STUDENT")
-                    @if(Request::is('student/subject/*/course/*/detail'))
+                    @if(Request::is('student/subject/*/course/*/topic/*'))
                         @include('layouts.student._menu_topic_detail')
                     @elseif(Request::is('student/subject/*/course/*/topic'))
                         @include('layouts.student._menu_topic')
@@ -55,3 +58,4 @@
         </nav>     
     </div>
 </div>
+@endif

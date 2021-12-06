@@ -126,10 +126,24 @@ Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
             Route::get('/{subject_id}/course', [Student\LessonController::class, 'course']);
             Route::get('/{subject_id}/course/{course_id}/topic', [Student\LessonController::class, 'topic']);
 
-            // SESUAIKAN ROUTENYA !
-            // Route::get('/{subject_id}/course/{course_id}/detail', function () {
-            //     return view('student.topic.detail');
-            // });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}', function () {
+                return view('student.topic.detail');
+            });
+
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/content/{content_id}', function () {
+                return view('student.topic.content');
+            });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}', function () {
+                return view('student.activity.index');
+            });
+            // ini testing soal doang en, buat bedain button sama kalo ada gambar. nanti dihapus aja okay. blade 2, 3 nya juga diapus aja
+            // buat result nilainya ada di activity/result blade nya ya
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}/2', function () {
+                return view('student.activity.index2');
+            });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}/3', function () {
+                return view('student.activity.index3');
+            });
         });
     });
 });
