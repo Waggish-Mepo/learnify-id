@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ManageAccountController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin;
@@ -26,6 +27,8 @@ Route::get('/test-layout', function () {
     return view('example.index');
 });
 
+
+
 // Auth
 Route::get('/', [LoginController::class, 'check']);
 Route::get('/login', [LoginController::class, 'check'])->name('login');
@@ -34,6 +37,11 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth', 'role:ADMIN,TEACHER,STUDENT']], function(){
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/change-password', function () {
+        return view('shared.change_password');
+    })->name('change-password');
+    Route::patch('/change-password/update', [ManageAccountController::class, 'updatePassword'])->name('update-password');
 });
 
 // Admin
