@@ -12,7 +12,7 @@
                 </a>
                 <div></div>
             </div>
-            <div id="content" class="color-black"></div>
+            <div id="content" class="color-black">{!! $content !!}</div>
             <button type="button" class="btn bg-blue-2 text-white mt-3 float-right text-capitalize">tandai telah dibaca!</button>
         </div>
     </div>
