@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm top-navbar">
+<nav class="{{Auth::user()->role === "STUDENT" && Request::is('student/subject/*/course/*/topic/*/*') ? 'navbar navbar-expand-sm top-navbar w-100' : 'navbar navbar-expand-sm top-navbar'}}">
     <div class="position-absolute" style="top: 5px; right: 10px">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-caret-down text-gray"></i>
@@ -10,7 +10,7 @@
                 <!-- <a href="{{route('dashboard')}}">
                     <img src="{{asset('assets/images/logo-learnifyid.svg')}}" alt="Smart School Logo" width="150px">
                 </a> -->
-                <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu fa fa-bars"></i></button>
+                    <button type="button" class="btn-toggle-offcanvas"><i class="{{Auth::user()->role === "STUDENT" && Request::is('student/subject/*/course/*/topic/*/*') ? 'd-none' : 'lnr lnr-menu fa fa-bars'}}"></i></button>
             </div>
             <ul class="nav navbar-nav">
                  

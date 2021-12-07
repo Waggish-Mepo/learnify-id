@@ -5,8 +5,8 @@
 }
 
 .container-student{
-    min-height: 89vh;
-    padding-bottom: 200px;
+    min-height: 89vh;    
+    padding-bottom: 200px !important;
 }
 
 .top-img{
@@ -24,8 +24,22 @@
     object-fit: contain;
 }
 
+.bottom-img-activity{
+    bottom: 0;
+    left: -10px;
+}
+
+.bottom-img-activity img{
+    width: 102%;
+    object-fit: contain;
+}
+
 .opacity-90{
     opacity: 90%;
+}
+
+.opacity-50{
+    opacity: 50%;
 }
 
 .f-15{
@@ -61,6 +75,15 @@
     display: block;
 }
 
+.result {
+    max-width: 400px;
+}
+
+@media (min-width: 1225px){
+    .bottom-img-activity img {
+        width: 112.5%;
+    }
+}
 @media (max-width: 960px){
     .f-15{
         font-size: 1rem;
