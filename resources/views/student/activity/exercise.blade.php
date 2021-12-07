@@ -17,7 +17,8 @@
                 </div>
             </div>
             <div class="py-2 w-50 m-auto">
-                <p class="text-center color-black font-18">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem in eius similique odio quasi laborum quos ipsum incidunt adipisci temporibus! Lorem ipsum dolor sit amet...</p>
+                <p id="question" class="text-center color-black font-18">
+                </p>
             </div>
         </div>
     </div>
@@ -26,7 +27,7 @@
             <a href="" class="d-flex align-items-center p-1 font-12 w-100 bg-white shadow rounded border-hover">
             <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2 opacity-50 color-black font-weight-bold">A</div>
             <div class="ml-3">
-                <p class="text-dark text-capilatize pt-3">Lorem ipsum dolor sit amet.</p>
+                <p id="answer-a" class="text-dark text-capilatize pt-3"></p>
             </div>
             </a>
         </div>
@@ -34,7 +35,7 @@
             <a href="" class="d-flex align-items-center p-1 font-12 w-100 bg-white shadow rounded border-hover">
             <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2 opacity-50 color-black font-weight-bold">B</div>
             <div class="ml-3">
-                <p class="text-dark text-capilatize pt-3">Lorem ipsum.</p>
+                <p id="answer-b" class="text-dark text-capilatize pt-3"></p>
             </div>
             </a>
         </div>
@@ -42,7 +43,7 @@
             <a href="" class="d-flex align-items-center p-1 font-12 w-100 bg-white shadow rounded border-hover">
             <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2 opacity-50 color-black font-weight-bold">C</div>
             <div class="ml-3">
-                <p class="text-dark text-capilatize pt-3">Lorem ipsum dolor.</p>
+                <p id="answer-c" class="text-dark text-capilatize pt-3"></p>
             </div>
             </a>
         </div>
@@ -50,22 +51,24 @@
             <a href="" class="d-flex align-items-center p-1 font-12 w-100 bg-white shadow rounded border-hover">
             <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2 opacity-50 color-black font-weight-bold">D</div>
             <div class="ml-3">
-                <p class="text-dark text-capilatize pt-3">Lorem.</p>
+                <p id="answer-d" class="text-dark text-capilatize pt-3"></p>
             </div>
             </a>
         </div>
     </div>
     <div class="d-flex">
         <a href="#" class="btn btn-light shadow rounded disabled"><i class="fa fa-chevron-left mr-2"></i>Sebelumnya</a>
-        <a href="{{ url('/student/subject/'.'matematika'.'/course/'.'1'.'/topic/'.'1'.'/activity/'.'1'.'/2') }}" class="btn btn-light shadow rounded ml-3">Selanjutnya<i class="fa fa-chevron-right ml-2"></i></a>
+        <button onclick="nextQuestion((indexQuestion + 1), question)" class="btn btn-light shadow rounded ml-3">Selanjutnya<i class="fa fa-chevron-right ml-2"></i></button>
     </div>
 </div>
 @endsection
 
 @section('script')
 <script>
-    let activity = `{!! $activity['data'] !!}`;
+    let activity = `{!! $activity !!}`;
     let questions = {};
+    let answer = {};
+    let indexQuestion = 0;
 
     $.ajaxSetup({
         headers: {
@@ -85,13 +88,31 @@
             },
             success: function (response) {
                 // questions = response.data
-                // renderQuestion(response.data);
-                console.log(response);
+                question = response.data;
+                renderQuestion(0, question);
+                console.log(question);
             }, 
             error: function (e) {
                 swal('Gagal Mengambil Data !')
             }
         });
+    }
+
+    function renderQuestion(index, data) {
+        indexQuestion = index;
+        $('#question').html(data[index]['question']);
+        $('#answer-a').html(data[index]['choices']['A']);
+        $('#answer-b').html(data[index]['choices']['B']);
+        $('#answer-c').html(data[index]['choices']['C']);
+        $('#answer-d').html(data[index]['choices']['D']);
+    }
+
+    function nextQuestion(index, data) {
+        renderQuestion(index, question);
+    }
+
+    function previousQuestion(index, data) {
+
     }
 </script>
 @endsection
