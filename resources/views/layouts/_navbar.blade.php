@@ -30,7 +30,7 @@
                             <i class="icon-bell"></i>
                             <span class="notification-dot bg-azura">4</span>
                         </a>
-                        <ul class="dropdown-menu feeds_widget vivify fadeIn">
+                        <ul class="dropdown-menu feeds_widget vivify fadeIn notif">
                             <li class="header blue">You have 4 New Notifications</li>
                             <li>
                                 <a href="javascript:void(0);">
