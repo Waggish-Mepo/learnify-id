@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/assets/images/teacher-upload
 /storage/*.key
 /vendor
 .env
