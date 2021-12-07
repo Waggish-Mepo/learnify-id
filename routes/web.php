@@ -79,8 +79,6 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
             Route::get('/course', [Teacher\CourseController::class, 'getCourse']);
             Route::post('/course', [Teacher\CourseController::class, 'createCourse']);
 
-            
-            
             Route::prefix('/course/topic')->name('content')->group(function () {
                 Route::get('/', [Teacher\CourseController::class, 'getCourseTopic']);
                 Route::post('/', [Teacher\CourseController::class, 'createCourseTopic']);
@@ -137,9 +135,7 @@ Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
             Route::get('/{subject_id}/course/{course_id}/topic', [Student\LessonController::class, 'topic']);
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}', [Student\LessonController::class, 'detailTopic']);
 
-            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/content/{content_id}', function () {
-                return view('student.topic.content');
-            });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/content/{content_id}', [Student\LessonController::class, 'detailContent']);
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}', function () {
                 return view('student.activity.exercise');
             });

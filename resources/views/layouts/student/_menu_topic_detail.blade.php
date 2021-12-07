@@ -1,3 +1,5 @@
-<li class="{{ Request::is('student/subject/*/course/*') && request()->route('course_id') == '1' ? 'active' : '' }}">
-    <a href="{{ url('/student/subject/'.'matematika'.'/course/'.'1'.'/detail') }}"><i class="icon-book-open"></i><span>bentuk-bentuk aljabar</span></a>
-</li>
+@foreach ($topics as $thisTopic)
+    <li class="{{ Request::is('student/subject/*/course/*/topic/*') && request()->route('topic_id') == $thisTopic['id'] ? 'active' : '' }}">
+        <a href="{{ url('/student/subject/'.$subject['id'].'/course/'.$course['id'].'/topic/'.$thisTopic['id']) }}" class="text-capitalize"><i class="icon-notebook"></i><span>{{ $thisTopic['name'] }}</span></a>
+    </li>
+@endforeach

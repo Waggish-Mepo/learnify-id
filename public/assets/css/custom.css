@@ -443,7 +443,7 @@
 }
 
 .ck.ck-editor__main .ck-content {
-  height: 250px;
+  min-height: 250px;
 }
 
 @media screen and (min-width: 1200px){
