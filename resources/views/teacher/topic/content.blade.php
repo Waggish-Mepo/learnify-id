@@ -112,6 +112,9 @@
    ClassicEditor
    .create( document.querySelector( '#editor' ), {
       extraPlugins: [ SimpleUploadAdapterPlugin ],
+      mediaEmbed: {
+         previewsInData: true,
+      }
    }  )
    .then( newEditor => {
       editor = newEditor;

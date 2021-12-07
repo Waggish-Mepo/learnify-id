@@ -22,9 +22,6 @@
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/teacher.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/student.css')}}">
-
-{{-- ckeditor --}}
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 </head>
 <body class="theme-cyan font-montserrat light_version">
 
@@ -96,10 +93,7 @@
 <script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/js/pages/ui/dialogs.js')}}"></script>
 <script>
-    let pwMatches = {!! $pw_matches = $pw_matches ?? false !!};
-    console.log(pwMatches);
-
-    if (pwMatches) {
+    if ({{ $pw_matches ?? 'false' }}) {
         swal({
             title: 'Password kamu belum diganti!',
             text: 'Ganti password untuk memperkuat keamanan akun kamu',
@@ -113,6 +107,7 @@
         })
     }
 </script>
+<script src="{{asset('assets/vendor/ckeditor/build/ckeditor.js')}}"></script>
 @yield('script')
 
 </body>

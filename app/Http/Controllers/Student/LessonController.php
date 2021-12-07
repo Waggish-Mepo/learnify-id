@@ -162,4 +162,21 @@ class LessonController extends Controller
         
         return response()->json($data);
     }
+
+    public function detailContent(Request $request) {
+        $contentDB = new ContentService;
+        $schoolId = Auth::user()->school_id;
+
+        $content = $contentDB->detail(
+            $schoolId, $request->content_id
+        );
+
+        return view('student.topic.content')
+            ->with('title', $content['name'])
+            ->with('content', $content['content'])
+            ->with('subject_id', $request->subject_id)
+            ->with('course_id', $request->course_id)
+            ->with('topic_id', $request->topic_id)
+            ->with('content_id', $request->content_id);
+    }
 }

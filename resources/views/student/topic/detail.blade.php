@@ -116,6 +116,7 @@
 
     function renderContent(data) {
         let html = ``
+        let menuContent = ``
 
         html += `
             <a class="color-black font-weight-bold">Terdapat <span class="text-white">${data.total}</span> Ulasan!</a>
@@ -131,9 +132,13 @@
                 </a>
             </div>
             `
+            menuContent += `
+            <a href="{{url('/student/subject/${subject.id}/course/${course.id}/topic/${topic.id}/content/${content.id}')}}" class="text-capitalize"><span>${content.name}</span></a>
+            `
         });
 
         $("#render-content").html(html);
+        $("#menu-content").html(menuContent);
         $("#loading-content").hide('fast');
         $("#render-content").show('fast');
     }

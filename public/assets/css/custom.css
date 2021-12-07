@@ -443,6 +443,6 @@
 }
 
 .ck.ck-editor__main .ck-content {
-  height: 250px;
+  min-height: 250px;
 }
 /*# sourceMappingURL=custom.css.map */
