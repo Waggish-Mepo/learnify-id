@@ -57,11 +57,41 @@
     </div>
     <div class="d-flex">
         <a href="#" class="btn btn-light shadow rounded disabled"><i class="fa fa-chevron-left mr-2"></i>Sebelumnya</a>
-        {{-- ini href nya buat testing ke soal selanjutnya. nnti index selanjutnya dr ini di hapus aja okeyy --}}
         <a href="{{ url('/student/subject/'.'matematika'.'/course/'.'1'.'/topic/'.'1'.'/activity/'.'1'.'/2') }}" class="btn btn-light shadow rounded ml-3">Selanjutnya<i class="fa fa-chevron-right ml-2"></i></a>
     </div>
 </div>
 @endsection
 
 @section('script')
+<script>
+    let activity = `{!! $activity['data'] !!}`;
+    let questions = {};
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    getQuestion()
+    function getQuestion() {
+        let url = `{{ url('student/subject/course/topic/question') }}`
+
+        $.ajax({
+            type: "get",
+            url: url,
+            data: {
+                activity_id:activity.id,
+            },
+            success: function (response) {
+                // questions = response.data
+                // renderQuestion(response.data);
+                console.log(response);
+            }, 
+            error: function (e) {
+                swal('Gagal Mengambil Data !')
+            }
+        });
+    }
+</script>
 @endsection

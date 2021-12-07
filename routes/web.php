@@ -136,9 +136,8 @@ Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}', [Student\LessonController::class, 'detailTopic']);
 
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/content/{content_id}', [Student\LessonController::class, 'detailContent']);
-            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}', function () {
-                return view('student.activity.exercise');
-            });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}', [Student\ActivityController::class, 'index']);
+            Route::get('/course/topic/question', [Student\ActivityController::class, 'getQuestion']);
             // route exam ini nanti diganti jadi activity aja. ini fema buat testing doang, takut bentrok kalau pake /activity juga
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/exam/{exam_id}', function () {
                 return view('student.activity.exam');
