@@ -79,6 +79,10 @@
     max-width: 400px;
 }
 
+.bg-blur-grey{
+    background: #e0dede !important;
+}
+
 @media (min-width: 1225px){
     .bottom-img-activity img {
         width: 112.5%;
