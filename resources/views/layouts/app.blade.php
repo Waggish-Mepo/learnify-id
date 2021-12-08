@@ -48,11 +48,11 @@
             <div id="main-content" class="main-student w-100">
                 <div class="container-fluid position-relative container-student">
                     <div class="position-absolute top-img">
-                        <img src="{{asset('assets/images/top.svg')}}" width="130">
+                        <img src="{{asset('assets/images/top.svg')}}" width="120">
                     </div>
                     @yield('content')
                     <div class="position-absolute bottom-img-activity">
-                        <img src="{{asset('assets/images/bottom.svg')}}">
+                        <img src="{{asset('assets/images/bottom.svg')}}" id="img-bg-bottom-activity">
                     </div>
                 </div>
             </div>
@@ -60,11 +60,11 @@
             <div id="main-content" class="main-student">
                 <div class="container-fluid position-relative container-student">
                     <div class="position-absolute top-img">
-                        <img src="{{asset('assets/images/top.svg')}}" width="130">
+                        <img src="{{asset('assets/images/top.svg')}}" width="120">
                     </div>
                     @yield('content')
                     <div class="position-absolute bottom-img">
-                        <img src="{{asset('assets/images/bottom.svg')}}">
+                        <img src="{{asset('assets/images/bottom.svg')}}" id="img-bg-bottom">
                     </div>
                 </div>
             </div>
@@ -95,6 +95,7 @@
 
 <script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/js/pages/ui/dialogs.js')}}"></script>
+<script src="{{asset('assets/js/pages/custom.js')}}"></script>
 <script>
     let pwMatches = {!! $pw_matches = $pw_matches ?? false !!};
     console.log(pwMatches);

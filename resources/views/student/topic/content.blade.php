@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="block-header px-4">
-    <div class="d-flex flex-column m-auto pt-5">
+    <div class="d-flex flex-column m-auto pt-md-5 pt-4">
         <h3 class="text-capitalize text-white text-center">materi bentuk-bentuk aljabar | minggu 1</h3>
-        <div class="h-auto p-4 mt-3 w-100 bg-white shadow-sm rounded">
+        <div class="h-auto p-4 mt-md-3 mt-2 w-100 bg-white shadow-sm rounded">
             <div class="d-flex justify-content-between mb-3">
                 <a href="#" class="color-blue-2 d-flex align-items-center js-sweetalert" data-type="confirm-back" data-toggle="tooltip" title="Kembali">
                     <i class="fa fa-sign-out"></i>
@@ -24,4 +24,5 @@
 @endsection
 
 @section('script')
+<script src="{{asset('assets/js/pages/custom.js')}}"></script>
 @endsection

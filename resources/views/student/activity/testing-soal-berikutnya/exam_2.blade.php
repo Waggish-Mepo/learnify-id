@@ -19,7 +19,7 @@
                     </a>
                 </div>
             </div>
-            <div class="py-2 w-50 m-auto">
+            <div class="py-2 w-md-50 w-100 m-auto">
                 <img src="{{asset('assets/images/result_b.svg')}}" width="150" class="d-block m-auto">
                 <p class="text-center color-black font-18">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem in eius similique odio quasi laborum quos ipsum incidunt adipisci temporibus! Lorem ipsum dolor sit amet...</p>
             </div>
@@ -68,4 +68,5 @@
 @endsection
 
 @section('script')
+<script src="{{asset('assets/js/pages/custom.js')}}"></script>
 @endsection

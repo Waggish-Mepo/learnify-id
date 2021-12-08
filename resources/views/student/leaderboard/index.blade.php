@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="block-header">
-    <h4 class="text-white my-3 text-capitalize">papan prestasi learnify.id</h4>
+    <h4 class="text-white my-sm-3 my-2 text-capitalize">papan prestasi learnify.id</h4>
     <div class="row clearfix mt-2">
         <div class="col-md-4 mt-2 mb-3">
            <div class="d-flex flex-column m-auto rounded bg-white shadow">
@@ -19,11 +19,11 @@
                </div>
                <div class="bg-blur-grey pt-3 pb-0 px-5 d-flex justify-content-between align-items-center">
                     <div class="pl-2">
-                        <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><img src="{{asset('assets/images/xp.svg')}}"></div>
+                        <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="xp"><img src="{{asset('assets/images/xp.svg')}}"></div>
                         <p class="text-dark text-center pt-2 pl-2">3.200</p>
                     </div>
                     <div class="pr-2">
-                        <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><img src="{{asset('assets/images/level.svg')}}"></div>
+                        <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="level"><img src="{{asset('assets/images/level.svg')}}"></div>
                         <p class="text-dark text-center pt-2 pl-2">4</p>
                     </div>
                </div>
@@ -46,7 +46,7 @@
                         <tr>
                             <td>#1</td>
                             <td>
-                                <img src="{{asset('assets/images/xs/avatar3.jpg')}}"  data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
+                                <img src="{{asset('assets/images/xs/avatar3.jpg')}}" alt="Avatar" class="w35 h35 rounded">
                             </td>
                             <td>
                                 <h6 class="mb-0">Marshall Nichols</h6>
@@ -59,7 +59,7 @@
                         <tr>
                             <td>#2</td>
                             <td>
-                                <img src="{{asset('assets/images/xs/avatar5.jpg')}}"  data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 h35 rounded">
+                                <img src="{{asset('assets/images/xs/avatar5.jpg')}}" alt="Avatar" class="w35 h35 rounded">
                             </td>
                             <td>
                                 <h6 class="mb-0">Susie Willis</h6>
@@ -78,4 +78,5 @@
 @endsection
 
 @section('script')
+<script src="{{asset('assets/js/pages/custom.js')}}"></script>
 @endsection

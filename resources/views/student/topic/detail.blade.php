@@ -77,6 +77,7 @@
 @endsection
 
 @section('script')
+<script src="{{asset('assets/js/pages/custom.js')}}"></script>
 <script type="text/javascript">
     let subject = {!! json_encode($subject) !!}
     let course = {!! json_encode($course) !!}
