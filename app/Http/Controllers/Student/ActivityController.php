@@ -43,10 +43,36 @@ class ActivityController extends Controller
         $questions = $questionDB->index($schoolId,
             [
                 'activity_id' => $request->activity_id,
-                'order' => 'ASC'
+                'order' => 'DESC'
             ],
         );
 
         return response()->json($questions);
+    }
+
+    public function submitQuestion(Request $request) {
+        $questionDB = new QuestionService;
+
+        $schoolId = Auth::user()->school_id;
+
+        $questions = $questionDB->index($schoolId,
+            [
+                'activity_id' => $request->activity_id,
+                'order' => 'DESC'
+            ],
+        );
+
+        $correctAnswer = 0;
+        $studentAnswer = $request->answers;
+
+        foreach($questions['data'] as $key => $question) {
+            if (intval($studentAnswer[$key]['no'] + 1) === $question['order'] && 
+                $studentAnswer[$key]['answer'] === $question['answer']) 
+            {
+                $correctAnswer++;
+            }
+        }
+
+        dd($studentAnswer, $questions['data'], $correctAnswer);
     }
 }
