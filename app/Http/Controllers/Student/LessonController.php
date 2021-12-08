@@ -223,7 +223,7 @@ class LessonController extends Controller
         $totalQuestion = (int)$request->total_question;
         $correctAnswer = (int)$request->correct_answer;
         $activityId = $request->activity_id;
-
+        $activity = $activityDB->detail($user->school_id, $activityId);
         $score = (100 / $totalQuestion) * $correctAnswer;
         $payload  = [
             'score' => intval($score),
@@ -233,7 +233,23 @@ class LessonController extends Controller
             ],
         ];
         
-        $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
+        if ($activity['type'] === 'EXAM') {
+            $activityResult = $activityResultDB->index($user->school_id,
+                [
+                    'activity_id' => $activityId,
+                    'student_id' => $user->id,
+                ],
+            )['data'][0] ?? null;
+
+            if ($activityResult !== null) {
+                $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
+            } else {
+                $finish = $activityResultDB->detail($user->school_id, $activityResult['id']);
+            }
+            
+        } else {
+            $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
+        }
 
         return response()->json($finish);
     }

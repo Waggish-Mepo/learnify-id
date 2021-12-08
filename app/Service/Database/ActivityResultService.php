@@ -48,11 +48,13 @@ class ActivityResultService
         School::findOrFail($schoolId);
         Activity::findOrFail($activityId);
         User::findOrFail($studentId);
+        
         $activityResult = new ActivityResult;
         $activityResult->id = Uuid::uuid4()->toString();
         $activityResult->activity_id = $activityId;
         $activityResult->student_id = $studentId;
         $activityResult = $this->fill($activityResult, $payload);
+        // dd($activityResult);
         $activityResult->save();
 
         return $activityResult->toArray();
@@ -78,7 +80,7 @@ class ActivityResultService
         }
 
         Validator::make($activityResult->toArray(), [
-            'score' => 'required|integer',
+            'score' => 'required',
             'answers' => 'required|array',
         ])->validate();
 
