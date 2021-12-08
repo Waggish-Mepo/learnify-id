@@ -240,13 +240,13 @@ class LessonController extends Controller
                     'student_id' => $user->id,
                 ],
             )['data'][0] ?? null;
-
-            if ($activityResult !== null) {
+            
+            if ($activityResult === null) {
                 $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
             } else {
                 $finish = $activityResultDB->detail($user->school_id, $activityResult['id']);
             }
-            
+
         } else {
             $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
         }

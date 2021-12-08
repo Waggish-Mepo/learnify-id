@@ -141,8 +141,14 @@
                     `
                 });
             html += `</div>`
-
-            if (key === 0) {
+            if (key === 0 && data.total === 1) {
+                html += `
+                <div class="d-flex">
+                    <a href="javascript:void(0)" class="btn btn-light shadow rounded disabled"><i class="fa fa-chevron-left mr-2"></i>Sebelumnya</a>
+                    <a href="javascript:void(0)" class="btn btn-success shadow rounded ml-3" onclick="collectQuestion()">Kumpulkan<i class="fa fa-chevron-right ml-2"></i></a>
+                </div>
+                `
+            } else if (key === 0) {
                 html += `
                 <div class="d-flex">
                     <a href="javascript:void(0)" class="btn btn-light shadow rounded disabled"><i class="fa fa-chevron-left mr-2"></i>Sebelumnya</a>
