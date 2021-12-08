@@ -48,7 +48,6 @@ class ActivityResultService
         School::findOrFail($schoolId);
         Activity::findOrFail($activityId);
         User::findOrFail($studentId);
-
         $activityResult = new ActivityResult;
         $activityResult->id = Uuid::uuid4()->toString();
         $activityResult->activity_id = $activityId;
@@ -80,7 +79,7 @@ class ActivityResultService
 
         Validator::make($activityResult->toArray(), [
             'score' => 'required|integer',
-            'answers' => 'required',
+            'answers' => 'required|array',
         ])->validate();
 
         return $activityResult;

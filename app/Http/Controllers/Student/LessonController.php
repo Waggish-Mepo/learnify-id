@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Service\Database\ActivityResultService;
 use App\Service\Database\ActivityService;
 use App\Service\Database\ContentService;
 use App\Service\Database\CourseService;
+use App\Service\Database\QuestionService;
 use App\Service\Database\SubjectService;
 use App\Service\Database\TopicService;
 use Illuminate\Http\Client\Pool;
@@ -178,5 +180,61 @@ class LessonController extends Controller
             ->with('course_id', $request->course_id)
             ->with('topic_id', $request->topic_id)
             ->with('content_id', $request->content_id);
+    }
+
+    public function activityStart(Request $request) {
+        $activityDB = new ActivityService;
+        $topicDB = new TopicService;
+        $user = Auth::user();
+        
+        $activity = $activityDB->detail($user->school_id, $request->activity_id);
+        $topic = $topicDB->detail($user->school_id, $request->topic_id);
+
+        return view('student.activity.exercise')
+        ->with('subjectId', $request->subject_id)
+        ->with('courseId', $request->course_id)
+        ->with('user', $user)
+        ->with('topic', $topic)
+        ->with('activity', $activity);
+    }
+
+    public function getQuestion(Request $request) {
+        $questionDB = new QuestionService;
+        $user = Auth::user();
+
+        $questions = $questionDB->index($user->school_id,
+            [
+                'activity_id' => $request->activity_id,
+                'student_id' => $request->student_id,
+                'order_by' => 'asc',
+                'per_page' => 99,
+            ],
+        );
+
+        $questions['total'] = count($questions['data']);
+
+        return response()->json($questions);
+    }
+
+    public function finishActivity(Request $request) {
+        $activityDB = new ActivityService;
+        $activityResultDB = new ActivityResultService;
+        $user = Auth::user();
+        $totalQuestion = (int)$request->total_question;
+        $correctAnswer = (int)$request->correct_answer;
+        $activityId = $request->activity_id;
+
+        $score = (100 / $totalQuestion) * $correctAnswer;
+        $payload  = [
+            'score' => intval($score),
+            'answers' => [
+                'total_question' => $totalQuestion,
+                'correct_answer' => $correctAnswer,
+            ],
+        ];
+        
+        $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
+
+        return response()->json($finish);
     }
 }
