@@ -79,8 +79,8 @@ class ActivityResultService
         }
 
         Validator::make($activityResult->toArray(), [
-            'score' => 'required|integer',
-            'answers' => 'required',
+            'score' => 'required',
+            'answers' => 'required|array',
         ])->validate();
 
         return $activityResult;
