@@ -10,4 +10,8 @@ class ActivityResult extends Model
     use HasFactory;
 
     public $incrementing = false;
+
+    protected $casts = [
+        'answers' => 'array',
+    ];
 }
