@@ -50,4 +50,5 @@
         });
     }
 </script>
+<script src="{{asset('assets/js/pages/custom.js')}}"></script>
 @endsection
