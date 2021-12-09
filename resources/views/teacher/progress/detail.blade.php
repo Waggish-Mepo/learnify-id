@@ -1,0 +1,86 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="block-header">
+    <div class="row clearfix mb-4">
+        <div class="col-md-6 col-sm-12">
+            <a href="{{ route('teacher.progress-siswa') }}" class="text-dark"><i class="icon-arrow-left text-dark mr-2"></i>Kembali</a>
+            <nav aria-label="breadcrumb" class="mt-2">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('teacher.progress-siswa') }}">Progress Siswa</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('teacher.progress.subject.course', ['subject_id' => $subject['id'],'course_id' => $course['id']]) }}">List Bab</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Progress Siswa</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+        <div class="row mt-3">
+            <div class="col-lg-12">
+            <h5 class="color-blue-2 font-weight-bold text-uppercase">Progress Siswa</h5>
+            <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#content">Ulasan</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#exercise">Latihan</a></li>        
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#exam">Ulangan</a></li>        
+                </ul>
+                <div class="tab-content mt-0">
+                    <div class="tab-pane show active" id="content">
+                    </div>
+                    <div class="tab-pane" id="exercise">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-custom spacing8">
+                                @if ($activities)
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama</th>
+                                        <th>Latihan</th>
+                                        <th>Skor</th>
+                                        <th>Predikat</th>
+                                        {{-- <th>Latihan Terselesaikan</th> --}}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($activities as $item)
+                                    <tr>
+                                        <td>{{$no++}}</td>
+                                        <td>
+                                            <h6 class="mb-0">{{$item['student_name']}}</h6>
+                                            <span>{{$item['student_email']}}</span>
+                                        </td>
+                                        <td>{{$item['name']}}</td>
+                                        {{-- <td><span class="badge badge-danger">Super Admin</span></td> --}}
+                                        <td>{{$item['score']}}</td>
+                                        @if ($item['score'] >= 85)
+                                            <td>A</td>
+                                        @elseif ($item['score'] >= 75)
+                                            <td>B</td>
+                                        @else
+                                            <td>C</td>
+                                        @endif
+                                        {{-- <td>
+                                            <div class="progress ml-1 rounded-0 w-progress">
+                                                <div class="progress-bar-info" role="progressbar" style="width : {{$item['percen']*100/$item['total_exercise']}}%" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </td> --}}
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                @else
+                                    <h3 class="color-blank my-3">Data Kosong</h3>
+                                @endif
+                            </table>                
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="exam">
+                    </div>
+                </div>            
+            </div>
+            </div>
+        </div>
+</div>
+@endsection
+
+@section('script')
+
+@endsection

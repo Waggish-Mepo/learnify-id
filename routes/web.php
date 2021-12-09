@@ -128,6 +128,7 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
                 Route::prefix('/{subject_id}')->group(function () {
                     Route::get('/course', [Teacher\ProgressController::class, 'index'])->name('subject');
                     Route::get('/course/{course_id}', [Teacher\ProgressController::class, 'detail'])->name('subject.course');
+                    Route::get('/course/{course_id}/topic/{topic_id}', [Teacher\ProgressController::class, 'detailProgress']);
                 });
             });
         });
