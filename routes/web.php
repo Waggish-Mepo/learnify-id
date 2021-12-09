@@ -119,6 +119,18 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
                 });
             });
         });
+
+        Route::prefix('progress')->group(function () {
+            Route::get('/', [Teacher\ProgressController::class, 'progress'])->name('progress-siswa');
+            Route::prefix('/subject')->name('progress.')->group(function () {
+                Route::get('/course', [Teacher\ProgressController::class, 'getCourse']);
+                Route::get('/course/topic', [Teacher\ProgressController::class, 'getCourseTopic']);
+                Route::prefix('/{subject_id}')->group(function () {
+                    Route::get('/course', [Teacher\ProgressController::class, 'index'])->name('subject');
+                    Route::get('/course/{course_id}', [Teacher\ProgressController::class, 'detail'])->name('subject.course');
+                });
+            });
+        });
     });
 });
 
