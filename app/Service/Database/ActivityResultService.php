@@ -54,7 +54,6 @@ class ActivityResultService
         $activityResult->activity_id = $activityId;
         $activityResult->student_id = $studentId;
         $activityResult = $this->fill($activityResult, $payload);
-        // dd($activityResult);
         $activityResult->save();
 
         return $activityResult->toArray();

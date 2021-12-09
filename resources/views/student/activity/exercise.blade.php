@@ -8,7 +8,7 @@
         <div class="p-4 bg-white shadow-sm rounded">
             <img src="{{asset('assets/images/result_c.svg')}}" alt="C" class="d-block m-auto">
             <h5 class="color-black font-weight-bold text-capitalize text-center mt-3 mb-2">yahh!</h5>
-            <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2">60</p>
+            <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2 result-score">60</p>
             <div class="d-flex align-items-center justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer" data-toggle="tooltip" data-placement="top" title="XP"><span class="text-white font-weight-bold">XP</span></div>
                 <div class="ml-1 text-dark">+6 XP</div>
@@ -28,7 +28,7 @@
         <div class="p-4 bg-white shadow-sm rounded">
             <img src="{{asset('assets/images/result_b.svg')}}" alt="B" class="d-block m-auto">
             <h5 class="color-black font-weight-bold text-capitalize text-center mt-3 mb-2">keren!</h5>
-            <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2">80</p>
+            <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2 result-score">80</p>
             <div class="d-flex align-items-center justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer" data-toggle="tooltip" data-placement="top" title="XP"><span class="text-white font-weight-bold">XP</span></div>
                 <div class="ml-1 text-dark">+8 XP</div>
@@ -48,7 +48,7 @@
         <div class="p-4 bg-white shadow-sm rounded">
             <img src="{{asset('assets/images/result_a.svg')}}" alt="A" class="d-block m-auto">
             <h5 class="color-black font-weight-bold text-capitalize text-center mt-3 mb-2">waw!</h5>
-            <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2">100</p>
+            <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2 result-score">100</p>
             <div class="d-flex align-items-center justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer" data-toggle="tooltip" data-placement="top" title="XP"><span class="text-white font-weight-bold">XP</span></div>
                 <div class="ml-1 text-dark">+10 XP</div>
@@ -253,6 +253,7 @@
                     $("#render-question").hide();
                     $("#score-under-100").show();
                 }
+                $('.result-score').html(response.score);
             },
             error: function (e) {
                 swal('Gagal mengirim soal, silahkan coba lagi!');

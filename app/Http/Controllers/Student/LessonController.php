@@ -233,22 +233,37 @@ class LessonController extends Controller
             ],
         ];
         
+        $activityResult = $activityResultDB->index($user->school_id,
+            [
+                'activity_id' => $activityId,
+                'student_id' => $user->id,
+            ],
+        )['data'][0] ?? null;
+        // Untuk Update XP
+        $exp = 0;
+
         if ($activity['type'] === 'EXAM') {
-            $activityResult = $activityResultDB->index($user->school_id,
-                [
-                    'activity_id' => $activityId,
-                    'student_id' => $user->id,
-                ],
-            )['data'][0] ?? null;
-            
+
             if ($activityResult === null) {
                 $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
+                $exp += $activity['experience'];
             } else {
                 $finish = $activityResultDB->detail($user->school_id, $activityResult['id']);
+                $finish['score'] = $score;
+                $exp += 0;
             }
 
         } else {
-            $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
+
+            if ($activityResult === null) {
+                $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
+                $exp += $activity['experience'];
+            } else {
+                $finish = $activityResultDB->update($user->school_id, $activityId, $user->id, $activityResult['id'], $payload);
+                // tapi dikurang 10%, karna ini dia udah ngerjain, tapi mau ngerjain lagi, biar ga farming, ato mau di 0 juga gapapa
+                $exp += $activity['experience'];
+            }
+
         }
 
         return response()->json($finish);
