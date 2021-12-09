@@ -126,12 +126,12 @@
 
         function renderQuestion(data) {
             let html = ``
-
+            let no = 1
             $.each(data, function (key, question) {
                 html += `
                 <div class="card mb-3">
                     <div class="card-header bg-blue-2 text-white d-flex flex-row justify-content-between py-0 align-content-center">
-                        <p class="my-auto font-16">Soal ${question.order}</p>
+                        <p class="my-auto font-16">Soal ${no++}</p>
                         <button class="btn btn-link text-decoration-none" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-v text-white font-16"></i></button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menu">
                             <button onclick="editQuestion('${question.id}')" class="dropdown-item color-blue-2" type="button" ><i class="fa fa-edit color-blue-2"></i> Edit</button>
