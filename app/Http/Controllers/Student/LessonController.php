@@ -100,7 +100,7 @@ class LessonController extends Controller
                 'per_page' => 99,
             ],
         );
-        
+
         $topics['total'] = count($topics['data']);
 
         return response()->json($topics);
@@ -161,7 +161,7 @@ class LessonController extends Controller
         $data = collect($activities['data'])->groupBy('type');
         $data['total_exam'] = count($data['EXAM'] ?? []);
         $data['total_exercise'] = count($data['EXERCISE'] ?? []);
-        
+
         return response()->json($data);
     }
 
@@ -186,7 +186,7 @@ class LessonController extends Controller
         $activityDB = new ActivityService;
         $topicDB = new TopicService;
         $user = Auth::user();
-        
+
         $activity = $activityDB->detail($user->school_id, $request->activity_id);
         $topic = $topicDB->detail($user->school_id, $request->topic_id);
 
@@ -232,7 +232,7 @@ class LessonController extends Controller
                 'correct_answer' => $correctAnswer,
             ],
         ];
-        
+
         if ($activity['type'] === 'EXAM') {
             $activityResult = $activityResultDB->index($user->school_id,
                 [
@@ -240,7 +240,7 @@ class LessonController extends Controller
                     'student_id' => $user->id,
                 ],
             )['data'][0] ?? null;
-            
+
             if ($activityResult === null) {
                 $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
             } else {
