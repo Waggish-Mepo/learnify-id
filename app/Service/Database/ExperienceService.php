@@ -55,9 +55,21 @@ class ExperienceService
     {
         School::findOrFail($schoolId);
         User::findOrFail($userId);
-
         $experience = Experience::findOrFail($experienceId);
-        $experience = $this->fill($experience, $payload);
+
+        $currentExp = $experience->experience_point;
+
+        $updateExp = $currentExp + $payload['experience'];
+
+        $level = intdiv($updateExp, Experience::REQUIRED_XP);
+
+        $attributes = [
+            'user_id' => $userId,
+            'level' => $level,
+            'experience_point' => $updateExp,
+        ];
+
+        $experience = $this->fill($experience, $attributes);
         $experience->save();
 
         return $experience->toArray();

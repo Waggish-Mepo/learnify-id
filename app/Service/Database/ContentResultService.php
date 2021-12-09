@@ -62,8 +62,8 @@ class ContentResultService{
         $contentId,
         $studentId,
         $contentResultId,
-        $payload,
-        )
+        $payload
+    )
     {
         School::findOrFail($schoolId);
         Content::findOrFail($contentId);

@@ -130,6 +130,7 @@ Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
             Route::get('/course', [Student\LessonController::class, 'getCourse']);
             Route::get('/course/topic', [Student\LessonController::class, 'getTopic']);
             Route::get('/course/topic/content', [Student\LessonController::class, 'getContent']);
+            Route::post('/course/topic/content', [Student\LessonController::class, 'finishContent']);
             Route::get('/course/topic/activity', [Student\LessonController::class, 'getActivity']);
             Route::get('/{subject_id}/course', [Student\LessonController::class, 'course']);
             Route::get('/{subject_id}/course/{course_id}/topic', [Student\LessonController::class, 'topic']);

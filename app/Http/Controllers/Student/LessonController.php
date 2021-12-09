@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Service\Database\ActivityService;
+use App\Service\Database\ContentResultService;
 use App\Service\Database\ContentService;
 use App\Service\Database\CourseService;
+use App\Service\Database\ExperienceService;
 use App\Service\Database\SubjectService;
 use App\Service\Database\TopicService;
 use Illuminate\Http\Client\Pool;
@@ -167,18 +169,53 @@ class LessonController extends Controller
 
     public function detailContent(Request $request) {
         $contentDB = new ContentService;
+        $contentResultService = new ContentResultService;
         $schoolId = Auth::user()->school_id;
+        $userId = Auth::user()->id;
 
         $content = $contentDB->detail(
             $schoolId, $request->content_id
         );
 
+        $finished = false;
+        $filter = [
+            'student_id' => $userId,
+            'content_id' => $request->content_id,
+        ];
+
+        $result = $contentResultService->index($schoolId, $filter)['data'];
+
+        if($result !== []){
+            $finished = true;
+        }
+
         return view('student.topic.content')
             ->with('title', $content['name'])
             ->with('content', $content['content'])
+            ->with('finished', $finished)
             ->with('subject_id', $request->subject_id)
             ->with('course_id', $request->course_id)
             ->with('topic_id', $request->topic_id)
             ->with('content_id', $request->content_id);
+    }
+
+    public function finishContent(Request $request) {
+        $userId = Auth::user()->id;
+        $schoolId = Auth::user()->school_id;
+        $experienceId = Auth::user()->experience->id;
+        $contentResultService = new ContentResultService;
+        $contentService = new ContentService;
+        $experienceService = new ExperienceService;
+
+        $create = $contentResultService->create($schoolId, $request->content_id, $userId, ['status' => true]);
+        $detail = $contentService->detail($schoolId, $request->content_id);
+
+        $payload = [
+            'experience' => $detail['experience'],
+        ];
+
+        $experienceService->update($schoolId, $userId, $experienceId, $payload);
+
+        return response()->json($create);
     }
 }
