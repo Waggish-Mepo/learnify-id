@@ -63,6 +63,16 @@ class QuestionService{
         return $question->toArray();
     }
 
+    public function destroy($schoolId, $activityId, $questionId)
+    {
+        School::findOrFail($schoolId);
+        Activity::findOrFail($activityId);
+
+        Question::findOrFail($questionId)->delete();
+
+        return true;
+    }
+
     private function fill(Question $question, array $attributes)
     {
 

@@ -11,7 +11,7 @@
             <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2 result-score">60</p>
             <div class="d-flex align-items-center justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer" data-toggle="tooltip" data-placement="top" title="XP"><span class="text-white font-weight-bold">XP</span></div>
-                <div class="ml-1 text-dark">+6 XP</div>
+                <div class="ml-1 text-dark">+<span class="gained-xp"></span> XP</div>
             </div>
             <p class="text-dark my-2 text-center">Semangat, ya! Coba lagi yuk.</p>
             <div class="d-flex mt-3 align-items-center">
@@ -31,7 +31,7 @@
             <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2 result-score">80</p>
             <div class="d-flex align-items-center justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer" data-toggle="tooltip" data-placement="top" title="XP"><span class="text-white font-weight-bold">XP</span></div>
-                <div class="ml-1 text-dark">+8 XP</div>
+                <div class="ml-1 text-dark">+<span class="gained-xp"></span> XP</div>
             </div>
             <p class="text-dark my-2 text-center">Kamu berhasil menjawab soal dengan benar!</p>
             <div class="d-flex mt-3 align-items-center">
@@ -51,7 +51,7 @@
             <p class="h2 color-blue-2 font-weight-bold text-capitalize text-center mb-2 result-score">100</p>
             <div class="d-flex align-items-center justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded cursor-pointer" data-toggle="tooltip" data-placement="top" title="XP"><span class="text-white font-weight-bold">XP</span></div>
-                <div class="ml-1 text-dark">+10 XP</div>
+                <div class="ml-1 text-dark">+<span class="gained-xp"></span> XP</div>
             </div>
             <p class="text-dark my-2 text-center">Kamu berhasil menjawab soal dengan benar!</p>
             <div class="d-flex mt-3 align-items-center">
@@ -101,7 +101,7 @@
     function renderQuestion(data) {
         let html = ``
 
-        $.each(data.data, function (key, question) { 
+        $.each(data.data, function (key, question) {
             answeres[question.id] = question.answer
             choices[question.id] = question.choices
             html += `
@@ -128,7 +128,7 @@
                 </div>
             </div>
             <div class="my-4" id="choice-${question.id}">`
-                $.each(question.choices, function (keyChoice, choice) { 
+                $.each(question.choices, function (keyChoice, choice) {
                     html += `
                     <div class="mt-2" id="answer-${question.id}-${keyChoice}">
                         <a href="javascript:void(0)" class="d-flex align-items-center p-1 font-12 w-100 bg-white shadow rounded border-hover" onclick="setAnswer('${keyChoice}', '${question.id}')">
@@ -191,7 +191,7 @@
     function setAnswer(answer, questionId) {
         let choiceTotal = $(`#choice-${questionId}`).children()
         let currentChoice = choices[questionId]
-        $.each(currentChoice, function (key, choice) { 
+        $.each(currentChoice, function (key, choice) {
             $(`#answer-${questionId}-${key} .choice`).removeClass('bg-orange-1').addClass('bg-blue-2')
         });
 
@@ -201,7 +201,7 @@
 
     function collectQuestion() {
         let totalAnswer = Object.keys(answerSet).length
-        
+
         if (totalAnswer === totalQuestion) {
             sendAnswer()
         } else {
@@ -221,7 +221,7 @@
         let url = "{{ url('/student/subject/course/topic/activity/finish') }}"
         let totalCorrectAnswer = 0
 
-        $.each(answeres, function (questionId, thisAnswer) { 
+        $.each(answeres, function (questionId, thisAnswer) {
             if (answerSet[questionId] == undefined) {
                 totalCorrectAnswer += 0
             } else {
@@ -232,7 +232,7 @@
                 }
             }
         });
-        
+
         $.ajax({
             type: "post",
             url: url,
@@ -254,6 +254,7 @@
                     $("#score-under-100").show();
                 }
                 $('.result-score').html(response.score);
+                $('.gained-xp').html(response.experience);
             },
             error: function (e) {
                 swal('Gagal mengirim soal, silahkan coba lagi!');
@@ -263,7 +264,7 @@
     }
 
     function backupAnswer() {
-        $.each(answerSet, function (questionId, thisAnswer) { 
+        $.each(answerSet, function (questionId, thisAnswer) {
             setAnswer(thisAnswer, questionId)
         });
     }

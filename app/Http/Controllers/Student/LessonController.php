@@ -10,6 +10,7 @@ use App\Service\Database\ContentService;
 use App\Service\Database\CourseService;
 use App\Service\Database\ExperienceService;
 use App\Service\Database\QuestionService;
+use App\Service\Database\ScoreService;
 use App\Service\Database\SubjectService;
 use App\Service\Database\TopicService;
 use Illuminate\Http\Client\Pool;
@@ -258,6 +259,8 @@ class LessonController extends Controller
     public function finishActivity(Request $request) {
         $activityDB = new ActivityService;
         $activityResultDB = new ActivityResultService;
+        $experienceService = new ExperienceService;
+        $scoreService = new ScoreService;
         $user = Auth::user();
         $totalQuestion = (int)$request->total_question;
         $correctAnswer = (int)$request->correct_answer;
@@ -285,25 +288,33 @@ class LessonController extends Controller
 
             if ($activityResult === null) {
                 $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
-                $exp += $activity['experience'];
+                $exp += $scoreService->divideExperience($score, $activity['experience']);
+                $finish['experience'] = $exp;
             } else {
                 $finish = $activityResultDB->detail($user->school_id, $activityResult['id']);
                 $finish['score'] = $score;
                 $exp += 0;
+                $finish['experience'] = $exp;
             }
 
         } else {
-
             if ($activityResult === null) {
                 $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
-                $exp += $activity['experience'];
+                $exp += $scoreService->divideExperience($score, $activity['experience']);
+                $finish['experience'] = $exp;
             } else {
                 $finish = $activityResultDB->update($user->school_id, $activityId, $user->id, $activityResult['id'], $payload);
-                // tapi dikurang 10%, karna ini dia udah ngerjain, tapi mau ngerjain lagi, biar ga farming, ato mau di 0 juga gapapa
-                $exp += $activity['experience'];
+                // dikurang jadi 10%, karna ini dia udah ngerjain, tapi mau ngerjain lagi, biar ga farming, ato mau di 0 juga gapapa
+                $exp += round($scoreService->divideExperience($score, $activity['experience']) * 0.1, 0);
+                $finish['experience'] = $exp;
             }
-
         }
+
+        $payload = [
+            'experience' => $exp,
+        ];
+
+        $experienceService->update($user->school_id, $user->id, $user->experience->id, $payload);
 
         return response()->json($finish);
     }

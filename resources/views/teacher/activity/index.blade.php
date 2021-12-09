@@ -265,6 +265,24 @@
             })
         }
 
+        function destroyQuestion(questionId){
+            $.ajax({
+                type: "delete",
+                url: "{{ url('subject/course/topic/question') }}",
+                data: {
+                    question_id: questionId,
+                    activity_id :activity.id,
+                },
+                success: function (response) {
+                    getQuestion()
+                    swal('Berhasil menghapus soal!')
+                },
+                error: function (e) {
+                    swal('Gagal menguhapus soal. Silahkan coba lagi!')
+                }
+            })
+        }
+
         function updateQuestionFull() {
             let questionId = $('input[type=hidden][name=question_id]').val()
             let question = $('textarea[name=update_question]').val()
