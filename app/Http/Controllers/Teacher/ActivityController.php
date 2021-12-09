@@ -53,7 +53,7 @@ class ActivityController extends Controller
         $data = collect($activities['data'])->groupBy('type');
         $data['total_exam'] = count($data['EXAM'] ?? []);
         $data['total_exercise'] = count($data['EXERCISE'] ?? []);
-        
+
         return response()->json($data);
     }
 
@@ -81,6 +81,7 @@ class ActivityController extends Controller
             [
                 'order_by' => 'DESC',
                 'per_page' => 1,
+                'activity_id' => $request->activity_id
             ],
         )['data'];
 
@@ -97,6 +98,30 @@ class ActivityController extends Controller
         $create = $questionDB->create($schoolId, $request->activity_id, $payload);
 
         return response()->json($create);
+    }
+
+    public function deleteQuestion(Request $request) {
+        $questionDB = new QuestionService;
+        $schoolId = Auth::user()->school_id;
+
+        $questionDB->destroy($schoolId, $request->activity_id, $request->question_id);
+
+        $questions = $questionDB->index($schoolId,
+            [
+                'order_by' => 'ASC',
+                'per_page' => 99,
+                'activity_id' => $request->activity_id
+            ],
+        )['data'];
+
+        $order = 1;
+        foreach($questions as $question) {
+            $questionDB->update($schoolId, $request->activity_id, $question['id'], ['order' => $order]);
+
+            $order++;
+        }
+
+        return true;
     }
 
     public function updateQuestion(Request $request) {
@@ -142,7 +167,7 @@ class ActivityController extends Controller
             'time' => $time,
             'experience' => $experience,
         ];
-        
+
         $update = $activityDB->update($schoolId, $request->topic_id, $request->activity_id, $payload);
 
         return response()->json($update);

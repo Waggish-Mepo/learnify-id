@@ -14,9 +14,10 @@ class UserService {
     public function index($schoolId, $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 999;
         $role = $filter['role'] ?? null;
         $name = $filter['name'] ?? null;
+        $grade = $filter['grade'] ?? null;
         $with_experience = $filter['with_experience'] ?? null;
 
         School::findOrFail($schoolId);
@@ -29,8 +30,12 @@ class UserService {
             $query->where('role', $role);
         }
 
-        if ($name!== null) {
+        if ($name !== null) {
             $query->where('name', $name);
+        }
+
+        if ($grade !== null) {
+            $query->where('grade', $grade);
         }
 
         if ($with_experience) {

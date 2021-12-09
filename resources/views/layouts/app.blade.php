@@ -28,9 +28,6 @@
 <!-- Page Loader -->
 @extends('layouts._loader')
 
-<!-- Theme Setting -->
-@extends('layouts._theme_setting')
-
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
 

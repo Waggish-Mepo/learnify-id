@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
                 Route::get('/question', [Teacher\ActivityController::class, 'getQuestion']);
                 Route::post('/question', [Teacher\ActivityController::class, 'createQuestion']);
                 Route::patch('/question', [Teacher\ActivityController::class, 'updateQuestion']);
+                Route::delete('/question', [Teacher\ActivityController::class, 'deleteQuestion']);
             });
 
             Route::prefix('/{subject_id}')->group(function () {
@@ -139,24 +140,24 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
 Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
     Route::name('student.')->group(function() {
         // view leaderboard
-        Route::get('/student/leaderboard', function () {
-            return view('student.leaderboard.index');
-        })->name('leaderboard');
-        
+        Route::get('/student/leaderboard', [Student\LeaderboardController::class, 'index'])->name('leaderboard');
+
         Route::prefix('/student/subject')->group(function () {
             Route::get('/', [Student\LessonController::class, 'getSubject']);
             Route::get('/course', [Student\LessonController::class, 'getCourse']);
             Route::get('/course/topic', [Student\LessonController::class, 'getTopic']);
             Route::get('/course/topic/content', [Student\LessonController::class, 'getContent']);
+            Route::post('/course/topic/content', [Student\LessonController::class, 'finishContent']);
             Route::get('/course/topic/activity', [Student\LessonController::class, 'getActivity']);
+            Route::post('/course/topic/activity/question', [Student\LessonController::class, 'getQuestion']);
+            Route::post('/course/topic/activity/finish', [Student\LessonController::class, 'finishActivity']);
             Route::get('/{subject_id}/course', [Student\LessonController::class, 'course']);
             Route::get('/{subject_id}/course/{course_id}/topic', [Student\LessonController::class, 'topic']);
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}', [Student\LessonController::class, 'detailTopic']);
 
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/content/{content_id}', [Student\LessonController::class, 'detailContent']);
-            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}', function () {
-                return view('student.activity.exercise');
-            });
+            Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/activity/{activity_id}', [Student\LessonController::class, 'activityStart']);
+
             // route exam ini nanti diganti jadi activity aja. ini fema buat testing doang, takut bentrok kalau pake /activity juga
             Route::get('/{subject_id}/course/{course_id}/topic/{topic_id}/exam/{exam_id}', function () {
                 return view('student.activity.exam');

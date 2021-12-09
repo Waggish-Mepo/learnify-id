@@ -14,7 +14,7 @@ class ActivityResultService
     public function index($schoolId,  $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
         $activity_id = $filter['activity_id'] ?? null;
         $student_id = $filter['student_id'] ?? null;
 
@@ -79,8 +79,8 @@ class ActivityResultService
         }
 
         Validator::make($activityResult->toArray(), [
-            'score' => 'required|integer',
-            'answers' => 'required',
+            'score' => 'required',
+            'answers' => 'required|array',
         ])->validate();
 
         return $activityResult;

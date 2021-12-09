@@ -136,14 +136,25 @@
     .container-student {
         padding-bottom: 100px !important;
     }
+    #content{
+        font-size: 0.76rem !important;
+    }
+    ul.breadcrumb li{
+        font-size: 0.6rem !important;
+    }
+    h3,
+    h4,
+    h5 {
+        font-size: 1rem !important;
+    }
 }
 @media (max-width: 480px){
     .title-xp, .title-level{
-        font-size: 0.8rem !important;
+        font-size: 0.65rem !important;
     }
     .w-progress{
         height: 10px !important;
-        width: 7rem !important;
+        width: 6rem !important;
     }
     .m-r-15,
     .top-navbar .navbar-btn,
