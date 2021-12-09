@@ -82,7 +82,7 @@ class TopicController extends Controller
             $request->topic_id,
             [
                 'name' => $request->name,
-                'experience' => 20,
+                'experience' => 25,
                 'status' => Content::DRAFT,
             ]
         ));
@@ -101,6 +101,7 @@ class TopicController extends Controller
                 'name' => $request->title,
                 'content' => $request->content,
                 'estimation' => $request->estimation ?? null,
+                'experience' => $request->experience ?? 20,
                 'status' => Content::DRAFT,
             ]
         ));

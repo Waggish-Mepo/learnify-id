@@ -13,12 +13,42 @@
                 <div></div>
             </div>
             <div id="content" class="color-black">{!! $content !!}</div>
-            <button type="button" class="btn bg-blue-2 text-white mt-3 float-right text-capitalize">tandai telah dibaca!</button>
+            @if($finished === true)
+                <button type="button" disabled class="btn bg-blue-2 text-white mt-3 float-right text-capitalize">sudah dibaca</button>
+            @else
+                <button type="button" onclick="finishContent()" class="btn bg-blue-2 text-white mt-3 float-right text-capitalize">tandai telah dibaca!</button>
+            @endif
         </div>
     </div>
 </div>
 @endsection
 
 @section('script')
+<script>
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    function finishContent() {
+        let contentId = "{!! $content_id !!}";
+        let topicId = "{!! $topic_id !!}";
+
+        let url = "{{ url('student/subject/course/topic/content') }}"
+        $.ajax({
+            type: "post",
+            url: url,
+            data: {
+                content_id: contentId,
+                topic_id: topicId,
+            },
+            success: function (response) {
+                window.location.reload();
+            }
+        });
+    }
+</script>
 <script src="{{asset('assets/js/pages/custom.js')}}"></script>
 @endsection

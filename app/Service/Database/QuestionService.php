@@ -13,7 +13,7 @@ class QuestionService{
     public function index($schoolId,  $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
         $activityId = $filter['activity_id'] ?? null;
 
         School::findOrFail($schoolId);
@@ -61,6 +61,16 @@ class QuestionService{
         $question->save();
 
         return $question->toArray();
+    }
+
+    public function destroy($schoolId, $activityId, $questionId)
+    {
+        School::findOrFail($schoolId);
+        Activity::findOrFail($activityId);
+
+        Question::findOrFail($questionId)->delete();
+
+        return true;
     }
 
     private function fill(Question $question, array $attributes)

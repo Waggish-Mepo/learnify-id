@@ -56,7 +56,7 @@ class ManageAccountController extends Controller
 
         $create = $userDB->create($schoolId, $payload);
 
-        $experienceDB->create($schoolId, $create->id, ['experience_point' => 0, 'level' => 0]);
+        $experienceDB->create($schoolId, $create->id, ['grade' => $payload['grade'], 'experience_point' => 0, 'level' => 0]);
 
         return response()->json($create);
     }

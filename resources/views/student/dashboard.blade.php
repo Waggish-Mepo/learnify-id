@@ -6,18 +6,12 @@
         <div class="col-md-12">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="text-capitalize text-white f-15">Hai {{ $user['name'] }}, mau belajar apa hari ini?</div>
-                <div class="form-outline position-relative bg-white w-search rounded">
-                    <input type="text" id="form1" class="form-control search pl-sm-5 pl-4" placeholder="Contoh : Aljabar" />
-                    <div class="position-absolute i-search">
-                        <i class="fa fa-search color-grey"></i>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <div id="quotes-card"></div>
     <div id="render-subject" style="display: none;">
-        
+
     </div>
 
     <div class="" id="loading-subject" style="display: none;">
@@ -58,7 +52,7 @@
             url: url,
             success: function (response) {
                 renderQuote(response);
-            }, 
+            },
             error: function (e) {
                 swal('Gagal Mengambil Data Quote!')
             }
@@ -68,9 +62,11 @@
         let html = ``
 
             html += `
-            <div class="mt-4 mb-sm-5 mb-3 opacity-90">
-                <div class="d-flex align-items-center w-sm-75 w-100 bg-white shadow-xs rounded-lg pl-2">
-                    <div class="d-sm-flex d-none align-items-center justify-content-center w-motif bg-red rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="fa fa-lightbulb-o text-white"></i></div>`
+            <div class="mt-4 mb-5 opacity-90">
+                <div class="d-flex alignt-items-center w-75 bg-white shadow-xs rounded-lg pl-2">
+                    <div class="d-flex align-items-center">
+                        <div style="width: 40px !important; height: 40px !important;" class="align-items-center d-flex justify-content-center w-motif bg-red rounded-circle cursor-pointer ml-2" ><i class="fa fa-lightbulb-o text-white"></i></div>
+                    </div>`
                     html += `
                     <div class="ml-3 mr-2">
                         <p class="text-dark text-capitalize pt-3">
@@ -98,7 +94,7 @@
             success: function (response) {
                 console.log(response);
                 renderSubject(response);
-            }, 
+            },
             error: function (e) {
                 swal('Gagal Mengambil Data !')
             }
@@ -108,7 +104,7 @@
     function renderSubject(data) {
         html = ``
 
-        $.each(data, function (key, subject) { 
+        $.each(data, function (key, subject) {
             html += `
             <div class="mt-3">
                 <a href="{{ url('/student/subject/${subject.id}/course/') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
