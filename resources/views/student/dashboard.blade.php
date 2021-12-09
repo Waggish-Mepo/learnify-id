@@ -68,8 +68,8 @@
         let html = ``
 
             html += `
-            <div class="mt-4 mb-5 opacity-90">
-                <div class="d-flex align-items-center w-75 bg-white shadow-xs rounded-lg pl-2">
+            <div class="mt-4 mb-sm-5 mb-3 opacity-90">
+                <div class="d-flex align-items-center w-sm-75 w-100 bg-white shadow-xs rounded-lg pl-2">
                     <div class="d-sm-flex d-none align-items-center justify-content-center w-motif bg-red rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="fa fa-lightbulb-o text-white"></i></div>`
                     html += `
                     <div class="ml-3 mr-2">
