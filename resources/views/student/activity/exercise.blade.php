@@ -120,7 +120,7 @@
                             <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2 text-white" data-toggle="tooltip" data-placement="top" title="materi"><span class="font-weight-bold">${key + 1}</span>/${data.total}</div>
                         </div>
                     </div>
-                    <div class="py-2 w-50 m-auto">
+                    <div class="py-2 w-sm-50 w-100 m-auto">
                         <p class="text-center color-black font-18">
                             ${question.question}
                         </p>
