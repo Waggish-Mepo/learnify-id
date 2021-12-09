@@ -4,7 +4,6 @@ namespace App\Service\Database;
 
 use App\Models\Content;
 use App\Models\School;
-use App\Models\Subject;
 use App\Models\Topic;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;

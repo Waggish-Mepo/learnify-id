@@ -65,6 +65,8 @@ class DatabaseSeeder extends Seeder
             if ($createdUser->role === 'STUDENT') {
                 DB::table('experiences')->insert([
                     'id' => Uuid::uuid4()->toString(),
+                    'school_id' => $schoolId,
+                    'grade' => 12,
                     'user_id' => $createdUser->id,
                     'experience_point' => 0,
                     'level' => 0,

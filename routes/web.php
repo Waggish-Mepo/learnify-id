@@ -127,10 +127,8 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
 Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
     Route::name('student.')->group(function() {
         // view leaderboard
-        Route::get('/student/leaderboard', function () {
-            return view('student.leaderboard.index');
-        })->name('leaderboard');
-        
+        Route::get('/student/leaderboard', [Student\LeaderboardController::class, 'index'])->name('leaderboard');
+
         Route::prefix('/student/subject')->group(function () {
             Route::get('/', [Student\LessonController::class, 'getSubject']);
             Route::get('/course', [Student\LessonController::class, 'getCourse']);

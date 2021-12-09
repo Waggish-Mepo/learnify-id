@@ -43,7 +43,7 @@ class StudentImport implements ToModel, WithHeadingRow
 
             $user->save();
 
-            $experienceService->create(Auth::user()->school_id, $user->id, ['experience_point' => 0, 'level' => 0]);
+            $experienceService->create(Auth::user()->school_id, $user->id, ['grade' => $row['kelas'], 'experience_point' => 0, 'level' => 0]);
         }
     }
 }
