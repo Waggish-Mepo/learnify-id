@@ -10,4 +10,6 @@ class ContentResult extends Model
     use HasFactory;
 
     public $incrementing = false;
+
+    protected $table = 'content_result';
 }

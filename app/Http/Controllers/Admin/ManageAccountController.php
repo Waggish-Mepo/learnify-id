@@ -12,7 +12,6 @@ use App\Service\Database\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ManageAccountController extends Controller
@@ -54,7 +53,7 @@ class ManageAccountController extends Controller
 
         $create = $userDB->create($schoolId, $payload);
 
-        $experienceDB->create($schoolId, $create->id, ['experience_point' => 0, 'level' => 0]);
+        $experienceDB->create($schoolId, $create->id, ['grade' => $payload['grade'], 'experience_point' => 0, 'level' => 0]);
 
         return response()->json($create);
     }

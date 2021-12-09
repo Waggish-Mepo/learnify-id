@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Service\Database\ExperienceService;
 use Faker\Factory;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -39,8 +40,10 @@ class StudentImport implements ToModel, WithHeadingRow
                 'role' => User::STUDENT,
                 'status' => true,
             ]);
+
             $user->save();
-            $experienceService->create(Auth::user()->school_id, $user->id, ['experience_point' => 0, 'level' => 0]);
+
+            $experienceService->create(Auth::user()->school_id, $user->id, ['grade' => $row['kelas'], 'experience_point' => 0, 'level' => 0]);
         }
     }
 }

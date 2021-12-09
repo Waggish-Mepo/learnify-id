@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Experience;
 use App\Service\Database\ActivityResultService;
 use App\Service\Database\ActivityService;
+use App\Service\Database\ContentResultService;
 use App\Service\Database\ContentService;
 use App\Service\Database\CourseService;
+use App\Service\Database\ExperienceService;
 use App\Service\Database\QuestionService;
+use App\Service\Database\ScoreService;
 use App\Service\Database\SubjectService;
 use App\Service\Database\TopicService;
-use Illuminate\Http\Client\Pool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 
 class LessonController extends Controller
 {
@@ -34,6 +36,9 @@ class LessonController extends Controller
         $subjectDB = new SubjectService;
 
         $schoolId = Auth::user()->school_id;
+        $experience = Auth::user()->experience;
+
+        $experience->current_xp = $experience->experience_point % Experience::REQUIRED_XP;
 
         $subjects = $subjectDB->index($schoolId,
             [
@@ -45,6 +50,7 @@ class LessonController extends Controller
 
         return view('student.course')
         ->with('subject', $subject)
+        ->with('experience', $experience)
         ->with('subjects', $subjects['data']);
     }
 
@@ -52,10 +58,12 @@ class LessonController extends Controller
         $courseDB = new CourseService;
 
         $schoolId = Auth::user()->school_id;
+        $grade = Auth::user()->grade;
 
         $courses = $courseDB->index($schoolId,
             [
                 'subject_id' => $request->subject_id,
+                'grade' => $grade,
                 'per_page' => 99,
             ],
         );
@@ -68,7 +76,10 @@ class LessonController extends Controller
     public function topic(Request $request) {
         $subjectDB = new SubjectService;
         $courseDB = new CourseService;
-        $topicDB = new TopicService;
+
+        $experience = Auth::user()->experience;
+
+        $experience->current_xp = $experience->experience_point % Experience::REQUIRED_XP;
 
         $schoolId = Auth::user()->school_id;
 
@@ -85,6 +96,7 @@ class LessonController extends Controller
         return view('student.topic.index')
         ->with('courses', $courses['data'])
         ->with('subject', $subject)
+        ->with('experience', $experience)
         ->with('course', $course);
     }
 
@@ -110,7 +122,9 @@ class LessonController extends Controller
         $subjectDB = new SubjectService;
         $courseDB = new CourseService;
         $topicDB = new TopicService;
+        $experience = Auth::user()->experience;
 
+        $experience->current_xp = $experience->experience_point % Experience::REQUIRED_XP;
 
         $schoolId = Auth::user()->school_id;
 
@@ -130,6 +144,7 @@ class LessonController extends Controller
         ->with('subject', $subject)
         ->with('course', $course)
         ->with('topic', $topic)
+        ->with('experience', $experience)
         ->with('topics', $topics['data']);
     }
 
@@ -167,26 +182,67 @@ class LessonController extends Controller
 
     public function detailContent(Request $request) {
         $contentDB = new ContentService;
+        $contentResultService = new ContentResultService;
         $schoolId = Auth::user()->school_id;
+        $userId = Auth::user()->id;
+        $experience = Auth::user()->experience;
+
+        $experience->current_xp = $experience->experience_point % Experience::REQUIRED_XP;
 
         $content = $contentDB->detail(
             $schoolId, $request->content_id
         );
 
+        $finished = false;
+        $filter = [
+            'student_id' => $userId,
+            'content_id' => $request->content_id,
+        ];
+
+        $result = $contentResultService->index($schoolId, $filter)['data'];
+
+        if($result !== []){
+            $finished = true;
+        }
+
         return view('student.topic.content')
             ->with('title', $content['name'])
             ->with('content', $content['content'])
+            ->with('finished', $finished)
             ->with('subject_id', $request->subject_id)
             ->with('course_id', $request->course_id)
             ->with('topic_id', $request->topic_id)
+            ->with('experience', $experience)
             ->with('content_id', $request->content_id);
+    }
+
+    public function finishContent(Request $request) {
+        $userId = Auth::user()->id;
+        $schoolId = Auth::user()->school_id;
+        $experienceId = Auth::user()->experience->id;
+        $contentResultService = new ContentResultService;
+        $contentService = new ContentService;
+        $experienceService = new ExperienceService;
+
+        $create = $contentResultService->create($schoolId, $request->content_id, $userId, ['status' => true]);
+        $detail = $contentService->detail($schoolId, $request->content_id);
+
+        $payload = [
+            'experience' => $detail['experience'],
+        ];
+
+        $experienceService->update($schoolId, $userId, $experienceId, $payload);
+
+        return response()->json($create);
     }
 
     public function activityStart(Request $request) {
         $activityDB = new ActivityService;
         $topicDB = new TopicService;
         $user = Auth::user();
+        $experience = Auth::user()->experience;
 
+        $experience->current_xp = $experience->experience_point % Experience::REQUIRED_XP;
         $activity = $activityDB->detail($user->school_id, $request->activity_id);
         $topic = $topicDB->detail($user->school_id, $request->topic_id);
 
@@ -195,6 +251,7 @@ class LessonController extends Controller
         ->with('courseId', $request->course_id)
         ->with('user', $user)
         ->with('topic', $topic)
+        ->with('experience', $experience)
         ->with('activity', $activity);
     }
 
@@ -219,6 +276,8 @@ class LessonController extends Controller
     public function finishActivity(Request $request) {
         $activityDB = new ActivityService;
         $activityResultDB = new ActivityResultService;
+        $experienceService = new ExperienceService;
+        $scoreService = new ScoreService;
         $user = Auth::user();
         $totalQuestion = (int)$request->total_question;
         $correctAnswer = (int)$request->correct_answer;
@@ -232,7 +291,7 @@ class LessonController extends Controller
                 'correct_answer' => $correctAnswer,
             ],
         ];
-        
+
         $activityResult = $activityResultDB->index($user->school_id,
             [
                 'activity_id' => $activityId,
@@ -246,25 +305,33 @@ class LessonController extends Controller
 
             if ($activityResult === null) {
                 $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
-                $exp += $activity['experience'];
+                $exp += $scoreService->divideExperience($score, $activity['experience']);
+                $finish['experience'] = $exp;
             } else {
                 $finish = $activityResultDB->detail($user->school_id, $activityResult['id']);
                 $finish['score'] = $score;
                 $exp += 0;
+                $finish['experience'] = $exp;
             }
 
         } else {
-
             if ($activityResult === null) {
                 $finish = $activityResultDB->create($user->school_id, $activityId, $user->id, $payload);
-                $exp += $activity['experience'];
+                $exp += $scoreService->divideExperience($score, $activity['experience']);
+                $finish['experience'] = $exp;
             } else {
                 $finish = $activityResultDB->update($user->school_id, $activityId, $user->id, $activityResult['id'], $payload);
-                // tapi dikurang 10%, karna ini dia udah ngerjain, tapi mau ngerjain lagi, biar ga farming, ato mau di 0 juga gapapa
-                $exp += $activity['experience'];
+                // dikurang jadi 10%, karna ini dia udah ngerjain, tapi mau ngerjain lagi, biar ga farming, ato mau di 0 juga gapapa
+                $exp += round($scoreService->divideExperience($score, $activity['experience']) * 0.1, 0);
+                $finish['experience'] = $exp;
             }
-
         }
+
+        $payload = [
+            'experience' => $exp,
+        ];
+
+        $experienceService->update($user->school_id, $user->id, $user->experience->id, $payload);
 
         return response()->json($finish);
     }
