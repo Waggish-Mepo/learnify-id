@@ -78,6 +78,7 @@ class LessonController extends Controller
         $courseDB = new CourseService;
 
         $experience = Auth::user()->experience;
+        $grade = Auth::user()->grade;
 
         $experience->current_xp = $experience->experience_point % Experience::REQUIRED_XP;
 
@@ -89,6 +90,7 @@ class LessonController extends Controller
         $courses = $courseDB->index($schoolId,
             [
                 'subject_id' => $request->subject_id,
+                'grade' => $grade,
                 'per_page' => 99,
             ],
         );
