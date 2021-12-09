@@ -48,7 +48,7 @@ class ActivityResultService
         School::findOrFail($schoolId);
         Activity::findOrFail($activityId);
         User::findOrFail($studentId);
-        
+
         $activityResult = new ActivityResult;
         $activityResult->id = Uuid::uuid4()->toString();
         $activityResult->activity_id = $activityId;

@@ -12,6 +12,6 @@ class ActivityResult extends Model
     public $incrementing = false;
 
     protected $casts = [
-        'answers' => 'array'
+        'answers' => 'array',
     ];
 }
