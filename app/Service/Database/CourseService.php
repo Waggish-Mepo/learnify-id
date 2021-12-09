@@ -13,7 +13,7 @@ class CourseService{
     public function index($schoolId, $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
         $grade = $filter['grade'] ?? null;
         $byGrade = $filter['by_grade'] ?? null;
         $subjectId = $filter['subject_id'] ?? null;

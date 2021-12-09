@@ -14,7 +14,7 @@ class ContentService{
     public function index($schoolId,  $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
         $name = $filter['name'] ?? null;
         $topicId = $filter['topic_id'] ?? null;
         $status = $filter['status'] ?? null;
