@@ -38,8 +38,8 @@
                 <input type="number" min="0" class="form-control" id="time" placeholder="Masukkan estimasi waktu" name="activity_time" value="{{ $activity['time'] }}">
             </div>
             <div class="form-group mb-3">
-                <label for="exp" class="font-18">EXP</label>
-                <input type="number"min="0" max="100" class="form-control" id="exp" placeholder="Masukkan EXP" name="activity_exp" value="{{ $activity['experience'] }}">
+                <label for="exp" class="font-18">Poin Experience</label>
+                <input type="number" min="0" max="100" class="form-control" id="exp" placeholder="Masukkan poin untuk siswa" name="activity_exp" value="{{ $activity['experience'] }}">
             </div>
             <div class="mb-4">
                 <p class="font-18 mb-1">Daftar Soal</p>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="card-body">
                         <p class="font-16 color-black" style="font-family: 'Roboto', sans-serif;">...</p>
-    
+
                         <div class="form-check">
                             <input class="form-check-input" type="radio" value="..." checked>
                             <label class="form-check-label">...</label>
@@ -117,7 +117,7 @@
                 success: function (response) {
                     questions = response.data
                     renderQuestion(response.data);
-                }, 
+                },
                 error: function (e) {
                     swal('Gagal Mengambil Data !')
                 }
@@ -127,7 +127,7 @@
         function renderQuestion(data) {
             let html = ``
 
-            $.each(data, function (key, question) { 
+            $.each(data, function (key, question) {
                 html += `
                 <div class="card mb-3">
                     <div class="card-header bg-blue-2 text-white d-flex flex-row justify-content-between py-0 align-content-center">
@@ -143,7 +143,7 @@
                             ${question.question}
                         </p>`
 
-                        $.each(question.choices, function (key, choice) { 
+                        $.each(question.choices, function (key, choice) {
                             html += `<div class="form-check">
                                 <input class="form-check-input" type="radio" name="${question.id}_activity_answer" id="${question.id}_answer" value="${key}" ${key == question.answer ? 'checked' : ''} onclick="updateQuestionAnswer('${question.id}')">
                                 <label class="form-check-label" for="${question.id}_answer" onclick="updateQuestionAnswer('${question.id}')">${choice}</label>
@@ -190,7 +190,7 @@
             $('textarea[name=update_explanation]').val(question.explanation)
             $(`input[name=update_activity_answer][value=${question.answer}]`).attr('checked', true)
             no = 1
-            $.each(question.choices, function (key, choice) { 
+            $.each(question.choices, function (key, choice) {
                 $(`textarea[name=update_answer_${no++}]`).val(choice)
             });
 
@@ -206,10 +206,10 @@
             choices['B'] = $("textarea[name=answer_2]").val()
             choices['C'] = $("textarea[name=answer_3]").val()
             choices['D'] = $("textarea[name=answer_4]").val()
-            
+
             button = $("#btn-add-activity");
-            
-            
+
+
             if (question === '' || explanation === '' || answer.length === 0) {
                 swal('Lengkapi form secara benar !')
             } else {
@@ -243,7 +243,7 @@
 
         function updateQuestion(data) {
             let button = $("#btn-update-activity");
-            
+
             $.ajax({
                 type: "patch",
                 url: "{{ url('subject/course/topic/question') }}",
@@ -322,13 +322,13 @@
                 topic_id:topic.id,
                 activity_id:activity.id
             }
-            
+
             let button = 'btn-update-activity'
             let buttonHtml = 'Simpan'
             let message = 'Mengubah'
 
             $("#btn-publish").html('Terbitkan');
-            
+
             updateActivity(data, message, button, buttonHtml)
         }
 
@@ -347,7 +347,7 @@
             let button = 'btn-publish'
             let buttonHtml = currentStatus === 'PUBLISHED' ? 'Draf' :'Terbitkan'
             let message = currentStatus === 'PUBLISHED' ? 'mendrafkan' : 'menerbitkan'
-            
+
             updateActivity(data, message, button, buttonHtml)
         }
 

@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 
 class DatabaseSeeder extends Seeder
 {
@@ -59,6 +60,15 @@ class DatabaseSeeder extends Seeder
 
             if ($createdUser->role === 'TEACHER') {
                 $selectedTeacherId = $createdUser->id;
+            }
+
+            if ($createdUser->role === 'STUDENT') {
+                DB::table('experiences')->insert([
+                    'id' => Uuid::uuid4()->toString(),
+                    'user_id' => $createdUser->id,
+                    'experience_point' => 0,
+                    'level' => 0,
+                ]);
             }
         }
 

@@ -14,6 +14,7 @@ class CourseService{
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
         $per_page = $filter['per_page'] ?? 20;
+        $grade = $filter['grade'] ?? null;
         $byGrade = $filter['by_grade'] ?? null;
         $subjectId = $filter['subject_id'] ?? null;
         $createdBy = $filter['created_by'] ?? null;
@@ -22,7 +23,11 @@ class CourseService{
 
         $query = Course::orderBy('created_at', $orderBy);
         if ($byGrade === 1) {
-            $query = Course::orderBy('grade', 'asc');            
+            $query = Course::orderBy('grade', 'asc');
+        }
+
+        if ($grade !== null) {
+            $query->where('grade', $grade);
         }
 
         if ($subjectId !== null) {
@@ -34,7 +39,7 @@ class CourseService{
         }
 
         $courses = $query->simplePaginate($per_page);
-        
+
         return $courses->toArray();
     }
 
