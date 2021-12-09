@@ -154,7 +154,6 @@
 
     function resetValue() {
         $(`input[name=${role}Name]`).val('');
-        $(`input[name=${role}Username]`).val('');
         $(`input[name=${role}Email]`).val('');
         $('input[name=editName]').val('')
         $('input[name=editEmail]').val('')
@@ -167,11 +166,9 @@
 
     function createAccount() {
         let name = $(`input[name=${role}Name]`).val();
-        let username = $(`input[name=${role}Username]`).val();
         let email = $(`input[name=${role}Email]`).val();
         let data = {
                 name,
-                username,
                 email,
                 role
             }
@@ -197,7 +194,7 @@
                 btnSubmit.html('Tambah')
                 $(`#${role}-alert`).show('fast');
                 accounts.push(response)
-                resetValue()
+                // resetValue()
                 getAccount()
             },
             error: function (e) {
@@ -255,6 +252,7 @@
             },
             success: function (response) {
                 $(`#update-alert`).show('fast');
+                $(`#global-username`).html(response.name);
                 setTimeout(function() {
                     $(`#update-alert`).hide('fast')
                     $('#modal-edit-account').modal('hide')

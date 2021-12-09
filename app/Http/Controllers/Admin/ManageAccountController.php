@@ -9,10 +9,10 @@ use App\Imports\TeacherImport;
 use App\Http\Controllers\Controller;
 use App\Service\Database\ExperienceService;
 use App\Service\Database\UserService;
+use Faker\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ManageAccountController extends Controller
@@ -30,14 +30,16 @@ class ManageAccountController extends Controller
 
     public function createAccount(Request $request)
     {
+        $faker = Factory::create();
         $userDB = new UserService;
         $experienceDB = new ExperienceService;
         $schoolId = Auth::user()->school_id;
+        $username = strtolower(explode(' ', $request->name)[0] . $faker->numerify('####'));
 
         $payload = [
             'name' => $request->name,
-            'username' => $request->username,
-            'password' => $request->username,
+            'username' => $username,
+            'password' => $username,
             'role' => $request->role,
             'email' => $request->email,
             'status' => 1,
