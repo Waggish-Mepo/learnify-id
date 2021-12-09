@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Teacher;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\ActivityResult;
+use App\Models\Content;
+use App\Models\ContentResult;
 use App\Models\Topic;
 use App\Service\Database\CourseService;
 use App\Service\Database\SubjectService;
@@ -32,31 +34,23 @@ class ProgressController extends Controller
         $coruseDB = new CourseService;
         $subjectDB = new SubjectService;
         $studentDB = new UserService;
+        $topicDB = new TopicService;
 
         $schoolId = Auth::user()->school_id;
 
         $course = $coruseDB->detail($schoolId, $request->course_id);
         $subject = $subjectDB->detail($schoolId, $request->subject_id);
-        $courses = $coruseDB->index(
-            $schoolId,
-            [
-                'subject_id' => $request->subject_id,
-                'by_grade' => 1,
-            ]
-        )['data'];
+        $topic = $topicDB->detail($schoolId, $request->topic_id);
         $topics =  Topic::where([
             ['subject_id', '=', $request->subject_id],
             ['course_id', '=', $request->course_id],
         ])->get()->toArray();
-        $activitiesDB = Activity::where([ 
+
+        // activity result
+        $activitiesDB = Activity::where([
             ['topic_id', '=', $request->topic_id],
             ['type', '=', 'EXERCISE']
         ])->orderBy('created_at', 'desc')->get();
-        $exam = Activity::where([ 
-            ['topic_id', '=', $request->topic_id],
-            ['type', '=', 'EXAM']
-        ])->get();
-
         $activities = [];
         if(count($activitiesDB)){
             $totalActivity = count($activitiesDB);
@@ -73,10 +67,55 @@ class ProgressController extends Controller
                 }
             }
         }else{
-            $activityResults = null;
+            $activities = null;
+        }
+
+        // content result
+        $contentsDB = Content::where('topic_id', '=', $request->topic_id)->orderBy('created_at', 'desc')->get();
+        $contents = [];
+        if(count($contentsDB)){
+            $totalContent = count($contentsDB);
+            for ($i = 0; $i < $totalContent; $i++) {
+                $contentResults = ContentResult::where('content_id', '=', $contentsDB[$i]['id'])->get();
+                for ($a = 0; $a < count($contentResults); $a++) {
+                    $student = $studentDB->detail($schoolId, $contentResults[$a]['student_id']);
+                    $contentName = Content::where('id', '=', $contentResults[$a]['content_id'])->value('name');
+                    $contentResults[$a]['student_name'] = $student['name'];
+                    $contentResults[$a]['student_email'] = $student['email'];
+                    $contentResults[$a]['name'] = $contentName;
+                    $push = $contentResults->toArray();
+                    array_push($contents, $push[0]);
+                }
+            }
+        }else{
+            $contents = null;
+        }
+
+        // exam result
+        $examsDB = Activity::where([
+            ['topic_id', '=', $request->topic_id],
+            ['type', '=', 'EXAM']
+        ])->get();
+        $exams = [];
+        if(count($examsDB)){
+            $totalExam = count($examsDB);
+            for ($i = 0; $i < $totalExam; $i++) {
+                $examResults = ActivityResult::where('activity_id', '=', $examsDB[$i]['id'])->get();
+                for ($a = 0; $a < count($examResults); $a++) {
+                    $student = $studentDB->detail($schoolId, $examResults[$a]['student_id']);
+                    $examName = Activity::where('id', '=', $examResults[$a]['activity_id'])->value('name');
+                    $examResults[$a]['student_name'] = $student['name'];
+                    $examResults[$a]['student_email'] = $student['email'];
+                    $examResults[$a]['name'] = $examName;
+                    $push = $examResults->toArray();
+                    array_push($exams, $push[0]);
+                }
+            }
+        }else{
+            $exams = null;
         }
         $no = 1;
-        return view('teacher.progress.detail', compact('courses', 'subject', 'course', 'activities', 'no', 'topics'));
+        return view('teacher.progress.detail', compact('subject', 'course', 'activities', 'contents', 'exams', 'no', 'topics', 'topic'));
     }
 
     public function index(Request $request)
