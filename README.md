@@ -8,6 +8,8 @@
 
 ## Tentang Projek Ini
 
+<img src="https://github.com/Waggish-Mepo/smart-school/blob/dev/public/assets/images/logo-with-name-learnifyid.png"/>
+
 Learnify.id adalah aplikasi penunjang kegiatan belajar mengajar berbasis Web. 
 
 Learnify.id menunjang kegiatan pembelajaran secara online maupun ofline, aplikasi ini bisa digunakan oleh guru untuk menyampaikan materi dan juga aktivitas. Selain itu, guru juga bisa melakukan *monitoring* nilai dan kegiatan siswa. Pelajaran disajikan dalam bentuk course, sehingga guru bisa menyusun pembelajaran secara terstruktur
