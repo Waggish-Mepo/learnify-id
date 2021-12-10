@@ -180,7 +180,7 @@ class LessonController extends Controller
         $dataActivity = collect($activities['data'])->groupBy('type');
         $dataActivity['total_exam'] = count($dataActivity['EXAM'] ?? []);
         $dataActivity['total_exercise'] = count($dataActivity['EXERCISE'] ?? []);
-        if ($dataActivity['EXAM']) {
+        if (isset($dataActivity['EXAM'])) {
             $activityExam =  [];
             $dataExam = $dataActivity['EXAM']->toArray();
             foreach ($dataExam as $key => $activity) {
@@ -192,7 +192,7 @@ class LessonController extends Controller
                     ],
                 )['data'][0] ?? null;
             }
-            
+
             $dataActivity['EXAM'] = $activityExam;
         }
 
