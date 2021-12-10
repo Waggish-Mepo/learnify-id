@@ -1,66 +1,33 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="http://smk.kemdikbud.go.id/sakssi-2021" target="_blank"><img src="http://smk.kemdikbud.go.id//sakssi2021/img/logo%20SAKKSI.png" width="400"></a></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="http://smk.kemdikbud.go.id/"><img src="http://smk.kemdikbud.go.id/_next/static/images/logo-smk-bisa-hitam-e95c4fa03ad089f90b70763d6ad2d805.svg" width="100" alt="Build Status"></a>
+<a href="http://smk.kemdikbud.go.id/"><img src="http://smk.kemdikbud.go.id/uploads/images/assets/1605795932835_09a9f9ba-d522-4bd3-bc18-8ea2e683073f.svg" width="100"  alt="Total Downloads"></a>
+<a href="http://smk.kemdikbud.go.id/"><img src="https://scontent.fcgk4-5.fna.fbcdn.net/v/t1.6435-9/201885111_10157967303166746_2816217612350219120_n.png?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeEN0ITkUY5q7XJavbarXqd6XwHckKfGqmpfAdyQp8aqavW4KsQUE0x4iWB_qZKd7DcScnlVxwN_RG_lINk_JLG1&_nc_ohc=ZgC0smYgzl0AX8MD-w-&tn=MEFENsESs66icTgM&_nc_ht=scontent.fcgk4-5.fna&oh=68a7864ef1e036a67db957e9d592f331&oe=61DA22D6" width="80"  alt="Total Downloads"></a>
 </p>
 
-## About Laravel
+## Tentang Projek Ini
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Learnify.id adalah aplikasi penunjang kegiatan belajar mengajar berbasis Web. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Learnify.id menunjang kegiatan pembelajaran secara online maupun ofline, aplikasi ini bisa digunakan oleh guru untuk menyampaikan materi dan juga aktivitas. Selain itu, guru juga bisa melakukan *monitoring* nilai dan kegiatan siswa. Pelajaran disajikan dalam bentuk course, sehingga guru bisa menyusun pembelajaran secara terstruktur
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Tujuan dibuatnya Learnify.id adalah dibutuhkannya aplikasi pembelajaran jarak jauh (ataupun secara tatap muka) yang praktis, cepat diakses, sentral dan diatur langsung oleh sekolah. Melihat ke pengalaman selama pandemi COVID-19, sekolah-sekolah biasanya melakukan kegiatan PJJ lewat berbagai aplikasi: materi di *share* via grup *WhatsApp* dalam beberapa bentuk dokumen, ulangan dilakukan lewat *Google Forms* atau aplikasi serupa, tugas dikumpulkan lewat *Google Classroom* dan sebagainya. Learnify.id bisa dimanfaatkan untuk keperluan-keperluan tersebut sehingga pembelajaran tidak terpisah dibanyak aplikasi.
 
-## Learning Laravel
+Siswa cukup login dan langsung bisa mengakses pembelajaran yang sudah disusun oleh guru. Siswa bisa membaca teks, menonton video, atau mengerjakan latihan yang terdapat pada course / pelajaran sesuai mata pelajaran. Setiap pelajaran bisa memiliki banyak topik yang isinya berupa materi dan aktivitas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Guru juga bisa memonitor ketuntasan belajar siswa lewat fitur statistik pelajaran. Guru bisa melihat nilai latihan / ulangan siswa dan ulasan yang sudah dibaca siswa.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Tech Stack
+- Laravel 8
+- PHP 7.4^
+- MySql
+- Bootstrap
+- JQuery
+- dan library lainnya
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Instalasi
+- Clone repository
+- Install package dengan ```composer install```
+- Migrate database ```php artisan migrate```
+- Seed database ```php artisan db:seed```
