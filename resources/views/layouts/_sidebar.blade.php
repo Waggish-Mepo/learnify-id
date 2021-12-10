@@ -15,7 +15,7 @@
             </div>
             <div class="dropdown">
                 <span>Halo,</span>
-                <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong>{{ Auth::user()->name }}</strong></a>
+                <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong id="global-username">{{ Auth::user()->name }}</strong></a>
                 <ul class="dropdown-menu dropdown-menu-right account vivify flipInY p-0">
                     <li><a href="{{ route('change-password') }}" ><i class="icon-lock"></i>Ganti Password</a></li>
                     <li><a href="#" class="js-sweetalert" data-type="confirm-logout"><i class="icon-power"></i>Keluar</a></li>

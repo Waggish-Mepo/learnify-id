@@ -13,14 +13,6 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="{{ request()->route('role') }}Username" class="form-control text-dark">
-            </div>
-        </div>
-    </div>
-    <div class="row clearfix" onclick="$('#{{ request()->route('role') }}-alert').hide('fast')">
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <div class="form-group">
                 <label>Email</label>
                 <input type="email" name="{{ request()->route('role') }}Email" class="form-control text-dark">
             </div>
