@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Service\Database\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+Use \Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -20,10 +21,12 @@ class UserController extends Controller
 
         $pw_matches = Session::get('pw_matches') ?? 0;
 
+        $time = date('H:i:a', time());
+
         // Admin Dashboard
         if ($user['role'] === 'ADMIN') {
             $users = $userService->index($schoolId)['data'];
-            return view('admin.dashboard', compact('users', 'pw_matches'));
+            return view('admin.dashboard', compact('users', 'pw_matches'));   
         }
 
         // Teacher Dashboard
