@@ -6,7 +6,7 @@
 
 .container-student{
     min-height: 89vh;    
-    padding-bottom: 200px !important;
+    padding-bottom: 230px !important;
 }
 
 .top-img{
@@ -16,12 +16,10 @@
 
 .bottom-img{
     bottom: 0;
-    left: 0;
 }
 
 .bottom-img-activity{
     bottom: 0;
-    left: 0;
 }
 
 .opacity-90{
