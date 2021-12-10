@@ -166,7 +166,9 @@ class LessonController extends Controller
 
     public function getActivity(Request $request) {
         $activityDB = new ActivityService;
+        $activityResultDB = new ActivityResultService;
         $schoolId = Auth::user()->school_id;
+        $userId = Auth::user()->id;
 
         $activities = $activityDB->index($schoolId,
             [
@@ -175,11 +177,26 @@ class LessonController extends Controller
             ],
         );
 
-        $data = collect($activities['data'])->groupBy('type');
-        $data['total_exam'] = count($data['EXAM'] ?? []);
-        $data['total_exercise'] = count($data['EXERCISE'] ?? []);
+        $dataActivity = collect($activities['data'])->groupBy('type');
+        $dataActivity['total_exam'] = count($dataActivity['EXAM'] ?? []);
+        $dataActivity['total_exercise'] = count($dataActivity['EXERCISE'] ?? []);
+        if ($dataActivity['EXAM']) {
+            $activityExam =  [];
+            $dataExam = $dataActivity['EXAM']->toArray();
+            foreach ($dataExam as $key => $activity) {
+                $activityExam[$key] = $activity;
+                $activityExam[$key]['activity_result'] = $activityResultDB->index($schoolId,
+                    [
+                        'activity_id' => $activity['id'],
+                        'student_id' => $userId,
+                    ],
+                )['data'][0] ?? null;
+            }
+            
+            $dataActivity['EXAM'] = $activityExam;
+        }
 
-        return response()->json($data);
+        return response()->json($dataActivity);
     }
 
     public function detailContent(Request $request) {

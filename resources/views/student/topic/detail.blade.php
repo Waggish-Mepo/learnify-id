@@ -171,7 +171,7 @@
         $.each(data.EXAM, function (key, exam) { 
             htmlExam += `
             <div class="mt-3">
-                <a href="{{ url('/student/subject/${subject.id}/course/${course.id}/topic/${topic.id}/activity/${exam.id}') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
+                <a href="javascript:void(0)" class="d-flex align-items-center p-2 w-100 ${exam.activity_result !== null ? 'bg-purple-1' : 'bg-white'} shadow-sm rounded border-hover" onclick="confirmExam('${exam.id}', '${exam.name}', ${exam.activity_result !== null ? true : false})">
                     <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="fa fa-puzzle-piece text-white"></i></div>
                     <div class="ml-3">
                     <p class="text-dark text-uppercase text-dark pt-3">${exam.name}</p>
@@ -213,6 +213,22 @@
         $('#render-exam').show('fast');
         $('#loading-exam').hide('fast');
         $('#loading-exercise').hide('fast');
+    }
+
+    function confirmExam(activityId, name, finish) {
+        if (finish === true) {
+            swal(`Anda sudah mengerjakan ulangan ${name}!`)
+        } else {
+            swal({
+                title: `Mulai Ulangan ${name}?`,
+                confirmButtonText: "Ya !",
+                cancelButtonText: "Tidak !",
+                closeOnConfirm: false,
+                showCancelButton: true,
+            }, function () {
+                window.location.href = `{{ url('/student/subject/${subject.id}/course/${course.id}/topic/${topic.id}/activity/${activityId}') }}`
+            });
+        }
     }
 
 </script>
