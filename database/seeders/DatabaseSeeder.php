@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         $users = [
             [
                 'name' => 'adminuser',
-                'username' => 'admin123',
-                'password' => Hash::make('admin123'),
+                'username' => 'adminlearnify123',
+                'password' => Hash::make('adminlearnify123'),
                 'role' => User::ADMIN,
                 'status' => true,
                 'grade' => 12,
@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'teacheruser',
-                'username' => 'teacher123',
-                'password' => Hash::make('teacher123'),
+                'username' => 'teacherlearnify123',
+                'password' => Hash::make('teacherlearnify123'),
                 'role' => User::TEACHER,
                 'status' => true,
                 'grade' => 12,
@@ -45,8 +45,8 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'studentuser',
-                'username' => 'student123',
-                'password' => Hash::make('student123'),
+                'username' => 'studentlearnify123',
+                'password' => Hash::make('studentlearnify123'),
                 'role' => User::STUDENT,
                 'status' => true,
                 'grade' => 12,
