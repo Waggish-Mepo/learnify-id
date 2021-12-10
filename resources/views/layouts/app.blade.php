@@ -22,17 +22,11 @@
 <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/teacher.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/student.css')}}">
-
-{{-- ckeditor --}}
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 </head>
 <body class="theme-cyan font-montserrat light_version">
 
 <!-- Page Loader -->
 @extends('layouts._loader')
-
-<!-- Theme Setting -->
-@extends('layouts._theme_setting')
 
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
@@ -48,11 +42,11 @@
             <div id="main-content" class="main-student w-100">
                 <div class="container-fluid position-relative container-student">
                     <div class="position-absolute top-img">
-                        <img src="{{asset('assets/images/top.svg')}}" width="130">
+                        <img src="{{asset('assets/images/top.svg')}}" width="120">
                     </div>
                     @yield('content')
                     <div class="position-absolute bottom-img-activity">
-                        <img src="{{asset('assets/images/bottom.svg')}}">
+                        <img src="{{asset('assets/images/bottom.svg')}}" id="img-bg-bottom-activity">
                     </div>
                 </div>
             </div>
@@ -60,14 +54,16 @@
             <div id="main-content" class="main-student">
                 <div class="container-fluid position-relative container-student">
                     <div class="position-absolute top-img">
-                        <img src="{{asset('assets/images/top.svg')}}" width="130">
+                        <img src="{{asset('assets/images/top.svg')}}" width="120">
                     </div>
                     @yield('content')
-                    <div class="position-absolute bottom-img">
-                        <img src="{{asset('assets/images/bottom.svg')}}">
-                    </div>
+                    
                 </div>
+                <div class="position-absolute bottom-img">
+                        <img src="{{asset('assets/images/bottom.svg')}}" id="img-bg-bottom">
+                    </div>
             </div>
+            
         @endif
     @else
         <div id="main-content">
@@ -95,11 +91,9 @@
 
 <script src="{{asset('assets/vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('assets/js/pages/ui/dialogs.js')}}"></script>
+<script src="{{asset('assets/js/pages/custom.js')}}"></script>
 <script>
-    let pwMatches = {!! $pw_matches = $pw_matches ?? false !!};
-    console.log(pwMatches);
-
-    if (pwMatches) {
+    if ({{ $pw_matches ?? 'false' }}) {
         swal({
             title: 'Password kamu belum diganti!',
             text: 'Ganti password untuk memperkuat keamanan akun kamu',
@@ -113,6 +107,7 @@
         })
     }
 </script>
+<script src="{{asset('assets/vendor/ckeditor/build/ckeditor.js')}}"></script>
 @yield('script')
 
 </body>

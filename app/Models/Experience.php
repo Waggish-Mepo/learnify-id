@@ -12,4 +12,8 @@ class Experience extends Model
     const REQUIRED_XP = 100;
 
     public $incrementing = false;
+
+    public function user() {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

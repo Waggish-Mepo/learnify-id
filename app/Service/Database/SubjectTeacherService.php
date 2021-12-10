@@ -12,7 +12,7 @@ class SubjectTeacherService {
     public function index($schoolId, $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
         $teacherId = $filter['teacher_id'] ?? null;
 
         School::findOrFail($schoolId);

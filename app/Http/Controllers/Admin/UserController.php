@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Experience;
 use Illuminate\Http\Request;
 use App\Service\Database\UserService;
 use Illuminate\Support\Facades\Auth;
@@ -37,8 +38,10 @@ class UserController extends Controller
 
         // Student Dashboard
         if ($user['role'] === 'STUDENT') {
-            // 
-            return view('student.dashboard', compact('pw_matches', 'user'));
+            $experience = Auth::user()->experience;
+
+            $experience->current_xp = $experience->experience_point % Experience::REQUIRED_XP;
+            return view('student.dashboard', compact('pw_matches', 'user', 'experience'));
         }
     }
 }

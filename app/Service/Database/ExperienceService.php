@@ -13,15 +13,32 @@ class ExperienceService
     public function index($schoolId,  $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 999;
+        $with_users = $filter['with_users'] ?? false;
+        $by_xp = $filter['order_by_xp'] ?? false;
         $user_id = $filter['student_id'] ?? null;
+        $grade = $filter['grade'] ?? null;
 
         School::findOrFail($schoolId);
 
-        $query = Experience::orderBy('created_at', $orderBy);
+        $query = Experience::where('school_id', $schoolId);
+
+        if($by_xp) {
+            $query->orderBy('experience_point', $orderBy);
+        } else {
+            $query->orderBy('created_at', $orderBy);
+        }
 
         if ($user_id !== null) {
             $query->where('user_id', $user_id);
+        }
+
+        if ($grade !== null) {
+            $query->where('grade', $grade);
+        }
+
+        if($with_users) {
+            $query->with('user');
         }
 
         $experiences = $query->simplePaginate($per_page);
@@ -44,6 +61,7 @@ class ExperienceService
 
         $experience = new Experience;
         $experience->id = Uuid::uuid4()->toString();
+        $experience->school_id = $schoolId;
         $experience->user_id = $userId;
         $experience = $this->fill($experience, $payload);
         $experience->save();
@@ -55,9 +73,21 @@ class ExperienceService
     {
         School::findOrFail($schoolId);
         User::findOrFail($userId);
-
         $experience = Experience::findOrFail($experienceId);
-        $experience = $this->fill($experience, $payload);
+
+        $currentExp = $experience->experience_point;
+
+        $updateExp = $currentExp + $payload['experience'];
+
+        $level = intdiv($updateExp, Experience::REQUIRED_XP);
+
+        $attributes = [
+            'user_id' => $userId,
+            'level' => $level,
+            'experience_point' => $updateExp,
+        ];
+
+        $experience = $this->fill($experience, $attributes);
         $experience->save();
 
         return $experience->toArray();
@@ -71,6 +101,7 @@ class ExperienceService
 
         Validator::make($experience->toArray(), [
             'user_id' => 'required',
+            'grade' => 'required|integer',
             'experience_point' => 'required|integer',
             'level' => 'required|integer',
         ])->validate();

@@ -12,7 +12,7 @@ use Ramsey\Uuid\Uuid;
 class ContentResultService{
     public function index($schoolId,  $filter = []) {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
         $content_id = $filter['content_id'] ?? null;
         $student_id = $filter['student_id'] ?? null;
 
@@ -62,8 +62,8 @@ class ContentResultService{
         $contentId,
         $studentId,
         $contentResultId,
-        $payload,
-        )
+        $payload
+    )
     {
         School::findOrFail($schoolId);
         Content::findOrFail($contentId);

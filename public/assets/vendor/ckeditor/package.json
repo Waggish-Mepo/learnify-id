@@ -1,56 +1,45 @@
 {
-  "name": "ckeditor",
-  "version": "4.5.10",
-  "description": "JavaScript WYSIWYG web text editor.",
-  "main": "ckeditor.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ckeditor/ckeditor-releases.git"
+  "name": "ckeditor5-custom-build",
+  "author": "CKSource",
+  "description": "A custom CKEditor 5 build made by the CKEditor 5 online builder.",
+  "version": "0.0.1",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
+  "main": "./build/ckeditor.js",
+  "devDependencies": {
+    "@ckeditor/ckeditor5-adapter-ckfinder": "^31.0.0",
+    "@ckeditor/ckeditor5-alignment": "^31.0.0",
+    "@ckeditor/ckeditor5-autoformat": "^31.0.0",
+    "@ckeditor/ckeditor5-basic-styles": "^31.0.0",
+    "@ckeditor/ckeditor5-block-quote": "^31.0.0",
+    "@ckeditor/ckeditor5-cloud-services": "^31.0.0",
+    "@ckeditor/ckeditor5-code-block": "^31.0.0",
+    "@ckeditor/ckeditor5-dev-utils": "^25.4.5",
+    "@ckeditor/ckeditor5-dev-webpack-plugin": "^25.4.5",
+    "@ckeditor/ckeditor5-editor-classic": "^31.0.0",
+    "@ckeditor/ckeditor5-essentials": "^31.0.0",
+    "@ckeditor/ckeditor5-find-and-replace": "^31.0.0",
+    "@ckeditor/ckeditor5-heading": "^31.0.0",
+    "@ckeditor/ckeditor5-image": "^31.0.0",
+    "@ckeditor/ckeditor5-indent": "^31.0.0",
+    "@ckeditor/ckeditor5-link": "^31.0.0",
+    "@ckeditor/ckeditor5-list": "^31.0.0",
+    "@ckeditor/ckeditor5-media-embed": "^31.0.0",
+    "@ckeditor/ckeditor5-paragraph": "^31.0.0",
+    "@ckeditor/ckeditor5-paste-from-office": "^31.0.0",
+    "@ckeditor/ckeditor5-table": "^31.0.0",
+    "@ckeditor/ckeditor5-theme-lark": "^31.0.0",
+    "@ckeditor/ckeditor5-typing": "^31.0.0",
+    "css-loader": "^5.2.7",
+    "postcss": "^8.3.11",
+    "postcss-loader": "^4.3.0",
+    "raw-loader": "^4.0.2",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^4.2.3",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.9.1"
   },
-  "keywords": [
-    "ckeditor",
-    "fckeditor",
-    "editor",
-    "wysiwyg",
-    "html",
-    "richtext",
-    "text",
-    "javascript"
-  ],
-  "author": {
-    "name": "CKSource",
-    "url": "http://cksource.com/"
-  },
-  "license": "For licensing, see LICENSE.md or http://ckeditor.com/license.",
-  "bugs": {
-    "url": "http://dev.ckeditor.com"
-  },
-  "homepage": "http://ckeditor.com",
-  "gitHead": "b889d7d3071a7a9d691e2e89170c745159f9f8c9",
-  "_id": "ckeditor@4.5.10",
-  "scripts": {},
-  "_shasum": "944128336a9a26316640746687b530b716272d27",
-  "_from": "ckeditor@4.5.10",
-  "_npmVersion": "3.8.6",
-  "_nodeVersion": "5.7.0",
-  "_npmUser": {
-    "name": "cksource",
-    "email": "npm@cksource.com"
-  },
-  "dist": {
-    "shasum": "944128336a9a26316640746687b530b716272d27",
-    "tarball": "https://registry.npmjs.org/ckeditor/-/ckeditor-4.5.10.tgz"
-  },
-  "maintainers": [
-    {
-      "name": "cksource",
-      "email": "npm@cksource.com"
-    }
-  ],
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/ckeditor-4.5.10.tgz_1468418661689_0.8480386324226856"
-  },
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/ckeditor/-/ckeditor-4.5.10.tgz"
+  "scripts": {
+    "build": "webpack --mode production"
+  }
 }
