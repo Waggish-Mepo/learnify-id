@@ -15,7 +15,7 @@ use App\Service\Database\TopicService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Service\Database\UserService;
-
+use Illuminate\Support\Facades\DB;
 class ProgressController extends Controller
 {
     public function progress()
@@ -224,5 +224,24 @@ class ProgressController extends Controller
         $topics['total'] = count($topics['data']);
 
         return response()->json($topics);
+    }
+
+    public function sendNotif($activity_id){
+        
+        
+        $examsDB = ActivityResult::where(['activity_id'=>$activity_id])->get();
+
+        foreach ($examsDB as $key => $value) {
+            DB::table('notif')->insert([
+                'student_id'=>$value->student_id,
+                'teacher_id'=>Auth::id(),
+                'title'=>"hai",
+                'message'=>"heheh".$value->score,
+                'is_send'=>0
+                
+            ]);
+        }
+        dd('sudah di kirim');
+        
     }
 }
