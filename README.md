@@ -1,4 +1,4 @@
-<p align="center"><a href="http://smk.kemdikbud.go.id/sakssi-2021" target="_blank"><img src="http://smk.kemdikbud.go.id//sakssi2021/img/logo%20SAKKSI.png" width="400"></a></p>
+<p align="center"><a href="http://smk.kemdikbud.go.id/sakssi-2021" target="_blank"><img src="https://ibb.co/4sf0Q4S" width="400"></a></p>
 
 <p align="center">
 <a href="http://smk.kemdikbud.go.id/"><img src="http://smk.kemdikbud.go.id/_next/static/images/logo-smk-bisa-hitam-e95c4fa03ad089f90b70763d6ad2d805.svg" width="100" alt="Build Status"></a>
