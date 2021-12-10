@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Experience;
 use Illuminate\Http\Request;
 use App\Service\Database\UserService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -17,22 +19,26 @@ class UserController extends Controller
 
         $user = $userService->detail($schoolId, $userId);
 
+        $pw_matches = Session::get('pw_matches') ?? 0;
+
         // Admin Dashboard
         if ($user['role'] === 'ADMIN') {
             $users = $userService->index($schoolId)['data'];
-            return view('admin.dashboard', compact('users'));
+            return view('admin.dashboard', compact('users', 'pw_matches'));
         }
 
         // Teacher Dashboard
         if ($user['role'] === 'TEACHER') {
-            // 
-            return view('teacher.dashboard');
+            return view('teacher.dashboard', compact('pw_matches'))
+            ->with('user', $user);
         }
 
         // Student Dashboard
         if ($user['role'] === 'STUDENT') {
-            // 
-            return view('student.dashboard');
+            $experience = Auth::user()->experience;
+
+            $experience->current_xp = $experience->experience_point % Experience::REQUIRED_XP;
+            return view('student.dashboard', compact('pw_matches', 'user', 'experience'));
         }
     }
 }

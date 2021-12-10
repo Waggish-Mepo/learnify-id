@@ -441,4 +441,49 @@
 .font-20 {
   font-size: 20px;
 }
+
+.ck.ck-editor__main .ck-content {
+  min-height: 250px;
+}
+
+@media screen and (min-width: 1200px){
+  .notif{
+    left: -400px !important;
+  }
+}
+
+@media screen and (min-width: 992px){
+  .notif{
+    left: -350px !important;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .notif{
+    left: -300px !important;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .notif{
+    left: 350px !important;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .notif{
+    left: 300px !important;
+  }
+}
+
+@media screen and (max-width: 670px){
+  .notif{
+    left: 250px !important;
+  }
+}
+@media screen and (max-width: 615px){
+  .notif{
+    left: 200px !important;
+  }
+}
 /*# sourceMappingURL=custom.css.map */

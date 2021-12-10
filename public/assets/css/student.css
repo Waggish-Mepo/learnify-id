@@ -1,0 +1,171 @@
+.main-student{
+    background-image: linear-gradient(#17C2D7, #fff);
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container-student{
+    min-height: 89vh;    
+    padding-bottom: 230px !important;
+}
+
+.top-img{
+    top: -15px;
+    right: -10px;
+}
+
+.bottom-img{
+    bottom: 0;
+}
+
+.bottom-img-activity{
+    bottom: 0;
+}
+
+.opacity-90{
+    opacity: 90%;
+}
+
+.opacity-50{
+    opacity: 50%;
+}
+
+.f-15{
+    font-size: 1.3rem;
+}
+
+.i-search{
+    top: 7px;
+    left: 10px;
+}
+
+.w-progress{
+    z-index: 1080;
+    width: 10rem;
+}
+
+.w-search{
+    width: 45%;
+}
+
+.w-motif{
+    width: 40px;
+    padding: 0.7rem 0;
+    font-size: 1rem;
+    height: auto;
+}
+
+.img-roket{
+    display: none;
+}
+
+.border-hover:hover .img-roket{
+    display: block;
+}
+
+.result {
+    max-width: 400px;
+}
+
+.bg-blur-grey{
+    background: #e0dede !important;
+}
+
+.xp-bar{
+    margin-left: 20px !important;
+}
+
+@media (max-width: 1200px){
+    .xp-bar {
+        margin-left: 0 !important;
+    }
+}
+@media (max-width: 960px){
+    .f-15{
+        font-size: 1rem;
+    }
+    .form-control.search{
+        font-size: 0.7rem !important;
+    }
+    .i-search{
+        top: 5px;
+    }
+}
+@media (max-width: 800px){
+    .font-18{
+        font-size: 0.9rem !important;
+    }
+    h3, h4, h5{
+        font-size: 1.3rem !important;
+    }
+}
+@media (max-width: 700px){
+    q{
+        font-size: 0.7rem !important;
+    }
+    a.border-hover{
+        font-size: 0.7rem !important;
+    }
+    p.text-justify{
+        font-size: 0.75rem !important;
+    }
+    .btn {
+        font-size: 0.7rem !important;
+    }
+    .p-r-15,
+    .top-navbar .navbar-btn{
+        padding-right: 0px !important;
+    }
+    .container-student {
+        padding-bottom: 150px !important;
+    }
+}
+@media (max-width: 540px) {
+    .container-studen {
+        min-height: 85vh;
+        padding-bottom: 150px;
+    }
+    .f-15{
+        font-size: 0.75rem;
+    }
+    .font-20{
+        font-size: 16px !important;
+    }
+    .container-student {
+        padding-bottom: 100px !important;
+    }
+    #content{
+        font-size: 0.76rem !important;
+    }
+    ul.breadcrumb li{
+        font-size: 0.6rem !important;
+    }
+    h3,
+    h4,
+    h5 {
+        font-size: 1rem !important;
+    }
+}
+@media (max-width: 480px){
+    .title-xp, .title-level{
+        font-size: 0.65rem !important;
+    }
+    .w-progress{
+        height: 10px !important;
+        width: 6rem !important;
+    }
+    .m-r-15,
+    .top-navbar .navbar-btn,
+    .navbar-nav,
+    .feeds_widget li .feeds-left,
+    .w_knob .c_know,
+    .team-info li .first{
+        margin-right: 0 !important;
+    }
+    .navbar-nav .icon-menu{
+        padding: 15px 2px !important;
+    }
+    .top-img img{
+        width: 80px !important;
+    }
+}

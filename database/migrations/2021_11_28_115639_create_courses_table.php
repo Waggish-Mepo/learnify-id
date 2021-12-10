@@ -15,6 +15,7 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('description');
             $table->uuid('subject_id')->index();
             $table->uuid('created_by');
             $table->timestamps();

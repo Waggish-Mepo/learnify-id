@@ -52,7 +52,7 @@ class TopicService{
         $topic = new Topic;
         $topic->id = Uuid::uuid4()->toString();
         $topic->subject_id = $subjectId;
-        $topic->course_id = $subjectId;
+        $topic->course_id = $courseId;
         $topic = $this->fill($topic, $payload);
         $topic->save();
 

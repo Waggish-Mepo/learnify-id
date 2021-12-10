@@ -12,13 +12,16 @@ class SubjectTeacherService {
     public function index($schoolId, $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
+        $teacherId = $filter['teacher_id'] ?? null;
 
         School::findOrFail($schoolId);
 
         $query = SubjectTeacher::orderBy('created_at', $orderBy);
-
-        $query->where('school_id', $schoolId);
+        
+        if ($teacherId !== null) {
+            $query->whereJsonContains('teachers', $teacherId);
+        }
 
         $users = $query->simplePaginate($per_page);
 

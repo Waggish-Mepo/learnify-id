@@ -13,13 +13,22 @@ class CourseService{
     public function index($schoolId, $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
+        $grade = $filter['grade'] ?? null;
+        $byGrade = $filter['by_grade'] ?? null;
         $subjectId = $filter['subject_id'] ?? null;
         $createdBy = $filter['created_by'] ?? null;
 
         School::findOrFail($schoolId);
 
         $query = Course::orderBy('created_at', $orderBy);
+        if ($byGrade === 1) {
+            $query = Course::orderBy('grade', 'asc');
+        }
+
+        if ($grade !== null) {
+            $query->where('grade', $grade);
+        }
 
         if ($subjectId !== null) {
             $query->where('subject_id', $subjectId);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -23,11 +24,18 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt(($credentials + ['status' => true]))){
+        if (Auth::attempt(($credentials + ['status' => true]), $request->get('remember'))){
+            $currentPassword = auth()->user()->password;
+
+            if (HASH::check(Auth::user()->username, $currentPassword)){
+                $pw_matches = true;
+                return redirect('dashboard')->with('pw_matches', $pw_matches);
+            }
+
             return redirect('dashboard');
         }
 
-        return redirect('login')->view('shared.login');
+        return redirect('login');
     }
 
     public function logout(){

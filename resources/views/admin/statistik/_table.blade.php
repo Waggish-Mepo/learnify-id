@@ -3,8 +3,13 @@
         <thead>
             <tr>
                 <th class="w60">#</th>
-                <th class="w60">Name</th>
+                <th>Name</th>
+                @if(request()->route('role') === 'STUDENT')
                 <th>NIS</th>
+                @endif
+                @if(request()->route('role') === "STUDENT")
+                <th>Kelas</th>
+                @endif
                 <th>Username</th>
                 <th>Status</th>
                 <th class="w100">Action</th>
@@ -54,8 +59,13 @@
         <thead>
             <tr>
                 <th class="w60">#</th>
-                <th class="w60">Name</th>
+                <th>Name</th>
+                @if(request()->route('role') === 'STUDENT')
                 <th>NIS</th>
+                @endif
+                @if(request()->route('role') === "STUDENT" || request()->route('role') === "TEACHER")
+                <th>Kelas</th>
+                @endif
                 <th>Username</th>
                 <th>Status</th>
                 <th class="w100">Action</th>
@@ -74,8 +84,13 @@
         <thead>
             <tr>
                 <th class="w60">#</th>
-                <th class="w60">Name</th>
+                <th>Name</th>
+                @if(request()->route('role') === 'STUDENT')
                 <th>NIS</th>
+                @endif
+                @if(request()->route('role') === "STUDENT")
+                <th>Kelas</th>
+                @endif
                 <th>Username</th>
                 <th>Status</th>
                 <th class="w100">Action</th>

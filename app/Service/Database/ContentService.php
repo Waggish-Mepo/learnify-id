@@ -4,7 +4,6 @@ namespace App\Service\Database;
 
 use App\Models\Content;
 use App\Models\School;
-use App\Models\Subject;
 use App\Models\Topic;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -15,7 +14,7 @@ class ContentService{
     public function index($schoolId,  $filter = [])
     {
         $orderBy = $filter['order_by'] ?? 'DESC';
-        $per_page = $filter['per_page'] ?? 20;
+        $per_page = $filter['per_page'] ?? 99;
         $name = $filter['name'] ?? null;
         $topicId = $filter['topic_id'] ?? null;
         $status = $filter['status'] ?? null;
@@ -46,7 +45,7 @@ class ContentService{
         School::findOrFail($schoolId);
         $content = Content::findOrFail($contentId);
 
-        return $content;
+        return $content->toArray();
     }
 
     public function create($schoolId, $topicId, $payload)
@@ -85,7 +84,9 @@ class ContentService{
         Validator::make($content->toArray(), [
             'topic_id' => 'required|string',
             'name' => 'required|string',
-            'content' => 'required',
+            'content' => 'nullable|string',
+            'experience' => 'nullable|numeric',
+            'estimation' => 'nullable|numeric',
             'status' => ['required', Rule::in(config('constant.content.status'))],
         ])->validate();
 

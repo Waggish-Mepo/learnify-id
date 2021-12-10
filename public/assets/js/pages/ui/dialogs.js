@@ -34,6 +34,12 @@ $(function () {
         else if (type === 'reset-password') {
             showResetPasswordMessage();
         }
+        else if (type === 'confirm-logout') {
+            showConfirmLogoutMessage();
+        }
+        else if (type === 'confirm-back') {
+            showConfirmBackMessage();
+        }
     });
 });
 
@@ -152,5 +158,31 @@ function showResetPasswordMessage(id, username) {
         closeOnConfirm: false,
     }, function () {
         resetPassword(id, username)
+    });
+}
+
+function showConfirmLogoutMessage() {
+    swal({
+        title: "Kamu yakin ingin keluar?",
+        showCancelButton: true,
+        confirmButtonColor: "#dc3545",
+        confirmButtonText: "Yakin!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+    }, function () {
+        window.location.href = "/logout";
+    });
+}
+
+function showConfirmBackMessage() {
+    swal({
+        title: "Kamu yakin ingin kembali?",
+        showCancelButton: true,
+        confirmButtonColor: "#dc3545",
+        confirmButtonText: "Yakin!",
+        cancelButtonText: "Tidak!",
+        closeOnConfirm: false,
+    }, function () {
+        window.location.href = "/dashboard";
     });
 }
