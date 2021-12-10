@@ -57,11 +57,13 @@
                         <img src="{{asset('assets/images/top.svg')}}" width="120">
                     </div>
                     @yield('content')
-                    <div class="position-absolute bottom-img">
+                    
+                </div>
+                <div class="position-absolute bottom-img">
                         <img src="{{asset('assets/images/bottom.svg')}}" id="img-bg-bottom">
                     </div>
-                </div>
             </div>
+            
         @endif
     @else
         <div id="main-content">
