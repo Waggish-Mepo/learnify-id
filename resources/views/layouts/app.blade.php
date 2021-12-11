@@ -98,7 +98,7 @@
             title: 'Password kamu belum diganti!',
             text: 'Ganti password untuk memperkuat keamanan akun kamu',
             showCancelButton: true,
-            confirmButtonColor: "#007bff",
+            confirmButtonColor: "#17C2D7",
             confirmButtonText: "Ganti Password",
             cancelButtonText: "Lewati",
             closeOnConfirm: false,

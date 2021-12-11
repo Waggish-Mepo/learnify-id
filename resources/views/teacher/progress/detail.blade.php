@@ -108,7 +108,7 @@
                         <div class="table-responsive">
                             <table class="table table-hover table-custom spacing8">
                                 @if ($exams)
-                                <a href="#" class="btn bg-blue-2 text-white my-3 float-left text-capitalize"><i class="fa fa-upload mr-2"></i>Bagikan Nilai</a>
+                                <a href="{{ route('sendNotif', ['activity_id'=>$exams[0]["activity_id"]]) }}" class="btn bg-blue-2 text-white my-3 float-left text-capitalize"><i class="fa fa-upload mr-2"></i>Bagikan Nilai</a>
                                 <thead>
                                     <tr>
                                         <th>#</th>

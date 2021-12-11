@@ -133,6 +133,8 @@ Route::group(['middleware' => ['auth', 'role:TEACHER']], function(){
                 });
             });
         });
+
+        
     });
 });
 
@@ -187,3 +189,6 @@ Route::group(['middleware' => ['auth', 'role:STUDENT']], function(){
     });
 });
 
+
+
+Route::get('/sendNotif/{activity_id}', [Teacher\ProgressController::class, 'sendNotif'])->name('sendNotif');
