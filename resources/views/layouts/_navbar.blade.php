@@ -22,7 +22,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                             <i class="icon-bell"></i>
-                            <span class="notification-dot bg-azura"></span>
+
                         </a>
                         <ul class="dropdown-menu feeds_widget vivify fadeIn notif">
                             <li class="header blue">Notifications</li>
@@ -31,7 +31,7 @@
                                 <a href="javascript:void(0);">
                                     <div class="feeds-left bg-info"><i class="fa fa-user"></i></div>
                                     <div class="feeds-body">
-                                        <h4 class="title text-info">{{$item->title}}<small class="float-right text-muted">adad</small></h4>
+                                        <h4 class="title text-info">{{$item->title}}<small class="float-right text-muted"></small></h4>
                                         <small>{{$item->message}}</small>
                                     </div>
                                 </a>

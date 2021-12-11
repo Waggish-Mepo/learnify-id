@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotifTable extends Migration
+class AddIsSendToNotif extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateNotifTable extends Migration
      */
     public function up()
     {
-        Schema::create('notif', function (Blueprint $table) {
-            $table->uuid('student_id');
-            $table->uuid('teacher_id');
-            $table->string('title');
-            $table->string('message');
-            $table->timestamps();
+        Schema::table('notif', function (Blueprint $table) {
+            $table->boolean('is_send');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateNotifTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notif');
+        Schema::table('notif', function (Blueprint $table) {
+            $table->dropColumn('is_send');
+        });
     }
 }
