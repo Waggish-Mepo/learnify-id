@@ -160,16 +160,16 @@ class LessonController extends Controller
             'order_by' => 'ASC',
         ]);
         $contents['total'] = count($contents['data'] ?? []);
-        $contentResult =[];
-
+        
         if (isset($contents['total'])) {
             $contentResultDB = new ContentResultService;
-
+            
+            $contentResult =[];
             foreach ($contents['data'] as $key => $content) {
                 $contentResult[$key] = $content;
                 $contentResult[$key]['content_result'] = $contentResultDB->index($schoolId,
                     [
-                        'activity_id' => $content['id'],
+                        'content_id' => $content['id'],
                         'student_id' => Auth::user()->id,
                     ],
                 )['data'][0] ?? null;
