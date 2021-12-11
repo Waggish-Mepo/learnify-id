@@ -10,7 +10,7 @@
     <div class="alert alert-primary my-4 rounded" role="alert">
         <div class="d-flex align-items-center">
             <div class="d-flex align-items-center h4 bg-primary rounded-circle mr-2 mt-2" data-toggle="tooltip" data-placement="top" title="alert"><i class="icon-info text-white"></i></div>
-            Terbitkan latihan agar siswa dapat mengerjakan latihan yang dibagikan
+            Terbitkan {{$activity['type'] === 'EXAM' ? 'ulangan' : 'latihan'}} agar siswa dapat mengerjakan {{$activity['type'] === 'EXAM' ? 'ulangan' : 'latihan'}} yang dibagikan
         </div>
     </div>
     <div class="d-flex justify-content-end mt-5">
@@ -26,8 +26,8 @@
     <div class="bg-white mt-3 px-3 py-4 text-dark">
         <form>
             <div class="form-group mb-3">
-                <label for="title" class="font-18">Judul Latihan</label>
-                <input type="text" class="form-control" id="title" placeholder="Masukkan judul latihan" name="activity_name" value="{{ $activity['name'] }}">
+                <label for="title" class="font-18">Judul {{$activity['type'] === 'EXAM' ? 'ulangan' : 'latihan'}}</label>
+                <input type="text" class="form-control" id="title" placeholder="Masukkan judul" name="activity_name" value="{{ $activity['name'] }}">
             </div>
             <div class="form-group mb-3">
                 <label for="description" class="font-18">Deskripsi Pengerjaan</label>
