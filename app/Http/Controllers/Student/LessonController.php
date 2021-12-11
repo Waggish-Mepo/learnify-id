@@ -159,7 +159,23 @@ class LessonController extends Controller
             'status' => 'PUBLISHED',
             'order_by' => 'ASC',
         ]);
-        $contents['total'] = count($contents['data']);
+        $contents['total'] = count($contents['data'] ?? []);
+
+        if (isset($contents['total'])) {
+            $contentResultDB = new ContentResultService;
+
+            foreach ($contents['data'] as $key => $content) {
+                $contentResult[$key] = $content;
+                $contentResult[$key]['content_result'] = $contentResultDB->index($schoolId,
+                    [
+                        'activity_id' => $content['id'],
+                        'student_id' => Auth::user()->id,
+                    ],
+                )['data'][0] ?? null;
+            }
+
+            $contents['data'] = $contentResult;
+        }
 
         return response()->json($contents);
     }

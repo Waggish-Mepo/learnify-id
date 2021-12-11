@@ -126,7 +126,7 @@
             html += `
             <div class="mt-3">
                 <a href="{{ url('/student/subject/${subject.id}/course/${course.id}/topic/${topic.id}/content/${content.id}') }}" class="d-flex align-items-center p-2 w-100 bg-white shadow-sm rounded border-hover">
-                    <div class="d-flex align-items-center justify-content-center w35 bg-blue-2 rounded-circle cursor-pointer ml-2" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
+                    <div class="d-flex align-items-center justify-content-center w35 rounded-circle cursor-pointer ml-2 ${content.content_result !== null ? 'bg-grey-1' : 'bg-blue-2'}" data-toggle="tooltip" data-placement="top" title="materi"><i class="icon-book-open text-white"></i></div>
                     <div class="ml-3">
                     <p class="text-dark text-uppercase text-dark pt-3">${content.name}</p>
                     </div>

@@ -177,9 +177,6 @@
             let grade = $(`select[name=${role}Grade]`).val();
             data['nis'] = nis
             data['grade'] = grade
-        } else if (role === 'TEACHER') {
-            let grade = $(`select[name=${role}Grade]`).val();
-            data['grade'] = grade
         }
         let btnSubmit = $(`#${role}-submit`)
 
@@ -214,9 +211,6 @@
             $('input[name=editNis]').val(dataAccount.nis)
             $(`select[name=editGrade] option[value=${dataAccount.grade}]`).attr('selected','selected');
         }
-        if (role === 'TEACHER') {
-            $(`select[name=editGrade] option[value=${dataAccount.grade}]`).attr('selected','selected');
-        }
     }
 
     function updateAccount() {
@@ -236,9 +230,6 @@
             let nis = $('input[name=editNis]').val()
             let grade = $('select[name=editGrade]').val()
             data['nis'] = nis
-            data['grade'] = grade
-        } else if (role === 'TEACHER') {
-            let grade = $(`select[name=editGrade]`).val();
             data['grade'] = grade
         }
 
