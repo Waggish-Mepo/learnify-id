@@ -22,10 +22,10 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                             <i class="icon-bell"></i>
-                            <span class="notification-dot bg-azura">4</span>
+                            <span class="notification-dot bg-azura"></span>
                         </a>
                         <ul class="dropdown-menu feeds_widget vivify fadeIn notif">
-                            <li class="header blue">You have 4 New Notifications</li>
+                            <li class="header blue">Notifications</li>
                             @foreach(DB::table('notif')->where('student_id', Auth::id() )->get() as $item)
                             <li>
                                 <a href="javascript:void(0);">
