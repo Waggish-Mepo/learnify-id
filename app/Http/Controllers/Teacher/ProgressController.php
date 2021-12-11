@@ -7,6 +7,7 @@ use App\Models\Activity;
 use App\Models\ActivityResult;
 use App\Models\Content;
 use App\Models\ContentResult;
+use App\Models\Notif;
 use App\Models\Topic;
 use App\Service\Database\CourseService;
 use App\Service\Database\SubjectService;
@@ -15,6 +16,8 @@ use App\Service\Database\TopicService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Service\Database\UserService;
+use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 
 class ProgressController extends Controller
 {
@@ -224,5 +227,22 @@ class ProgressController extends Controller
         $topics['total'] = count($topics['data']);
 
         return response()->json($topics);
+    }
+
+    public function sendNotif($activity_id){
+        
+        $examsDB = ActivityResult::where(['activity_id'=>$activity_id])->get();
+
+        foreach ($examsDB as $key => $value) {
+            $notif = new Notif;
+            $notif->student_id= $value->student_id;
+            $notif->teacher_id= Auth::id();
+            $notif->title= "Nilai Ulangan";
+            $notif->message= "Kamu mendapatkan nilai ".$value->score;
+            $notif->is_send= 1;
+            $notif->save();
+        }
+        return redirect()->back();
+        
     }
 }

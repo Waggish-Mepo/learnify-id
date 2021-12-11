@@ -378,7 +378,7 @@
                 success: function (response) {
                     button.html(buttonHtml)
                     swal({
-                        title: `Berhasil ${message} aktifitas!`,
+                        title: `Berhasil ${message} aktivitas!`,
                         confirmButtonText: "Oke !",
                         closeOnConfirm: false,
                     }, function () {
@@ -387,7 +387,7 @@
                 },
                 error: function (e) {
                     button.html(buttonHtml)
-                    swal(`Gagal ${message} aktifitas. Silahkan coba lagi!`)
+                    swal(`Gagal ${message} aktivitas. Silahkan coba lagi!`)
                 }
             });
         }
