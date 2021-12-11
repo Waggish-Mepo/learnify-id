@@ -20,8 +20,8 @@
             <div class="card">
                 <ul class="nav nav-tabs">
                     <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#content">Ulasan</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#exercise">Latihan</a></li>        
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#exam">Ulangan</a></li>        
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#exercise">Latihan</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#exam">Ulangan</a></li>
                 </ul>
                 <div class="tab-content mt-0">
                     <div class="tab-pane show active" id="content">
@@ -40,7 +40,7 @@
                                 <tbody>
                                     @foreach ($contents as $content)
                                     <tr>
-                                        <td>{{$no++}}</td>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>
                                             <h6 class="mb-0">{{$content['student_name']}}</h6>
                                             <span>{{$content['student_email']}}</span>
@@ -54,7 +54,7 @@
                                 @else
                                     <h5 class="color-blank my-3 text-center">Data Kosong</h5>
                                 @endif
-                            </table>                
+                            </table>
                         </div>
                     </div>
                     <div class="tab-pane" id="exercise">
@@ -75,7 +75,7 @@
                                 <tbody>
                                     @foreach ($activities as $item)
                                     <tr>
-                                        <td>{{$no++}}</td>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>
                                             <h6 class="mb-0">{{$item['student_name']}}</h6>
                                             <span>{{$item['student_email']}}</span>
@@ -101,7 +101,7 @@
                                 @else
                                     <h5 class="color-blank my-3 text-center">Data Kosong</h5>
                                 @endif
-                            </table>                
+                            </table>
                         </div>
                     </div>
                     <div class="tab-pane" id="exam">
@@ -123,7 +123,7 @@
                                 <tbody>
                                     @foreach ($exams as $exam)
                                     <tr>
-                                        <td>{{$no++}}</td>
+                                        <td>{{$loop->iteration}}</td>
                                         <td>
                                             <h6 class="mb-0">{{$exam['student_name']}}</h6>
                                             <span>{{$exam['student_email']}}</span>
@@ -144,10 +144,10 @@
                                 @else
                                     <h5 class="color-blank my-3 text-center">Data Kosong</h5>
                                 @endif
-                            </table>                
+                            </table>
                         </div>
                     </div>
-                </div>            
+                </div>
             </div>
             </div>
         </div>
