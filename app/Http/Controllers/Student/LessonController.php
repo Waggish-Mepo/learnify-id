@@ -160,6 +160,7 @@ class LessonController extends Controller
             'order_by' => 'ASC',
         ]);
         $contents['total'] = count($contents['data'] ?? []);
+        $contentResult =[];
 
         if (isset($contents['total'])) {
             $contentResultDB = new ContentResultService;
