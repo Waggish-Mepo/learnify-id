@@ -16,7 +16,7 @@
             <p class="text-dark my-2 text-center">Semangat, ya! Coba lagi yuk.</p>
             <div class="d-flex mt-3 align-items-center">
                 <div class="m-auto">
-                <a href="" class="btn bg-blue-2 color-black font-weight-bold mr-2 opacity-50">Ulangi</a>
+                <a href="" class="btn btn-repeat bg-blue-2 color-black font-weight-bold mr-2 opacity-50">Ulangi</a>
                 <a href="{{ url('student/subject/'.$subjectId.'/course/'.$courseId.'/topic/'.$topic['id']) }}" class="btn bg-blue-2 text-white font-weight-bold">Selesai</a>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <p class="text-dark my-2 text-center">Kamu berhasil menjawab soal dengan benar!</p>
             <div class="d-flex mt-3 align-items-center">
                 <div class="m-auto">
-                <a href="" class="btn bg-blue-2 color-black font-weight-bold mr-2 opacity-50">Ulangi</a>
+                <a href="" class="btn btn-repeat bg-blue-2 color-black font-weight-bold mr-2 opacity-50">Ulangi</a>
                 <a href="{{url('student/subject/'.$subjectId.'/course/'.$courseId.'/topic/'.$topic['id'])}}" class="btn bg-blue-2 text-white font-weight-bold">Selesai</a>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <p class="text-dark my-2 text-center">Kamu berhasil menjawab soal dengan benar!</p>
             <div class="d-flex mt-3 align-items-center">
                 <div class="m-auto">
-                <a href="" class="btn bg-blue-2 color-black font-weight-bold mr-2 opacity-50">Ulangi</a>
+                <a href="" class="btn btn-repeat bg-blue-2 color-black font-weight-bold mr-2 opacity-50">Ulangi</a>
                 <a href="{{url('student/subject/'.$subjectId.'/course/'.$courseId.'/topic/'.$topic['id'])}}" class="btn bg-blue-2 text-white font-weight-bold">Selesai</a>
                 </div>
             </div>
@@ -74,6 +74,8 @@
     let answeres = {}
     let choices = {}
     let totalQuestion = 0
+
+    console.log(activity);
 
     $.ajaxSetup({
         headers: {
@@ -245,12 +247,27 @@
             success: function (response) {
                 if (response.score <= 60) {
                     $("#render-question").hide();
+                    if(activity.type === 'EXAM') {
+                        $('.btn-repeat').addClass('d-none');
+                    } else {
+                        $('.btn-repeat').removeClass('d-none');
+                    }
                     $("#score-under-60").show();
                 } else if (response.score > 60 && response.score <= 80) {
                     $("#render-question").hide();
+                    if(activity.type === 'EXAM') {
+                        $('.btn-repeat').addClass('d-none');
+                    } else {
+                        $('.btn-repeat').removeClass('d-none');
+                    }
                     $("#score-under-80").show();
                 } else if (response.score > 80 && response.score <= 100) {
                     $("#render-question").hide();
+                    if(activity.type === 'EXAM') {
+                        $('.btn-repeat').addClass('d-none');
+                    } else {
+                        $('.btn-repeat').removeClass('d-none');
+                    }
                     $("#score-under-100").show();
                 }
                 $('.result-score').html(response.score);
